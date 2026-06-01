@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Surrey Hills · 菜單 Menu</title>
+
+<meta name="description" content="Surrey Hills 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Surrey Hills · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(30px, 8vw, 46px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(15px, 4vw, 20px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 13px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 13px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 12.5px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center;
+    padding: 16px 14px; margin: 18px auto 4px; max-width: 720px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 14px; font-size: 13px; }
+  .legend span { white-space: nowrap; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(20px, 5.5vw, 27px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(14px, 4vw, 18px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 12.5px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 15.5px; }
+  .item .name .tags { font-size: 13px; margin-left: 5px; letter-spacing: 1px; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 14.5px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 13px; margin-top: 3px; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 15.5px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 12.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>Surrey Hills</h1>
+  <div class="zh-title">薩里山</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 SGD 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+</div>
+
+<div class="wrap">
+  <div class="legend">
+    <span>🌶️ Spicy 辣</span>
+    <span>🌱 Vegetarian 適合素食</span>
+    <span>🐷 Pork 豬肉</span>
+    <span>🐔 Chicken 雞肉</span>
+    <span>🐟 Seafood 海鮮</span>
+    <span>🐮 Beef 牛肉</span>
+  </div>
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const ICON = { spicy:"🌶️", veg:"🌱", pork:"🐷", chicken:"🐔", seafood:"🐟", beef:"🐮" };
+const MENU = [{"en":"Soup, Salad, Snacks","zh":"湯、沙拉、小食","note":"","items":[{"en":"Mexican Corn Soup","zh":"墨西哥粟米湯","p":"18","t":["veg"],"den":"Charred corn, feta and toasted focaccia","dzh":"炭烤粟米、菲達芝士及烤佛卡夏麵包"},{"en":"Miso Clam Chowder","zh":"味噌蜆肉濃湯","p":"14","t":["seafood"],"den":"Clams, various vegetables, aged shoyu, sake, mirin and served with toasted focaccia","dzh":"蜆肉、各式蔬菜、陳年醬油、清酒、味醂，配烤佛卡夏麵包"},{"en":"Grilled Chicken Caesar Salad","zh":"烤雞凱撒沙拉","p":"28","t":["chicken"],"den":"Baby gem lettuce with anchovy and garlic dressing, crispy bacon, garlic baguette chips, 6-minute eggs and grilled chicken","dzh":"寶石生菜配鯷魚蒜香醬、脆培根、蒜香法棍片、六分鐘溏心蛋及烤雞"},{"en":"Tuscan Tomato Salad","zh":"托斯卡納番茄沙拉","p":"22","t":["veg"],"den":"Cherry Tomatoes, marinated artichoke, boiled chickpea, feta cheese, arugula, basil, radish, red wine vinaigrette","dzh":"車厘茄、醃漬朝鮮薊、熟鷹嘴豆、菲達芝士、芝麻菜、羅勒、蘿蔔、紅酒油醋汁"},{"en":"Triple Truffle Fries","zh":"三重松露薯條","p":"19","t":["veg"],"den":"Fries coated with truffle powder, truffle olive oil and topped up with Parmesan shavings. Served with home-made truffle mayo dip","dzh":"薯條裹松露粉及松露橄欖油，頂置帕馬森芝士刨片，配自製松露蛋黃醬"},{"en":"Mentaiko Sweet Potato Balls","zh":"明太子番薯球","p":"12","t":[],"den":"Fried Mochi sweet potato balls with mentaiko drizzles, nori and ebiko","dzh":"炸麻糬番薯球，淋上明太子醬，配海苔及蝦子"},{"en":"Sloppy Tots","zh":"肉醬薯餅","p":"24","t":["beef"],"den":"Sloppy Joe with tater tots gratinated with cheese (Contains beef)","dzh":"肉醬Joe配脆薯餅，焗上芝士（含牛肉）"},{"en":"Thai Style Green Curry Shakshuka","zh":"泰式青咖喱沙克舒卡","p":"24","t":["spicy","chicken"],"den":"Roasted marinated chicken thigh with thai spices, simmered in home-made green curry roasted potatoes and Nu-Yolk eggs, served with focaccia","dzh":"泰式香料醃烤雞腿，配自製青咖喱烤薯及溏心蛋，附佛卡夏麵包"}],"id":"sec-0"},{"en":"Pasta","zh":"意大利麵","note":"","items":[{"en":"Pesto Prawn","zh":"青醬海蝦意麵","p":"28","t":["seafood"],"den":"Farfalle tossed in basil pesto, grilled sea prawns, Parmiggiano Reggiano","dzh":"蝴蝶結意粉拌羅勒青醬、烤海蝦及帕馬森芝士"},{"en":"Creamy Nori Udon","zh":"奶油海苔烏冬","p":"32","t":[],"den":"Udon in Kyushu nori cream, mentaiko, Nuyolk sous vide egg, parmesan cheese","dzh":"烏冬配九州海苔忌廉、明太子、低溫慢煮溏心蛋及帕馬森芝士"},{"en":"Crab Pomodoro","zh":"蟹肉番茄意麵","p":"36","t":["spicy","seafood"],"den":"Crab meat and fried soft shell crab, vine-ripened cherry tomato, linguine sautéed with chilli, garlic and white wine, mizuna and parmesan cheese","dzh":"蟹肉及炸軟殼蟹，藤熟車厘茄，長扁麵以辣椒、蒜及白酒炒製，配水菜及帕馬森芝士"}],"id":"sec-1"},{"en":"Signature Desserts","zh":"招牌甜品","note":"","items":[{"en":"Pavlova","zh":"芭芙洛娃","p":"22","t":["veg"],"den":"Meringue filled with vanilla crème Chantilly, passionfruit sorbet, seasonal fruits, seasonal fruit coulis","dzh":"蛋白霜餅配香草鮮忌廉、百香果雪葩、時令鮮果及果醬"},{"en":"Churros Stack","zh":"吉拿棒疊","p":"16","t":["veg"],"den":"Fried charcoal churros and coated in cinnamon sugar. Served with vanilla ice cream, almond crumble and dark chocolate sauce","dzh":"炸竹炭吉拿棒裹肉桂糖，配雲呢拿雪糕、杏仁碎及黑朱古力醬"}],"id":"sec-2"},{"en":"All Day Brunch","zh":"全日早午餐","note":"","items":[{"en":"OG Avo Toast","zh":"經典牛油果吐司","p":"26","t":["veg"],"den":"Surrey Hills signature avo mash with marinated tomato, whipped ricotta on sourdough toast with egg of choice","dzh":"薩里山招牌牛油果泥配醃番茄、打發瑞可達芝士，置於酸種吐司上，配自選蛋"},{"en":"Orange Caramel Bacon Benny","zh":"橙味焦糖培根班尼迪蛋","p":"29","t":["spicy","pork"],"den":"Thick cut homemade pork belly bacon with orange caramel fish sauce glaze on English muffins and apple slaw, served with choice of eggs and hollandaise.","dzh":"厚切自製五花肉培根配橙味焦糖魚露醬，置英式鬆餅及蘋果絲沙拉上，配自選蛋及荷蘭醬"},{"en":"Corned Beef Hash","zh":"咸牛肉薯餅","p":"28","t":["beef"],"den":"Homemade corned Wagyu brisket sautéed with baby potato, butternut squash, served with purple sweet potato foam, crispy kale and egg of choice","dzh":"自製和牛咸牛腩配小薯仔、奶油南瓜，佐紫薯泡沫、脆羽衣甘藍及自選蛋"},{"en":"Holland Village SH Big Breakfast","zh":"荷蘭村薩里山大早餐","p":"36","t":["spicy","pork"],"den":"Charcuterie pork sausage, smoked bacon, roasted cherry tomato, roasted portobello mushroom, French toast and syrup, seasonal salad","dzh":"豬肉香腸、煙燻培根、烤車厘茄、烤波托貝羅蘑菇、法式吐司配糖漿及時令沙拉"}],"id":"sec-3"},{"en":"From The Grill","zh":"燒烤類","note":"","items":[{"en":"Peruvian Roasted Chicken Breast","zh":"秘魯烤雞胸","p":"28","t":["spicy","chicken"],"den":"Grilled spice rubbed tender chicken breast served with grilled vegetables, butter mash and ahi verde sauce","dzh":"香料醃烤嫩雞胸，配烤蔬菜、牛油薯蓉及青醬"},{"en":"Barramundi \"Assam Pedas\"","zh":"亞參辣魚（金目鱸）","p":"32","t":["spicy","seafood"],"den":"Grilled farm fresh barramundi fillet on homemade Assam Pedas sauce with lady finger, tomato, served with a yogurt dressed fennel salad","dzh":"烤新鮮農場金目鱸魚柳，配自製亞參辣醬、羊角豆及番茄，佐優格茴香沙拉"},{"en":"\"Wanderer\" Prime Rib","zh":"「漫遊者」頂級肋眼","p":"108","t":["beef"],"den":"Served with Bearnaise sauce, trio salt, fresh greens","dzh":"配伯恩尼斯醬、三色鹽及新鮮蔬菜"},{"en":"Truffled Wagyu Brioche Bun Burger","zh":"松露和牛布里歐漢堡","p":"35","t":["beef"],"den":"Wagyu beef patty, truffle cheese sauce, pepper relish and brioche bun. Served with fries","dzh":"和牛肉餅配松露芝士醬、胡椒醬及布里歐麵包，配薯條"},{"en":"Chimichurri Steak Sandwich","zh":"青醬牛排三明治","p":"32","t":["beef"],"den":"Charcoal grilled 120-day corn fed, 100% antibiotics and hormone free Angus striploin. Served with pepper relish, mustard, chimichurri, provolone cheese, fried egg in a ciabatta. Served with salad on the side","dzh":"炭烤120天玉米飼無抗生素激素安格斯西冷牛排，配胡椒醬、芥末、青醬、普羅旺斯芝士及煎蛋，夾入拖鞋麵包，附沙拉"},{"en":"Grilled Squid with Tomato Sambal","zh":"烤魷魚配番茄參巴醬","p":"35","t":["spicy","seafood"],"den":"Charcoal grill whole squid. Served with an original spicy tomato sambal sauce, herb oil and lime","dzh":"炭烤整條魷魚，配招牌辣番茄參巴醬、香草油及青檸"},{"en":"Wagyu Beef Cheek Rendang \"Nasi Duan Jeruk\"","zh":"仁當和牛臉頰肉「柑橘雙拼飯」","p":"38","t":["spicy","beef"],"den":"Wagyu Beef Cheek simmered long and slow in our special house Rendang rempah served with garlicky lime leaf Hokkaido rice, prawn keropok, fried shallots, berempah and Balinese style sambal matah","dzh":"和牛臉頰肉以招牌仁當香料慢燉，配蒜香青檸葉北海道米飯、蝦片、炸紅蔥頭、香料及峇里式生參巴醬"}],"id":"sec-4"},{"en":"Pancake Parlour™ Pancakes","zh":"Pancake Parlour™ 班戟","note":"","items":[{"en":"Pancake Parlour Classic Stack","zh":"經典班戟疊","p":"22","t":["veg"],"den":"Pancake Parlour™ pancakes (3pcs) with vanilla crème Chantilly, whipped butter and maple syrup","dzh":"Pancake Parlour™ 班戟（3塊）配香草鮮忌廉、打發牛油及楓糖漿"},{"en":"Fried Chicken Stack","zh":"炸雞班戟疊","p":"28","t":["chicken"],"den":"Pancake Parlour™ pancakes (2pcs) with buttermilk fried chicken, chilli honey, parmesan cheese and whipped butter","dzh":"Pancake Parlour™ 班戟（2塊）配白脫牛奶炸雞、辣椒蜜糖、帕馬森芝士及打發牛油"},{"en":"Bacon & Egg Stack","zh":"培根蛋班戟疊","p":"24","t":["pork"],"den":"Pancake Parlour™ pancakes (2pcs) with crispy maple glazed smoked bacon, sunny side up, classic hollandaise, maple syrup and whipped butter","dzh":"Pancake Parlour™ 班戟（2塊）配脆楓糖煙燻培根、太陽蛋、經典荷蘭醬、楓糖漿及打發牛油"},{"en":"The Signature Stack","zh":"招牌班戟疊","p":"24","t":["veg"],"den":"Pancake Parlour™ pancakes (2pcs) with vanilla crème Chantilly, seasonal fruit compote, fresh berries and seasalt butterscotch","dzh":"Pancake Parlour™ 班戟（2塊）配香草鮮忌廉、時令水果醬、新鮮漿果及海鹽牛油糖醬"},{"en":"Flambé Banana Stack","zh":"火焰香蕉班戟疊","p":"26","t":["veg"],"den":"Pancake Parlour™ pancakes (2pcs), caramelized banana flambéed with Jamaican dark rum, crème Chantilly, roasted walnut, cinnamon and vanilla ice cream. Served with maple syrup","dzh":"Pancake Parlour™ 班戟（2塊），焦糖香蕉以牙買加黑朗姆酒火焰，配鮮忌廉、烤核桃、肉桂及雲呢拿雪糕，附楓糖漿"},{"en":"Dark Chocolate Dream","zh":"黑朱古力夢幻班戟疊","p":"26","t":["veg"],"den":"Pancake Parlour™ pancakes (2pcs): vanilla crème Chantilly, almond crumble and Grand Cru dark chocolate ice cream. Served with dark chocolate sauce","dzh":"Pancake Parlour™ 班戟（2塊）配香草鮮忌廉、杏仁碎及特級黑朱古力雪糕，附黑朱古力醬"},{"en":"Surrey Hills Happy Meal","zh":"薩里山歡樂餐班戟疊","p":"32","t":["pork"],"den":"Surrey Hills pancakes (2pcs), charcoal grilled fennel sausage patty, tater tots, house strawberry compote, crème Chantilly, salad. Served with whipped butter and maple syrup","dzh":"薩里山班戟（2塊）配炭烤茴香腸餅、脆薯餅、自家草莓醬、鮮忌廉及沙拉，附打發牛油及楓糖漿"},{"en":"Jalapeño Pepper Stack","zh":"墨西哥辣椒班戟疊","p":"28","t":["spicy"],"den":"Pancake Parlour™ pancakes (2pcs) filled with jalapeño, mixed herb, cheddar cheese, duck confit duck leg, salad, whipped butter and egg of your choice","dzh":"Pancake Parlour™ 班戟（2塊）配墨西哥辣椒、混合香草、車打芝士、油封鴨腿、沙拉、打發牛油及自選蛋"},{"en":"Cheesy Okonomiyaki","zh":"芝士大阪燒班戟","p":"22","t":[],"den":"Pancake Parlour™ pancakes with cabbage, sweet corn, green onion. Served with mixed cheeses, okonomi sauce, frisee, bonito flakes, mayo and nori","dzh":"Pancake Parlour™ 班戟配椰菜、粟米及青蔥，佐雜芝士、大阪燒醬、菊苣、柴魚片、蛋黃醬及海苔"},{"en":"Tooheys™ Lager Fish & Chips Stack","zh":"Tooheys™ 拉格啤酒炸魚薯條班戟疊","p":"26","t":["seafood"],"den":"Pancake Parlour™ pancakes (2pcs), halibut fillet in Aussie pale ale batter. Served with dill tartar sauce and fries","dzh":"Pancake Parlour™ 班戟（2塊）配澳式淡啤酒漿炸比目魚柳，附蒔蘿他他醬及薯條"}],"id":"sec-5"},{"en":"Kids' Special","zh":"兒童特餐","note":"Check our e-menu!","items":[],"id":"sec-6"},{"en":"Artisanal Tea Selection","zh":"精品茶選","note":"","items":[{"en":"Asian Sunset","zh":"亞洲日落","p":"14","t":[],"den":"White tea, jasmine petals, rose petals","dzh":"白茶、茉莉花瓣、玫瑰花瓣"},{"en":"South Melbourne Breakfast Brew","zh":"南墨爾本早餐茶","p":"14","t":[],"den":"Classic blend of Ceylon black tea","dzh":"經典錫蘭紅茶拼配"},{"en":"Sweet Dream (Caffeine Free)","zh":"甜夢（無咖啡因）","p":"14","t":[],"den":"Rooibus, lavender and cornflower","dzh":"南非紅茶、薰衣草及矢車菊"},{"en":"Fukamushi Sencha","zh":"深蒸煎茶","p":"14","t":[],"den":"Deep, umami flavour and rich aroma","dzh":"深沉鮮味、香氣濃郁"},{"en":"Lemongrass Ginger","zh":"香茅薑茶","p":"14","t":[],"den":"Ginger root, lemongrass, lemon peel, spearmint, licorice root","dzh":"薑根、香茅、檸檬皮、留蘭香及甘草根"}],"id":"sec-7"},{"en":"Grocer Fresh Pressed","zh":"新鮮鮮榨果汁","note":"","items":[{"en":"Classic OJ","zh":"經典橙汁","p":"10","t":[],"den":"100% Orange Juice","dzh":"100% 純橙汁"},{"en":"Farmer's Green","zh":"農夫綠汁","p":"10","t":[],"den":"Celery, Cucumber, Kale, Apple","dzh":"西芹、青瓜、羽衣甘藍、蘋果"},{"en":"Applily Ever After","zh":"幸福蘋果汁","p":"10","t":[],"den":"Apple, Carrot and Orange","dzh":"蘋果、紅蘿蔔及橙"}],"id":"sec-8"},{"en":"Beer, Wine & Sake","zh":"啤酒、葡萄酒及清酒","note":"","items":[{"en":"Tooheys Lager 4.6%","zh":"Tooheys 拉格啤酒 4.6%","p":"8","t":[],"den":"","dzh":""},{"en":"Little Creatures Pale Ale 5.2%","zh":"Little Creatures 淡色愛爾 5.2%","p":"8","t":[],"den":"","dzh":""},{"en":"House Prosecco","zh":"本店普羅賽克","p":"14","t":[],"den":"","dzh":""},{"en":"House Pour Rosé","zh":"本店玫瑰紅酒","p":"16","t":[],"den":"","dzh":""},{"en":"House Pour White","zh":"本店白葡萄酒","p":"16","t":[],"den":"","dzh":""},{"en":"House Pour Red","zh":"本店紅葡萄酒","p":"16","t":[],"den":"","dzh":""},{"en":"House Sake","zh":"本店清酒","p":"25","t":[],"den":"","dzh":""},{"en":"Ozeki Pineapple Nigori","zh":"大關菠蘿濁酒","p":"20","t":[],"den":"","dzh":""},{"en":"Kiku Masamune Liqueur White Peach","zh":"菊正宗白桃利口酒","p":"25","t":[],"den":"","dzh":""},{"en":"Ozeki Hana Awa Ka Yuzu Sparkling Liqueur","zh":"大關花泡柚子氣泡利口酒","p":"16","t":[],"den":"","dzh":""}],"id":"sec-9"},{"en":"Coffee","zh":"咖啡","note":"ONA Coffee, Australia: Sweet Berries & Creamy White Chocolate. Surrey Hill's Signature Blend: Black Plum, Malted Chocolate, Nutty","items":[{"en":"Latte","zh":"拿鐵","p":"7","t":[],"den":"","dzh":""},{"en":"Piccolo Latte","zh":"小拿鐵","p":"6","t":[],"den":"","dzh":""},{"en":"Long Black","zh":"長黑咖啡","p":"6","t":[],"den":"","dzh":""},{"en":"Flat White","zh":"白咖啡","p":"7","t":[],"den":"","dzh":""},{"en":"Cappucino","zh":"卡布奇諾","p":"7","t":[],"den":"","dzh":""},{"en":"Mocha","zh":"摩卡","p":"9","t":[],"den":"","dzh":""},{"en":"Magic","zh":"Magic咖啡","p":"7","t":[],"den":"","dzh":""},{"en":"Double Espresso","zh":"雙份濃縮咖啡","p":"5.5","t":[],"den":"","dzh":""},{"en":"Espresso Macchiato","zh":"濃縮瑪奇朵","p":"6","t":[],"den":"","dzh":""},{"en":"Iced | Oat Milk | Soy Milk | ONA Blend | Extra Shot | Skinny Milk","zh":"冰飲｜燕麥奶｜豆奶｜ONA拼配｜加濃縮份｜脫脂奶","p":"+1","t":[],"den":"Add-on options","dzh":"附加選項"}],"id":"sec-10"},{"en":"Signature Beverages","zh":"招牌飲品","note":"","items":[{"en":"Babycino","zh":"嬰兒奇諾","p":"4.5","t":[],"den":"","dzh":""},{"en":"Chocolate by Bahen & Co (Hot/Iced)","zh":"Bahen & Co 朱古力（熱／冰）","p":"8/9","t":[],"den":"","dzh":""},{"en":"Hojicha (Hot/Iced)","zh":"焙茶（熱／冰）","p":"8.5/9.5","t":[],"den":"","dzh":""},{"en":"Matcha (Hot/Iced)","zh":"抹茶（熱／冰）","p":"8.5/9.5","t":[],"den":"","dzh":""},{"en":"Prana Chai Latte (Hot/Iced)","zh":"Prana 印度奶茶（熱／冰）","p":"8.5/9.5","t":[],"den":"","dzh":""},{"en":"Adrak Walki Chai (Ginger Tea)","zh":"薑味印度奶茶","p":"8","t":[],"den":"Fresh milk, ginger, lemongrass ginger tea, brown sugar","dzh":"鮮牛奶、薑、香茅薑茶、紅糖"},{"en":"Avo Coconut Coffee","zh":"牛油果椰子咖啡","p":"9.5","t":[],"den":"Double espresso, avocado mash, oat milk, gula melaka syrup, coconut cream","dzh":"雙份濃縮咖啡、牛油果泥、燕麥奶、椰糖漿及椰奶油"},{"en":"Yuzu Sparkling Coffee","zh":"柚子氣泡咖啡","p":"8.5","t":[],"den":"Double espresso, gold citron tea, Fuji red apple mix, orange juice, sparkling water","dzh":"雙份濃縮咖啡、黃金柚子茶、富士紅蘋果汁、橙汁及氣泡水"},{"en":"Honey Cloud","zh":"蜜糖雲朵咖啡","p":"9.5","t":[],"den":"Honey, double espresso, milk","dzh":"蜜糖、雙份濃縮咖啡及牛奶"},{"en":"Green Oasis","zh":"綠洲飲品","p":"9.5","t":[],"den":"Matcha, milk, coconut water","dzh":"抹茶、牛奶及椰子水"}],"id":"sec-11"},{"en":"Mocktail, Iced Tea & Smoothie","zh":"無酒精雞尾酒、冰茶及冰沙","note":"","items":[{"en":"SH Homemade Iced Lemon Tea","zh":"薩里山自製冰檸茶","p":"8","t":[],"den":"Cold brewed for 12 hours with premium black tea dust and fresh lemons from our grocer","dzh":"優質紅茶冷泡12小時，配新鮮檸檬"},{"en":"Iced Ruby Serenade","zh":"紅寶石冰茶","p":"9","t":[],"den":"Hibiscus, watermelon and strawberry.","dzh":"洛神花、西瓜及草莓"},{"en":"Grapefruit Rosemary Refresher","zh":"西柚迷迭香清爽飲","p":"10","t":[],"den":"Pink grapefruit, rosemary honey, pinch of salt and sparkling water","dzh":"粉紅西柚、迷迭香蜜糖、少許鹽及氣泡水"},{"en":"Earl Grey Peachy Smoothie","zh":"伯爵茶蜜桃冰沙","p":"13","t":[],"den":"Fresh peach, banana, cassis purée and earl grey tea extract","dzh":"新鮮蜜桃、香蕉、黑加侖子果蓉及伯爵茶萃取"},{"en":"Pistachio Raspberry Smoothie","zh":"開心果覆盆子冰沙","p":"13","t":[],"den":"Raspberries, lemon, yogurt, honey and pistachio paste","dzh":"覆盆子、檸檬、優格、蜜糖及開心果醬"}],"id":"sec-12"},{"en":"Surrey Specialty Cocktails","zh":"薩里特調雞尾酒","note":"","items":[{"en":"Kyoho Lemonade Fizz","zh":"巨峰葡萄檸檬氣泡","p":"25","t":[],"den":"Grape liqueur, home-made lemonade, bubbles","dzh":"葡萄利口酒、自製檸檬水、氣泡"},{"en":"Strawberry Noir","zh":"黑色草莓","p":"26","t":[],"den":"White rum, strawberry liqueur, strawberry fruit mix, mint leaves and served with fresh strawberry fruit","dzh":"白朗姆酒、草莓利口酒、草莓果汁、薄荷葉，配新鮮草莓"},{"en":"Yuzu Melaka Mojito","zh":"柚子椰糖莫吉托","p":"25","t":[],"den":"Dark rum, fresh yuzu, mint, gula melaka, ginger beer","dzh":"黑朗姆酒、新鮮柚子、薄荷、椰糖及薑啤"},{"en":"Peachy Bubbles","zh":"蜜桃氣泡","p":"25","t":[],"den":"Peach liqueur, fresh peach, bubbles","dzh":"蜜桃利口酒、新鮮蜜桃、氣泡"},{"en":"Bourbon Breeze","zh":"波本微風","p":"27","t":[],"den":"Whisky, bitters","dzh":"威士忌、苦精"},{"en":"Whisky Bean Brew","zh":"威士忌咖啡豆釀","p":"27","t":[],"den":"Coffee infused whisky, bitters, orange peel","dzh":"咖啡浸製威士忌、苦精、橙皮"},{"en":"Lychee Lagoon","zh":"荔枝潟湖","p":"25","t":[],"den":"Vodka, lychee liqueur, lychee juice","dzh":"伏特加、荔枝利口酒、荔枝汁"},{"en":"Grapefruit Paloma Punch","zh":"西柚帕洛瑪賓治","p":"26","t":[],"den":"Tequila, Australian finger lime liqueur, grapefruit purée","dzh":"龍舌蘭、澳洲指橙利口酒、西柚果蓉"},{"en":"Melbourne Mule","zh":"墨爾本驢子","p":"25","t":[],"den":"Vodka, Australian finger lime liqueur, fresh lime, agave, chopped ginger, ginger ale","dzh":"伏特加、澳洲指橙利口酒、新鮮青檸、龍舌蘭糖漿、薑末及薑汁啤酒"},{"en":"Honey Spice Sparkler","zh":"蜜糖香料氣泡雞尾酒","p":"29","t":[],"den":"Whisky, bitters, honey water, ginger ale","dzh":"威士忌、苦精、蜜糖水及薑汁啤酒"}],"id":"sec-13"}];
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${id}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const tags = (it.t && it.t.length) ? `<span class="tags">${it.t.map(k=>ICON[k]||"").join(" ")}</span>` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    return `<div class="item">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)} ${tags}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+        </div>${price}
+      </div>${den}${dzh}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${id}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive:true });
+toTop.addEventListener("click", () => scrollTo({ top:0, behavior:"smooth" }));
+</script>
+</body>
+</html>
