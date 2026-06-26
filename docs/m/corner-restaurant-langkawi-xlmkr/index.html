@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Corner Restaurant Langkawi · 菜單 Menu</title>
+
+<meta name="description" content="Corner Restaurant Langkawi 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Corner Restaurant Langkawi · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 9vw, 54px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(18px, 4.6vw, 24px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 15px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 15px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center;
+    padding: 16px 14px; margin: 18px auto 4px; max-width: 720px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 14px; font-size: 15px; }
+  .legend span { white-space: nowrap; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(24px, 6.4vw, 32px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(17px, 4.6vw, 21px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 15px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 18px; }
+  .item .name .tags { font-size: 15px; margin-left: 5px; letter-spacing: 1px; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 17px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 15px; margin-top: 3px; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 18px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>Corner Restaurant Langkawi</h1>
+  <div class="zh-title">遇見海鮮餐吧（蘭卡威）</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 MYR 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+</div>
+
+<div class="wrap">
+  <div class="legend">
+    <span>🌶️ Spicy 辣</span>
+    <span>🌱 Vegetarian 適合素食</span>
+    <span>🐷 Pork 豬肉</span>
+    <span>🐔 Chicken 雞肉</span>
+    <span>🐟 Seafood 海鮮</span>
+    <span>🐮 Beef 牛肉</span>
+  </div>
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const ICON = { spicy:"🌶️", veg:"🌱", pork:"🐷", chicken:"🐔", seafood:"🐟", beef:"🐮" };
+const MENU = [{"en":"Signature Dishes","zh":"招牌菜","note":"All price are subject to 10% of service charge","items":[{"en":"B2 / Lobster with Cheese","zh":"芝士焗龍蝦","p":"","t":["seafood"],"den":"Lobster baked with cheese","dzh":"龍蝦配芝士烤焗"},{"en":"E5 / Marble Goby Fish with Steam Soya Sauce","zh":"清蒸順壳魚","p":"","t":["seafood"],"den":"Marble goby fish steamed with soya sauce","dzh":"順壳魚以醬油清蒸"},{"en":"C8 / Hong Kong Style Crab","zh":"避風塘炒蟹","p":"","t":["seafood"],"den":"Crab cooked Hong Kong style","dzh":"螃蟹以香港避風塘方式烹調"},{"en":"D1 / Mantis Prawn with Salt and Pepper","zh":"椒鹽瀨尿蝦","p":"","t":["seafood"],"den":"Mantis prawn stir-fried with salt and pepper","dzh":"瀨尿蝦以椒鹽爆炒"},{"en":"F9 / Tiger Prawn Grilled with Garlic","zh":"蒜蓉焗老虎蝦","p":"","t":["seafood"],"den":"Tiger prawn grilled with garlic","dzh":"老虎蝦配蒜蓉烤焗"},{"en":"Q9 / Cryspy CHEN with Salted Egg","zh":"咸蛋黃炒CHEN","p":"","t":[],"den":"Crispy greens stir-fried with salted egg yolk","dzh":"脆炸蔬菜以咸蛋黃炒香"}],"id":"sec-0"},{"en":"Appetizer","zh":"前餐","note":"All price are subject to 10% of service charge","items":[{"en":"A1 / French Fries","zh":"薯條","p":"RM15.00","t":["veg"],"den":"","dzh":""},{"en":"A2 / Chicken Nuggets (6 PCS)","zh":"炸雞塊（6塊）","p":"RM12.00","t":["chicken"],"den":"6 pieces of chicken nuggets","dzh":"炸雞塊6件"},{"en":"A3 / Crispy Spring Roll (5 PCS)","zh":"炸春卷（5塊）","p":"RM15.00","t":[],"den":"5 pieces of crispy spring rolls","dzh":"脆皮春卷5件"},{"en":"A4 / Fried Prawn","zh":"炸蝦","p":"RM38.00","t":["seafood"],"den":"","dzh":""},{"en":"A5 / Green Salad","zh":"蔬菜沙拉","p":"RM20.00","t":["veg"],"den":"","dzh":""},{"en":"A6 / Crystal Noodle Seafood Salad","zh":"冬粉沙拉","p":"RM28.00","t":["seafood"],"den":"Crystal noodle salad with seafood","dzh":"冬粉配海鮮沙拉"},{"en":"A7 / Mango Salad","zh":"芒果沙拉","p":"RM25.00","t":["spicy"],"den":"","dzh":""},{"en":"A8 / Steam Bun","zh":"蒸饅頭","p":"RM12.00","t":[],"den":"","dzh":""}],"id":"sec-1"},{"en":"Main Course – Lobster","zh":"主菜 — 龍蝦","note":"Live Seafood According Market Price. All price are subject to 10% of service charge.","items":[{"en":"B1 / Sashimi","zh":"刺身龍蝦","p":"","t":["seafood"],"den":"Lobster served as sashimi","dzh":"龍蝦刺身"},{"en":"B2 / Cheese","zh":"芝士焗龍蝦","p":"","t":["seafood"],"den":"Lobster baked with cheese","dzh":"芝士焗龍蝦"},{"en":"B3 / Garlic Butter","zh":"蒜蓉焗龍蝦","p":"","t":["seafood"],"den":"Lobster baked with garlic butter","dzh":"蒜蓉牛油焗龍蝦"},{"en":"B4 / Steam Soya Sauce","zh":"清蒸龍蝦","p":"","t":["seafood"],"den":"Lobster steamed with soya sauce","dzh":"醬油清蒸龍蝦"},{"en":"B5 / Steam Crystal Noodle","zh":"粉絲蒸龍蝦","p":"","t":["seafood"],"den":"Lobster steamed with crystal noodle","dzh":"粉絲蒸龍蝦"},{"en":"B6 / HongKong Style","zh":"避風塘龍蝦","p":"","t":["seafood"],"den":"Lobster cooked Hong Kong style","dzh":"香港避風塘風味龍蝦"},{"en":"B7 / Wet Butter","zh":"濕奶油龍蝦","p":"","t":["seafood"],"den":"Lobster with wet butter sauce","dzh":"濕牛油龍蝦"},{"en":"B8 / Dry Butter","zh":"乾奶油龍蝦","p":"","t":["seafood"],"den":"Lobster with dry butter","dzh":"乾牛油龍蝦"},{"en":"B9 / BBQ","zh":"燒烤龍蝦","p":"","t":["seafood"],"den":"BBQ lobster","dzh":"燒烤龍蝦"},{"en":"B10 / Stir Fried Black Bean","zh":"豆豉炒龍蝦","p":"","t":["seafood"],"den":"Lobster stir-fried with black bean sauce","dzh":"豆豉炒龍蝦"},{"en":"B11 / Salad Lobster","zh":"沙拉龍蝦","p":"","t":["seafood"],"den":"Lobster served with salad","dzh":"沙拉龍蝦"}],"id":"sec-2"},{"en":"Main Course – Crab","zh":"主菜 — 螃蟹","note":"Live Seafood According Market Price. All price are subject to 10% of service charge.","items":[{"en":"C1 / Chilli Crab","zh":"怪味蟹","p":"","t":["seafood","spicy"],"den":"Crab cooked in chilli sauce","dzh":"辣椒炒蟹"},{"en":"C2 / BBQ","zh":"燒烤蟹","p":"","t":["seafood"],"den":"BBQ crab","dzh":"燒烤螃蟹"},{"en":"C3 / Steam","zh":"清蒸蟹","p":"","t":["seafood"],"den":"Steamed crab","dzh":"清蒸螃蟹"},{"en":"C4 / Black Pepper","zh":"黑椒蟹","p":"","t":["seafood","spicy"],"den":"Crab stir-fried with black pepper","dzh":"黑椒炒蟹"},{"en":"C5 / Golden Spicy","zh":"金香蟹","p":"","t":["seafood","spicy"],"den":"Crab cooked with golden spicy sauce","dzh":"金香辣醬炒蟹"},{"en":"C6 / Ginger Onion","zh":"薑蔥蟹","p":"","t":["seafood"],"den":"Crab stir-fried with ginger and onion","dzh":"薑蔥炒蟹"},{"en":"C7 / Salted Egg","zh":"咸蛋黃蟹","p":"","t":["seafood"],"den":"Crab cooked with salted egg yolk","dzh":"咸蛋黃炒蟹"},{"en":"C8 / Hong Kong Style","zh":"避風塘炒蟹","p":"","t":["seafood"],"den":"Crab cooked Hong Kong style","dzh":"香港避風塘炒蟹"}],"id":"sec-3"}];
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${id}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const tags = (it.t && it.t.length) ? `<span class="tags">${it.t.map(k=>ICON[k]||"").join(" ")}</span>` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    return `<div class="item">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)} ${tags}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+        </div>${price}
+      </div>${den}${dzh}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${id}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive:true });
+toTop.addEventListener("click", () => scrollTo({ top:0, behavior:"smooth" }));
+</script>
+</body>
+</html>
