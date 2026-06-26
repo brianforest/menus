@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Corner Langkawi · 菜單 Menu</title>
+
+<meta name="description" content="Corner Langkawi 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Corner Langkawi · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 9vw, 54px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(18px, 4.6vw, 24px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 15px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 15px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center;
+    padding: 16px 14px; margin: 18px auto 4px; max-width: 720px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 14px; font-size: 15px; }
+  .legend span { white-space: nowrap; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(24px, 6.4vw, 32px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(17px, 4.6vw, 21px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 15px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 18px; }
+  .item .name .tags { font-size: 15px; margin-left: 5px; letter-spacing: 1px; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 17px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 15px; margin-top: 3px; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 18px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>Corner Langkawi</h1>
+  <div class="zh-title">遇見 Corner 蘭卡威</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 MYR 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+</div>
+
+<div class="wrap">
+  <div class="legend">
+    <span>🌶️ Spicy 辣</span>
+    <span>🌱 Vegetarian 適合素食</span>
+    <span>🐷 Pork 豬肉</span>
+    <span>🐔 Chicken 雞肉</span>
+    <span>🐟 Seafood 海鮮</span>
+    <span>🐮 Beef 牛肉</span>
+  </div>
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const ICON = { spicy:"🌶️", veg:"🌱", pork:"🐷", chicken:"🐔", seafood:"🐟", beef:"🐮" };
+const MENU = [{"en":"Beef / Venison","zh":"牛肉／鹿肉","note":"Small RM38.00 / Medium RM48.00. All prices subject to 10% service charge.","items":[{"en":"J1 / Black Pepper","zh":"黑椒牛肉／鹿肉","p":"38.00 / 48.00","t":["beef","spicy"],"den":"Small RM38.00 / Medium RM48.00","dzh":"小份 RM38.00／中份 RM48.00"},{"en":"J2 / Ginger Onion","zh":"薑蔥牛肉／鹿肉","p":"38.00 / 48.00","t":["beef"],"den":"Small RM38.00 / Medium RM48.00","dzh":"小份 RM38.00／中份 RM48.00"},{"en":"J3 / Green Pepper","zh":"燈籠椒牛肉／鹿肉","p":"38.00 / 48.00","t":["beef"],"den":"Small RM38.00 / Medium RM48.00","dzh":"小份 RM38.00／中份 RM48.00"},{"en":"J4 / Malay Spicy","zh":"馬來風味牛肉／鹿肉","p":"38.00 / 48.00","t":["beef","spicy"],"den":"Small RM38.00 / Medium RM48.00","dzh":"小份 RM38.00／中份 RM48.00"}],"id":"sec-0"},{"en":"Clam","zh":"貝類","note":"Small RM70.80 per 1kg / Medium RM70.80 per 1kg. All prices subject to 10% service charge.","items":[{"en":"K1 / Steam with Lime Sauce","zh":"檸檬蒸蛤蜊","p":"70.80 per 1kg","t":["seafood","spicy"],"den":"Steamed clams with lime sauce","dzh":"檸檬醬蒸蛤蜊"},{"en":"K2 / Ginger Onion","zh":"薑蔥炒蛤蜊","p":"70.80 per 1kg","t":["seafood"],"den":"Clams stir-fried with ginger and onion","dzh":"薑蔥炒蛤蜊"},{"en":"K3 / Golden Spicy","zh":"金香辣炒蛤蜊","p":"70.80 per 1kg","t":["seafood","spicy"],"den":"Clams stir-fried with golden spicy sauce","dzh":"金香辣醬炒蛤蜊"},{"en":"K4 / Bean Paste","zh":"豆瓣醬炒蛤蜊","p":"70.80 per 1kg","t":["seafood"],"den":"Clams stir-fried with bean paste","dzh":"豆瓣醬炒蛤蜊"},{"en":"K5 / Sambal","zh":"馬來風味炒蛤蜊","p":"70.80 per 1kg","t":["seafood","spicy"],"den":"Clams stir-fried with sambal","dzh":"參巴醬炒蛤蜊"}],"id":"sec-1"},{"en":"Meat of Mantis Prawn","zh":"蝦蛄肉","note":"Small RM38.00 / Medium RM48.00. All prices subject to 10% service charge.","items":[{"en":"L1 / Dry Chilli","zh":"宮爆蝦蛄肉","p":"38.00 / 48.00","t":["seafood","spicy"],"den":"Mantis prawn meat stir-fried with dry chilli","dzh":"乾辣椒爆炒蝦蛄肉"},{"en":"L2 / Salted Egg","zh":"鹹蛋黃蝦蛄肉","p":"38.00 / 48.00","t":["seafood"],"den":"Mantis prawn meat with salted egg","dzh":"鹹蛋黃炒蝦蛄肉"}],"id":"sec-2"},{"en":"Duck","zh":"鴨肉","note":"Small RM35.00 / Medium RM45.80. All prices subject to 10% service charge.","items":[{"en":"M1 / Ginger Onion Smoke","zh":"薑蔥醃燻鴨","p":"35.00 / 45.80","t":[],"den":"Smoked duck marinated with ginger and onion; Small RM35.00 / Medium RM45.80","dzh":"薑蔥醃製燻鴨，小份 RM35.00／中份 RM45.80"}],"id":"sec-3"},{"en":"Bean Curd","zh":"豆腐","note":"RM25.00 each. All prices subject to 10% service charge.","items":[{"en":"O1 / Corner","zh":"招牌海鮮豆腐","p":"25.00","t":["seafood"],"den":"Corner-style seafood bean curd","dzh":"招牌海鮮豆腐"},{"en":"O2 / Sizzling","zh":"鐵板豆腐","p":"25.00","t":[],"den":"Sizzling plate bean curd","dzh":"鐵板豆腐"},{"en":"O3 / Claypot","zh":"砂煲豆腐","p":"25.00","t":[],"den":"Claypot bean curd","dzh":"砂煲豆腐"},{"en":"O4 / Chicken Meat","zh":"雞蓉豆腐","p":"25.00","t":["chicken"],"den":"Bean curd with minced chicken","dzh":"雞蓉豆腐"},{"en":"O5 / Crab Meat","zh":"蟹肉豆腐","p":"25.00","t":["seafood"],"den":"Bean curd with crab meat","dzh":"蟹肉豆腐"}],"id":"sec-4"},{"en":"Omelette","zh":"煎蛋","note":"RM25.00 each. All prices subject to 10% service charge.","items":[{"en":"P1 / Prawn","zh":"蝦仁煎蛋","p":"25.00","t":["seafood"],"den":"Omelette with prawns","dzh":"蝦仁煎蛋"},{"en":"P2 / Onion","zh":"大蔥煎蛋","p":"25.00","t":["veg"],"den":"Omelette with onion","dzh":"洋蔥煎蛋"},{"en":"P3 / Oyster","zh":"蚵煎","p":"25.00","t":["seafood"],"den":"Oyster omelette","dzh":"蚵仔煎"},{"en":"P4 / Vegetable","zh":"芙蓉煎蛋","p":"25.00","t":["veg"],"den":"Vegetable omelette","dzh":"蔬菜煎蛋"},{"en":"P5 / Crab Meat","zh":"蟹肉煎蛋","p":"25.00","t":["seafood"],"den":"Omelette with crab meat","dzh":"蟹肉煎蛋"}],"id":"sec-5"},{"en":"Vegetable","zh":"蔬菜","note":"Cook styles: Oyster Sauce / Garlic / Salted Fish / Sambal. Small RM18.00 / Medium RM28.00. Special with Prawn/Scallop: Small RM38.00 / Medium RM48.00. All prices subject to 10% service charge.","items":[{"en":"Q1 / Mix Vegetable","zh":"雜菜","p":"18.00 / 28.00","t":["veg"],"den":"Mixed vegetables; Small RM18.00 / Medium RM28.00","dzh":"雜菜，小份 RM18.00／中份 RM28.00"},{"en":"Q2 / Broccoli","zh":"西蘭花","p":"18.00 / 28.00","t":["veg"],"den":"Broccoli; Small RM18.00 / Medium RM28.00","dzh":"西蘭花，小份 RM18.00／中份 RM28.00"},{"en":"Q3 / Kailan","zh":"芥蘭","p":"18.00 / 28.00","t":["veg"],"den":"Kailan (Chinese broccoli); Small RM18.00 / Medium RM28.00","dzh":"芥蘭，小份 RM18.00／中份 RM28.00"},{"en":"Q4 / Baby Kailan","zh":"小芥蘭","p":"18.00 / 28.00","t":["veg"],"den":"Baby kailan; Small RM18.00 / Medium RM28.00","dzh":"小芥蘭，小份 RM18.00／中份 RM28.00"},{"en":"Q5 / Bean Sprout","zh":"鹹魚豆芽","p":"18.00 / 28.00","t":["veg"],"den":"Bean sprout with salted fish; Small RM18.00 / Medium RM28.00","dzh":"鹹魚豆芽，小份 RM18.00／中份 RM28.00"},{"en":"Q6 / Green Bean Dry Fried","zh":"乾煸四季豆","p":"18.00 / 28.00","t":["veg"],"den":"Dry-fried green beans; Small RM18.00 / Medium RM28.00","dzh":"乾煸四季豆，小份 RM18.00／中份 RM28.00"},{"en":"Q7 / Baby Cabbage","zh":"小白菜","p":"18.00 / 28.00","t":["veg"],"den":"Baby cabbage; Small RM18.00 / Medium RM28.00","dzh":"小白菜，小份 RM18.00／中份 RM28.00"},{"en":"Q8 / Morning Glory","zh":"空心菜","p":"18.00 / 28.00","t":["veg"],"den":"Morning glory (water spinach); Small RM18.00 / Medium RM28.00","dzh":"空心菜，小份 RM18.00／中份 RM28.00"},{"en":"Q9 / Crispy CHEN with Salted Egg","zh":"鹹蛋黃炒CHEN","p":"28.00","t":[],"den":"Crispy vegetable stir-fried with salted egg","dzh":"鹹蛋黃炒脆菜"}],"id":"sec-6"},{"en":"Soup","zh":"湯","note":"All prices subject to 10% service charge.","items":[{"en":"R1 / Seafood Tomyum - Small","zh":"海鮮冬陰湯（小份）","p":"28.00","t":["seafood","spicy"],"den":"Seafood Tom Yum soup, small","dzh":"海鮮冬陰湯，小份"},{"en":"R1 / Seafood Tomyum - Medium","zh":"海鮮冬陰湯（中份）","p":"38.00","t":["seafood","spicy"],"den":"Seafood Tom Yum soup, medium","dzh":"海鮮冬陰湯，中份"},{"en":"R2 / Seafood Soup - Small","zh":"海鮮湯（小份）","p":"25.00","t":["seafood"],"den":"Seafood soup, small","dzh":"海鮮湯，小份"},{"en":"R2 / Seafood Soup - Medium","zh":"海鮮湯（中份）","p":"35.00","t":["seafood"],"den":"Seafood soup, medium","dzh":"海鮮湯，中份"},{"en":"R3 / Seaweed - Small","zh":"紫菜湯（小份）","p":"18.00","t":["veg"],"den":"Seaweed soup, small","dzh":"紫菜湯，小份"},{"en":"R3 / Seaweed - Medium","zh":"紫菜湯（中份）","p":"28.00","t":["veg"],"den":"Seaweed soup, medium","dzh":"紫菜湯，中份"},{"en":"R4 / Fish Ball - Small","zh":"魚丸湯（小份）","p":"18.00","t":["seafood"],"den":"Fish ball soup, small","dzh":"魚丸湯，小份"},{"en":"R4 / Fish Ball - Medium","zh":"魚丸湯（中份）","p":"28.00","t":["seafood"],"den":"Fish ball soup, medium","dzh":"魚丸湯，中份"},{"en":"R5 / Pickle Vegetable - Small","zh":"鹹菜湯（小份）","p":"18.00","t":[],"den":"Pickled vegetable soup, small","dzh":"鹹菜湯，小份"},{"en":"R5 / Pickle Vegetable - Medium","zh":"鹹菜湯（中份）","p":"28.00","t":[],"den":"Pickled vegetable soup, medium","dzh":"鹹菜湯，中份"},{"en":"R6 / Fried Egg - Small","zh":"煎蛋湯（小份）","p":"18.00","t":[],"den":"Fried egg soup, small","dzh":"煎蛋湯，小份"},{"en":"R6 / Fried Egg - Medium","zh":"煎蛋湯（中份）","p":"28.00","t":[],"den":"Fried egg soup, medium","dzh":"煎蛋湯，中份"},{"en":"R7 / Vegetable with Bean Curd - Small","zh":"青菜豆腐湯（小份）","p":"18.00","t":["veg"],"den":"Vegetable and bean curd soup, small","dzh":"青菜豆腐湯，小份"},{"en":"R7 / Vegetable with Bean Curd - Medium","zh":"青菜豆腐湯（中份）","p":"28.00","t":["veg"],"den":"Vegetable and bean curd soup, medium","dzh":"青菜豆腐湯，中份"}],"id":"sec-7"},{"en":"Local Cuisine","zh":"主食","note":"All prices subject to 10% service charge.","items":[{"en":"S1 / Seafood Fried Noodle","zh":"海鮮煎生麵","p":"15.00","t":["seafood"],"den":"Seafood fried noodle","dzh":"海鮮煎生麵"},{"en":"S2 / Chicken Noodle","zh":"雞蓉生麵","p":"15.00","t":["chicken"],"den":"Chicken noodle","dzh":"雞蓉生麵"},{"en":"S3 / Corner Fried Rice","zh":"遇見招牌炒飯","p":"15.00","t":[],"den":"Corner signature fried rice","dzh":"遇見招牌炒飯"},{"en":"S4 / Thai Spicy Fried Rice","zh":"泰式炒飯","p":"15.00","t":["spicy"],"den":"Thai spicy fried rice","dzh":"泰式辣炒飯"},{"en":"S5 / Fried Vermicelli Noodle (Bihun)","zh":"炒米粉","p":"15.00","t":[],"den":"Fried rice vermicelli (Bihun)","dzh":"炒米粉"}],"id":"sec-8"},{"en":"Fresh Juice","zh":"鮮榨果汁","note":"All prices subject to 10% service charge.","items":[{"en":"T1 / Apple","zh":"蘋果汁","p":"12.00 per glass","t":["veg"],"den":"Fresh apple juice per glass","dzh":"鮮榨蘋果汁（每杯）"},{"en":"T2 / Orange","zh":"橙汁","p":"12.00 per glass","t":["veg"],"den":"Fresh orange juice per glass","dzh":"鮮榨橙汁（每杯）"},{"en":"T3 / Pineapple","zh":"菠蘿汁","p":"12.00 per glass","t":["veg"],"den":"Fresh pineapple juice per glass","dzh":"鮮榨菠蘿汁（每杯）"},{"en":"T4 / Lemon","zh":"檸檬汁","p":"12.00 per glass","t":["veg"],"den":"Fresh lemon juice per glass","dzh":"鮮榨檸檬汁（每杯）"},{"en":"T5 / Watermelen","zh":"西瓜汁","p":"12.00 per glass","t":["veg"],"den":"Fresh watermelon juice per glass","dzh":"鮮榨西瓜汁（每杯）"},{"en":"T6 / Carrot","zh":"紅蘿蔔汁","p":"12.00 per glass","t":["veg"],"den":"Fresh carrot juice per glass","dzh":"鮮榨紅蘿蔔汁（每杯）"},{"en":"T7 / Musk Lime with Salty Plum","zh":"桔子酸梅汁","p":"12.00 per glass","t":["veg"],"den":"Musk lime juice with salty plum per glass","dzh":"桔子酸梅汁（每杯）"},{"en":"T8 / Honey Lemon","zh":"蜜糖檸檬汁","p":"12.00 per glass","t":["veg"],"den":"Honey lemon juice per glass","dzh":"蜂蜜檸檬汁（每杯）"},{"en":"T9 / Mixed Juice","zh":"混合果汁（三種）","p":"15.00 per glass","t":["veg"],"den":"Mixed juice (3 types) per glass","dzh":"混合鮮榨果汁（三種，每杯）"},{"en":"T10 / Coconut","zh":"椰子汁","p":"15.00","t":["veg"],"den":"Fresh coconut","dzh":"新鮮椰子"},{"en":"T11 / per Jug","zh":"一壺","p":"50.00","t":[],"den":"Juice per jug","dzh":"果汁一壺"}],"id":"sec-9"},{"en":"Soft Drink","zh":"軟飲","note":"All prices subject to 10% service charge.","items":[{"en":"U1 / Coke","zh":"可樂","p":"7.00","t":[],"den":"Coca-Cola","dzh":"可口可樂"},{"en":"U2 / Coke Zero","zh":"無糖可樂","p":"7.00","t":[],"den":"Coke Zero","dzh":"零度可口可樂"},{"en":"U3 / Sprite","zh":"雪碧","p":"7.00","t":[],"den":"Sprite","dzh":"雪碧"},{"en":"U4 / Ice Lemon Tea","zh":"檸檬茶","p":"7.00","t":[],"den":"Ice lemon tea","dzh":"冰檸檬茶"},{"en":"U5 / 100 Plus","zh":"100號","p":"7.00","t":[],"den":"100 Plus isotonic drink","dzh":"100 Plus 運動飲料"},{"en":"U6 / Mineral Water Small","zh":"純淨水","p":"4.00","t":[],"den":"Mineral water (small)","dzh":"礦泉水（小瓶）"}],"id":"sec-10"},{"en":"Hot Drink","zh":"熱飲","note":"All prices subject to 10% service charge.","items":[{"en":"V1 / Black Coffee","zh":"黑咖啡","p":"","t":[],"den":"Hot black coffee","dzh":"熱黑咖啡"},{"en":"V2 / White Coffee","zh":"白咖啡","p":"8.00","t":[],"den":"Hot white coffee","dzh":"熱白咖啡"},{"en":"V3 / Green Tea","zh":"綠茶","p":"7.00","t":[],"den":"Hot green tea","dzh":"熱綠茶"},{"en":"V4 / Milo","zh":"美祿","p":"8.00","t":[],"den":"Hot Milo","dzh":"熱美祿"}],"id":"sec-11"},{"en":"Beer","zh":"啤酒","note":"All prices subject to 10% service charge.","items":[{"en":"W1 / Tigger","zh":"虎牌啤酒","p":"9.00 per can","t":[],"den":"Tiger beer per can","dzh":"虎牌啤酒（每罐）"},{"en":"W2 / Crystal Beer","zh":"白虎啤酒","p":"9.00 per can","t":[],"den":"Crystal beer per can","dzh":"白虎啤酒（每罐）"},{"en":"W3 / Casrberg","zh":"嘉士伯啤酒","p":"9.00 per can","t":[],"den":"Carlsberg beer per can","dzh":"嘉士伯啤酒（每罐）"},{"en":"W4 / Chang","zh":"大象啤酒","p":"9.00 per bottle","t":[],"den":"Chang beer per bottle","dzh":"象牌啤酒（每瓶）"},{"en":"W5 / Heineken","zh":"喜力啤酒","p":"12.00 per can","t":[],"den":"Heineken beer per can","dzh":"喜力啤酒（每罐）"},{"en":"W6 / Singha","zh":"勝獅啤酒","p":"12.00 per can","t":[],"den":"Singha beer per can","dzh":"勝獅啤酒（每罐）"},{"en":"W7 / Guinness","zh":"黑狗啤酒","p":"13.00 per can","t":[],"den":"Guinness stout per can","dzh":"健力士黑啤酒（每罐）"}],"id":"sec-12"},{"en":"Red Wine","zh":"紅葡萄酒","note":"All prices subject to 10% service charge.","items":[{"en":"X1 / Barton & Guestier Cuvee vin Rouge","zh":"巴頓蓋斯蒂紅葡萄酒","p":"15.00 per glass / 60.00 per bottle","t":[],"den":"Barton & Guestier Cuvee vin Rouge; RM15.00 per glass / RM60.00 per bottle","dzh":"巴頓蓋斯蒂精選紅葡萄酒，每杯 RM15.00／每瓶 RM60.00"},{"en":"X2 / Lindeman's Cabernet Sauvignon","zh":"林德曼卡本內蘇維翁紅葡萄酒","p":"25.00 per glass / 90.00 per bottle","t":[],"den":"Lindeman's Cabernet Sauvignon; RM25.00 per glass / RM90.00 per bottle","dzh":"林德曼卡本內蘇維翁紅葡萄酒，每杯 RM25.00／每瓶 RM90.00"}],"id":"sec-13"},{"en":"White Wine","zh":"白葡萄酒","note":"All prices subject to 10% service charge.","items":[{"en":"X3 / Barton & Guestier Cuvee vin Blanc","zh":"巴頓蓋斯蒂白葡萄酒","p":"15.00 per glass / 60.00 per bottle","t":[],"den":"Barton & Guestier Cuvee vin Blanc; RM15.00 per glass / RM60.00 per bottle","dzh":"巴頓蓋斯蒂精選白葡萄酒，每杯 RM15.00／每瓶 RM60.00"},{"en":"X4 / Lindeman's Sauvignon Blanc","zh":"林德曼白蘇維翁白葡萄酒","p":"25.00 per glass / 90.00 per bottle","t":[],"den":"Lindeman's Sauvignon Blanc; RM25.00 per glass / RM90.00 per bottle","dzh":"林德曼白蘇維翁白葡萄酒，每杯 RM25.00／每瓶 RM90.00"}],"id":"sec-14"}];
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${id}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const tags = (it.t && it.t.length) ? `<span class="tags">${it.t.map(k=>ICON[k]||"").join(" ")}</span>` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    return `<div class="item">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)} ${tags}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+        </div>${price}
+      </div>${den}${dzh}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${id}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive:true });
+toTop.addEventListener("click", () => scrollTo({ top:0, behavior:"smooth" }));
+</script>
+</body>
+</html>
