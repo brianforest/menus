@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Terrace · 菜單 Menu</title>
+
+<meta name="description" content="Terrace 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Terrace · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 9vw, 54px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(18px, 4.6vw, 24px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 15px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 15px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .filterbar { display: flex; gap: 8px; overflow-x: auto; padding: 6px 14px 8px;
+    scrollbar-width: none; -ms-overflow-style: none; }
+  .filterbar::-webkit-scrollbar { display: none; }
+  .chip { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 999px; padding: 6px 12px; min-height: 36px; cursor: pointer;
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  body.lang-zh .chip .cen { display: none; }
+  body.lang-en .chip .czh { display: none; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(24px, 6.4vw, 32px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(17px, 4.6vw, 21px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 15px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 18px; }
+  .item .tags { display: block; margin-top: 4px; font-size: 15px; letter-spacing: 1px; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 17px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 15px; margin-top: 3px; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 18px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>Terrace</h1>
+  <div class="zh-title">Terrace餐廳</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 MYR 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+  <div class="filterbar" id="filterbar" role="group" aria-label="filters"></div>
+</div>
+
+<div class="wrap">
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const MENU = [{"en":"Appetisers","zh":"前菜","note":"All prices quoted are inclusive of prevailing taxes","items":[{"en":"Parmigiana Di Melanzane","zh":"帕爾馬茄子","p":"61","tags":["vegetarian"],"den":"sweet eggplant, tomato, mozzarella, parmesan","dzh":"甜茄子、番茄、莫扎瑞拉芝士、帕爾馬芝士"},{"en":"Truffle Bruschetta","zh":"松露布斯凱塔","p":"94","tags":["vegetarian"],"den":"buffalo mozzarella, truffle paste, shaved parmesan","dzh":"水牛莫扎瑞拉芝士、松露醬、刨片帕爾馬芝士"},{"en":"Salmon Tartare","zh":"鮭魚韃靼","p":"90","tags":["gluten-free","signature"],"den":"salmon roe, capers, gherkin, shallot, mustard cream","dzh":"鮭魚子、酸豆、小黃瓜、紅蔥頭、芥末忌廉"}],"id":"sec-0"},{"en":"Salads","zh":"沙律","note":"All prices quoted are inclusive of prevailing taxes","items":[{"en":"Salade Nicoise","zh":"尼斯沙律","p":"79","tags":["gluten-free"],"den":"pan seared tuna, mixed lettuce, green bean, olive, cherry tomato, hard-boiled egg, capers dressing","dzh":"香煎吞拿魚、雜菜生菜、四季豆、橄欖、車厘茄、白煮蛋、酸豆汁"},{"en":"The Terrace Caesar Salad","zh":"Terrace凱撒沙律","p":"79","tags":["vegetarian","gluten-free"],"den":"young baby romaine lettuce, grilled chicken, speck crisp, grated parmesan, Caesar dressing","dzh":"嫩羅馬生菜、烤雞、煙肉脆片、磨碎帕爾馬芝士、凱撒汁"},{"en":"Insalata Mista","zh":"什錦蔬菜沙律","p":"42","tags":["vegetarian","gluten-free"],"den":"seasonal green salad, olives, tomato, sundried tomato, artichoke, grilled vegetables","dzh":"時令綠色沙律、橄欖、番茄、風乾番茄、洋薊、烤蔬菜"},{"en":"Grilled Octopus Salad","zh":"烤章魚沙律","p":"90","tags":["gluten-free"],"den":"octopus, tomato confit, potato, lemon dressing","dzh":"章魚、番茄慢煮、薯仔、檸檬汁"},{"en":"Insalata Caprese","zh":"卡布里沙律","p":"108","tags":["vegetarian","gluten-free"],"den":"tomato confit & balsamic caramel","dzh":"番茄慢煮及香醋焦糖"},{"en":"Buffalo Mozzarella","zh":"水牛莫扎瑞拉沙律","p":"108","tags":["gluten-free","signature"],"den":"mango and bell pepper, beef speck","dzh":"芒果、燈籠椒、牛肉煙肉"}],"id":"sec-1"},{"en":"Pasta and Risotto","zh":"意大利麵及燉飯","note":"All prices quoted are inclusive of prevailing taxes","items":[{"en":"Spaghetti Bolognese","zh":"肉醬意大利粉","p":"95","tags":[],"den":"long pasta in tomato braised beef ragout","dzh":"長條意大利麵配番茄燉牛肉醬"},{"en":"Fettuccine Lamb Ragout","zh":"羊肉醬寬扁麵","p":"86","tags":[],"den":"flat long pasta in braised minced lamb, thyme","dzh":"寬扁長條意大利麵配燉碎羊肉、百里香"},{"en":"Linguine Al Pesto","zh":"青醬扁麵","p":"64","tags":["vegetarian","gluten-free","contains-nuts"],"den":"long pasta in basil and pine nut sauce","dzh":"長條扁麵配羅勒松子醬"},{"en":"Beetroot Gnocchi","zh":"甜菜根麵疙瘩","p":"78","tags":["vegetarian"],"den":"pan-seared beetroot and potato dumpling, taleggio cream and walnut","dzh":"煎甜菜根薯仔麵疙瘩、塔雷吉歐芝士忌廉及核桃"},{"en":"Andaman Prawn Aglio Olio","zh":"安達曼蝦蒜香橄欖油意大利麵","p":"90","tags":["gluten-free"],"den":"pasta in garlic and olive oil, and Andaman prawn","dzh":"蒜香橄欖油意大利麵配安達曼蝦"},{"en":"Truffle and Porcini Mushroom Risotto","zh":"松露牛肝菌燉飯","p":"72","tags":["vegetarian","gluten-free"],"den":"carnaroli rice, porcini mushroom stock, sautéed forest mushroom, truffle oil","dzh":"卡納羅利米、牛肝菌高湯、炒野菌、松露油"},{"en":"Cheese and Prawn Risotto","zh":"芝士蝦燉飯","p":"98","tags":[],"den":"carnaroli rice in crustacean bisque, Andaman prawn, mozzarella cheese","dzh":"卡納羅利米配甲殼類海鮮濃湯、安達曼蝦、莫扎瑞拉芝士"}],"id":"sec-2"},{"en":"Pizza","zh":"比薩","note":"All prices quoted are inclusive of prevailing taxes","items":[{"en":"Bufalina","zh":"水牛芝士比薩","p":"70","tags":["vegetarian"],"den":"tomato, mozzarella di bufala, basil","dzh":"番茄、水牛莫扎瑞拉芝士、羅勒"},{"en":"Latteria","zh":"六種芝士比薩","p":"98","tags":["vegetarian"],"den":"6 cheeses: parmesan, gorgonzola, shredded mozzarella, buffalo mozzarella, smoked provolone, taleggio","dzh":"六種芝士：帕爾馬、戈爾根朱勒、碎莫扎瑞拉、水牛莫扎瑞拉、煙燻波羅伏洛、塔雷吉歐"},{"en":"Botanica","zh":"蔬菜比薩","p":"80","tags":["vegetarian"],"den":"mozzarella, grilled seasonal vegetables, fresh garden herbs","dzh":"莫扎瑞拉芝士、烤時令蔬菜、新鮮香草"},{"en":"Tartufina","zh":"松露比薩","p":"110","tags":[],"den":"beef speck, shredded mozzarella, buffalo mozzarella, black truffle paste, truffle oil","dzh":"牛肉煙肉、碎莫扎瑞拉、水牛莫扎瑞拉、黑松露醬、松露油"},{"en":"Rustica","zh":"鄉村比薩","p":"98","tags":[],"den":"roasted potato, taleggio cheese, shredded mozzarella, lamb ragout","dzh":"烤薯仔、塔雷吉歐芝士、碎莫扎瑞拉、燉羊肉醬"},{"en":"Frutti Di Mare","zh":"海鮮比薩","p":"130","tags":["signature"],"den":"Andaman catch of the sea: prawn, mussel, squid, crabmeat, scallops, clams, seabass, lobster, Mozzarella","dzh":"安達曼海鮮：蝦、青口、魷魚、蟹肉、帶子、蜆、海鱸魚、龍蝦、莫扎瑞拉芝士"}],"id":"sec-3"},{"en":"Main Course","zh":"主菜","note":"All prices quoted are inclusive of prevailing taxes","items":[{"en":"Cacciucco – Seafood Stew","zh":"卡丘科海鮮燉湯","p":"188","tags":["signature"],"den":"oven baked seafood soup with lobster, mussels, clams, scallops, squid","dzh":"焗爐烤海鮮湯，配龍蝦、青口、蜆、帶子、魷魚"},{"en":"Zuppa di Cozze","zh":"青口湯","p":"79","tags":[],"den":"black mussel in tomato, ciabatta, green oil","dzh":"黑青口配番茄、夏巴塔麵包、綠色香草油"},{"en":"Filletto di Salmone","zh":"香煎鮭魚柳","p":"132","tags":[],"den":"pan seared salmon, broccoli, spring onion, chilli, bell pepper pure","dzh":"香煎鮭魚、西蘭花、青蔥、辣椒、燈籠椒蓉"},{"en":"Filletto di Branzino","zh":"烤海鱸魚柳","p":"102","tags":["gluten-free"],"den":"roasted seabass, fresh tomato sauce, capers, kalamata olives, grilled vegetables","dzh":"烤海鱸魚、新鮮番茄醬、酸豆、卡拉馬塔橄欖、烤蔬菜"},{"en":"Galletto al Forno","zh":"烤春雞","p":"97","tags":["gluten-free"],"den":"spring chicken, seasonal vegetables, potato, chimichurri","dzh":"春雞、時令蔬菜、薯仔、青醬汁"},{"en":"Tagliata di Manzo","zh":"香煎牛側腹排","p":"99","tags":["gluten-free"],"den":"pan seared sliced beef flank, rocket salad, cherry tomato, shaved parmesan, balsamic reduction","dzh":"香煎切片牛側腹肉、芝麻菜沙律、車厘茄、刨片帕爾馬芝士、香醋汁"}],"id":"sec-4"},{"en":"Desserts","zh":"甜品","note":"All prices quoted are inclusive of prevailing taxes","items":[{"en":"Tropical Fruits Platter","zh":"熱帶水果拼盤","p":"44","tags":[],"den":"selection of our seasonal fruits, 5 types","dzh":"精選五款時令水果"},{"en":"Tiramisu (glass)","zh":"提拉米蘇（杯裝）","p":"48","tags":["signature"],"den":"layers of mascarpone cream, coffee-soaked lady fingers and a dusting of cocoa powder","dzh":"層層馬斯卡彭芝士忌廉、咖啡浸手指餅及可可粉"},{"en":"Cannoli","zh":"卡諾里","p":"45","tags":[],"den":"crisp and flaky cannoli shell, lusciously creamy, sweet ricotta cheese and mascarpone with decadent dark chocolate chips","dzh":"酥脆卡諾里捲餅、瑞可塔芝士與馬斯卡彭混合忌廉、黑朱古力碎"},{"en":"Almond Semifreddo","zh":"杏仁雪糕蛋糕","p":"45","tags":[],"den":"creamy almond semifreddo, warm apple compote","dzh":"香滑杏仁半凍蛋糕、溫熱蘋果醬"},{"en":"Vanilla Panna Cotta","zh":"香草奶凍","p":"48","tags":[],"den":"creamy cooked cream, mixed berries compote","dzh":"香滑意式奶凍、雜莓醬"}],"id":"sec-5"},{"en":"Signature Cocktail's","zh":"招牌雞尾酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Dannatini","zh":"丹納蒂尼","p":"50","tags":[],"den":"white rum, espresso, cinnamon syrup","dzh":"白蘭姆酒、濃縮咖啡、肉桂糖漿"},{"en":"Terrace Spritz","zh":"Terrace氣泡雞尾酒","p":"50","tags":[],"den":"homemade limoncello, prosecco, soda water","dzh":"自製檸檬酒、普羅塞克氣泡酒、梳打水"}],"id":"sec-6"},{"en":"Signature Mocktail's","zh":"招牌無酒精雞尾酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Danna Ice Tea","zh":"丹納冰茶","p":"40","tags":[],"den":"coconut syrup, orgeat syrup, passion fruit syrup, black tea","dzh":"椰子糖漿、杏仁糖漿、百香果糖漿、紅茶"},{"en":"Peach Spritz","zh":"蜜桃氣泡飲","p":"40","tags":[],"den":"peach puree, grenadine syrup, lime, soda water","dzh":"蜜桃果蓉、石榴糖漿、青檸、梳打水"}],"id":"sec-7"},{"en":"Sparkling Wine Cocktail","zh":"氣泡酒雞尾酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"French 75","zh":"法蘭西75","p":"45","tags":[],"den":"gin, lemon juice, sparkling wine","dzh":"琴酒、檸檬汁、氣泡酒"},{"en":"Bellini","zh":"貝里尼","p":"45","tags":[],"den":"peach purée, prosecco","dzh":"蜜桃果蓉、普羅塞克氣泡酒"},{"en":"Mimosa","zh":"含羞草","p":"45","tags":[],"den":"fresh orange juice, prosecco","dzh":"新鮮橙汁、普羅塞克氣泡酒"},{"en":"Kir Royal","zh":"皇家基爾","p":"45","tags":[],"den":"crème de cassis, prosecco","dzh":"黑加侖甜酒、普羅塞克氣泡酒"}],"id":"sec-8"},{"en":"Martini's","zh":"馬丁尼系列","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Cosmopolitan","zh":"大都會","p":"45","tags":[],"den":"vodka, triple sec, cranberry juice, lime juice","dzh":"伏特加、橙皮利口酒、蔓越莓汁、青檸汁"},{"en":"Manhattan","zh":"曼哈頓","p":"45","tags":[],"den":"canadian club, sweet vermouth, angostura bitters","dzh":"加拿大俱樂部威士忌、甜苦艾酒、安格斯特拉苦精"},{"en":"Espresso Martini","zh":"濃縮咖啡馬丁尼","p":"45","tags":[],"den":"vodka, kahlua, espresso, sugar syrup","dzh":"伏特加、卡魯哇咖啡酒、濃縮咖啡、糖漿"},{"en":"Dry Martini","zh":"乾馬丁尼","p":"45","tags":[],"den":"gin, dry vermouth","dzh":"琴酒、干苦艾酒"}],"id":"sec-9"},{"en":"Classic Cocktail","zh":"經典雞尾酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Orange Spritzz","zh":"橙味氣泡雞尾酒","p":"45","tags":[],"den":"le favori, prosecco, soda water","dzh":"Le Favori利口酒、普羅塞克氣泡酒、梳打水"},{"en":"Daiquiri","zh":"戴克瑞","p":"45","tags":[],"den":"light rum, triple sec, lime juice, simple syrup","dzh":"淡蘭姆酒、橙皮利口酒、青檸汁、糖漿"},{"en":"Whskey Sour","zh":"威士忌酸","p":"45","tags":[],"den":"whiskey, lime juice, simple syrup","dzh":"威士忌、青檸汁、糖漿"},{"en":"Old fashion","zh":"古典雞尾酒","p":"45","tags":[],"den":"whiskey, brown sugar, angostura bitters","dzh":"威士忌、黃糖、安格斯特拉苦精"},{"en":"Piña Colada","zh":"鳳梨可樂達","p":"45","tags":[],"den":"white rum, malibu, coconut cream, pineapple juice","dzh":"白蘭姆酒、馬利寶椰子酒、椰子忌廉、菠蘿汁"},{"en":"Margarita","zh":"瑪格麗特","p":"45","tags":[],"den":"tequila, triple sec, lime juice, simple syrup","dzh":"龍舌蘭、橙皮利口酒、青檸汁、糖漿"},{"en":"Negroni","zh":"內格羅尼","p":"45","tags":[],"den":"gin, campari, sweet vermouth","dzh":"琴酒、金巴利、甜苦艾酒"},{"en":"Mojito","zh":"莫希托","p":"45","tags":[],"den":"light rum, brown sugar, mint leaf, soda water","dzh":"淡蘭姆酒、黃糖、薄荷葉、梳打水"}],"id":"sec-10"},{"en":"Mocktails","zh":"無酒精雞尾酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Mango Lassi","zh":"芒果拉西","p":"35","tags":[],"den":"yoghurt, mango purée, mango juice","dzh":"乳酪、芒果果蓉、芒果汁"},{"en":"Fruit Mocktail","zh":"水果無酒精雞尾酒","p":"35","tags":[],"den":"orange juice, grapefruit juice, banana purée, pineapple juice, lime juice","dzh":"橙汁、葡萄柚汁、香蕉果蓉、菠蘿汁、青檸汁"},{"en":"Virgin Piña Colada","zh":"無酒精鳳梨可樂達","p":"35","tags":[],"den":"pineapple juice, coconut cream","dzh":"菠蘿汁、椰子忌廉"},{"en":"Fruit Punch","zh":"水果賓治","p":"35","tags":[],"den":"mango juice, pineapple juice, orange juice, lime juice, grenadine syrup","dzh":"芒果汁、菠蘿汁、橙汁、青檸汁、石榴糖漿"},{"en":"Summer Delight","zh":"夏日驚喜","p":"35","tags":[],"den":"orange juice, mango juice, strawberry purée, lime juice, sprite","dzh":"橙汁、芒果汁、草莓果蓉、青檸汁、雪碧"},{"en":"Virgin Mojito","zh":"無酒精莫希托","p":"35","tags":[],"den":"mint leaf, lime juice, brown sugar, soda water","dzh":"薄荷葉、青檸汁、黃糖、梳打水"}],"id":"sec-11"},{"en":"Draught","zh":"生啤","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Carlsberg 330 ml","zh":"嘉士伯生啤 330毫升","p":"30","tags":[],"den":"","dzh":""},{"en":"Carlsberg 500 ml","zh":"嘉士伯生啤 500毫升","p":"40","tags":[],"den":"","dzh":""}],"id":"sec-12"},{"en":"Beer of the World","zh":"世界啤酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Carlsberg | Denmark","zh":"嘉士伯｜丹麥","p":"30","tags":[],"den":"","dzh":""},{"en":"Tiger | Singapore","zh":"虎牌｜新加坡","p":"28","tags":[],"den":"","dzh":""},{"en":"Heineken | Netherland","zh":"喜力｜荷蘭","p":"32","tags":[],"den":"","dzh":""},{"en":"Singha | Thailand","zh":"勝獅｜泰國","p":"28","tags":[],"den":"","dzh":""}],"id":"sec-13"},{"en":"Aperitif","zh":"餐前酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Campari","zh":"金巴利","p":"33","tags":[],"den":"","dzh":""},{"en":"Pimm's No.1","zh":"皮姆斯一號","p":"33","tags":[],"den":"","dzh":""},{"en":"Martini Dry, Martini Bianco, Martini Rosso","zh":"乾馬丁尼、白馬丁尼、紅馬丁尼","p":"33","tags":[],"den":"","dzh":""},{"en":"Pernod","zh":"潘諾茴香酒","p":"33","tags":[],"den":"","dzh":""}],"id":"sec-14"},{"en":"Vodka","zh":"伏特加","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Stolichnaya","zh":"蘇聯紅牌","p":"33","tags":[],"den":"","dzh":""},{"en":"Smirnoff","zh":"斯米諾夫","p":"33","tags":[],"den":"","dzh":""},{"en":"Absolut","zh":"絕對伏特加","p":"33","tags":[],"den":"","dzh":""},{"en":"Russian standard","zh":"俄羅斯標準","p":"31","tags":[],"den":"","dzh":""},{"en":"Grey Goose","zh":"灰雁","p":"33","tags":[],"den":"","dzh":""},{"en":"Belvedere","zh":"貝爾維第","p":"33","tags":[],"den":"","dzh":""}],"id":"sec-15"},{"en":"Gin","zh":"琴酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Gordon's","zh":"哥頓","p":"28","tags":[],"den":"","dzh":""},{"en":"Beefeater","zh":"英人牌","p":"28","tags":[],"den":"","dzh":""},{"en":"Bombay Sapphire","zh":"孟買藍寶石","p":"28","tags":[],"den":"","dzh":""},{"en":"Tanqueray 10","zh":"坦奎瑞10號","p":"31","tags":[],"den":"","dzh":""},{"en":"Hendrick's","zh":"亨利爵士","p":"33","tags":[],"den":"","dzh":""},{"en":"Monkey 47","zh":"猴子47號","p":"45","tags":[],"den":"","dzh":""}],"id":"sec-16"},{"en":"Rum","zh":"蘭姆酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Cachaca","zh":"卡夏莎","p":"28","tags":[],"den":"","dzh":""},{"en":"Bacardi Light","zh":"百加得淡","p":"33","tags":[],"den":"","dzh":""},{"en":"Bacardi Gold","zh":"百加得金","p":"31","tags":[],"den":"","dzh":""},{"en":"Captain Morgan Black Label","zh":"摩根船長黑標","p":"33","tags":[],"den":"","dzh":""},{"en":"Captain Morgan Spice","zh":"摩根船長香料蘭姆","p":"33","tags":[],"den":"","dzh":""},{"en":"Myers's","zh":"邁爾斯","p":"33","tags":[],"den":"","dzh":""},{"en":"Malibu","zh":"馬利寶","p":"33","tags":[],"den":"","dzh":""}],"id":"sec-17"},{"en":"Tequila","zh":"龍舌蘭","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Camino","zh":"卡米諾","p":"33","tags":[],"den":"","dzh":""},{"en":"Jose Cuervo Gold","zh":"金快活","p":"33","tags":[],"den":"","dzh":""},{"en":"Patron Silver","zh":"培恩銀標","p":"44","tags":[],"den":"","dzh":""},{"en":"Patron Añejo","zh":"培恩陳年","p":"44","tags":[],"den":"","dzh":""}],"id":"sec-18"},{"en":"Whiskey Collections","zh":"威士忌精選","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Chivas Regal 12 yr","zh":"芝華士12年","p":"37","tags":[],"den":"Scotch","dzh":"蘇格蘭威士忌"},{"en":"Chivas Regal 18 yr","zh":"芝華士18年","p":"50","tags":[],"den":"Scotch","dzh":"蘇格蘭威士忌"},{"en":"Johnnie Walker Black label","zh":"約翰走路黑標","p":"31","tags":[],"den":"Scotch","dzh":"蘇格蘭威士忌"},{"en":"Johnnie Walker Gold label","zh":"約翰走路金標","p":"37","tags":[],"den":"Scotch","dzh":"蘇格蘭威士忌"},{"en":"Johnnie Walker Blue label","zh":"約翰走路藍標","p":"107","tags":[],"den":"Scotch","dzh":"蘇格蘭威士忌"},{"en":"Jim Beam","zh":"占賓","p":"33","tags":[],"den":"Bourbon","dzh":"波本威士忌"},{"en":"Maker's Mark","zh":"美格","p":"33","tags":[],"den":"Bourbon","dzh":"波本威士忌"},{"en":"Jack Daniels","zh":"傑克丹尼","p":"33","tags":[],"den":"Tennessee","dzh":"田納西威士忌"},{"en":"Jameson","zh":"尊美醇","p":"33","tags":[],"den":"Irish","dzh":"愛爾蘭威士忌"},{"en":"Suntory Special Blend","zh":"三得利特調","p":"37","tags":[],"den":"Japanese","dzh":"日本威士忌"},{"en":"Canadian Club 10 yr","zh":"加拿大俱樂部10年","p":"33","tags":[],"den":"Canadian","dzh":"加拿大威士忌"},{"en":"Glenfiddich 12 yr","zh":"格蘭菲迪12年","p":"33","tags":[],"den":"Single Malt","dzh":"單一麥芽威士忌"},{"en":"Glenfiddich 18 yr","zh":"格蘭菲迪18年","p":"56","tags":[],"den":"Single Malt","dzh":"單一麥芽威士忌"},{"en":"Glenlivet 12 yr","zh":"格蘭利威12年","p":"33","tags":[],"den":"Single Malt","dzh":"單一麥芽威士忌"},{"en":"Glenlivet 15 yr","zh":"格蘭利威15年","p":"45","tags":[],"den":"Single Malt","dzh":"單一麥芽威士忌"},{"en":"The Dalmore Cigar Malt","zh":"大摩雪茄麥芽","p":"64","tags":[],"den":"Single Malt","dzh":"單一麥芽威士忌"}],"id":"sec-19"},{"en":"Cognac","zh":"干邑","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Remy martin VSOP","zh":"人頭馬VSOP","p":"33","tags":[],"den":"","dzh":""},{"en":"Remy martin XO","zh":"人頭馬XO","p":"56","tags":[],"den":"","dzh":""},{"en":"Hennessy VSOP","zh":"軒尼詩VSOP","p":"45","tags":[],"den":"","dzh":""},{"en":"Hennessey XO","zh":"軒尼詩XO","p":"114","tags":[],"den":"","dzh":""}],"id":"sec-20"},{"en":"Armagnac","zh":"雅馬邑","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Chabot VSOP","zh":"夏寶VSOP","p":"33","tags":[],"den":"","dzh":""},{"en":"Chabot XO","zh":"夏寶XO","p":"68","tags":[],"den":"","dzh":""}],"id":"sec-21"},{"en":"Sherry and Port","zh":"雪莉酒及砵酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Harvey Bristol","zh":"哈維布里斯托","p":"31","tags":[],"den":"","dzh":""},{"en":"Dow's Fine Tawny Port","zh":"道氏茶色砵酒","p":"31","tags":[],"den":"","dzh":""}],"id":"sec-22"},{"en":"Digestive","zh":"消化酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Fernet Branca","zh":"菲奈特布蘭卡","p":"35","tags":[],"den":"","dzh":""},{"en":"Kirsch","zh":"櫻桃白蘭地","p":"36","tags":[],"den":"","dzh":""},{"en":"Poire Williams","zh":"威廉梨白蘭地","p":"38","tags":[],"den":"","dzh":""}],"id":"sec-23"},{"en":"Grappa","zh":"葛拉帕","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Pilzer Chardonnay","zh":"皮爾澤霞多麗葛拉帕","p":"38","tags":[],"den":"","dzh":""},{"en":"Pilzer Moscato Giallo","zh":"皮爾澤黃麝香葛拉帕","p":"38","tags":[],"den":"","dzh":""}],"id":"sec-24"},{"en":"Liquers","zh":"利口酒","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Tia Maria","zh":"提亞瑪麗亞","p":"33","tags":[],"den":"","dzh":""},{"en":"Kahlúa","zh":"卡魯哇","p":"33","tags":[],"den":"","dzh":""},{"en":"Bailey's","zh":"百利甜酒","p":"33","tags":[],"den":"","dzh":""},{"en":"Amaretto","zh":"杏仁甜酒","p":"33","tags":[],"den":"","dzh":""},{"en":"Crème De Banana","zh":"香蕉利口酒","p":"33","tags":[],"den":"","dzh":""},{"en":"Blue Curacao","zh":"藍色庫拉索","p":"33","tags":[],"den":"","dzh":""},{"en":"Cherry Brandy","zh":"櫻桃白蘭地利口酒","p":"33","tags":[],"den":"","dzh":""},{"en":"Sambuca","zh":"桑布卡茴香酒","p":"33","tags":[],"den":"","dzh":""},{"en":"D.O.M Benedictine","zh":"DOM班尼迪克汀","p":"33","tags":[],"den":"","dzh":""},{"en":"Cointreau","zh":"君度橙酒","p":"33","tags":[],"den":"","dzh":""}],"id":"sec-25"},{"en":"Mineral Water","zh":"礦泉水","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Acqua Panna 75cl","zh":"普娜天然礦泉水 75毫升","p":"40","tags":[],"den":"Natural","dzh":"天然礦泉水"},{"en":"San Pellegrino 75cl","zh":"聖碧濤氣泡水 75毫升","p":"40","tags":[],"den":"Sparkling","dzh":"氣泡礦泉水"}],"id":"sec-26"},{"en":"Soda","zh":"汽水","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Coke","zh":"可口可樂","p":"19","tags":[],"den":"","dzh":""},{"en":"Coke Zero","zh":"零卡可樂","p":"19","tags":[],"den":"","dzh":""},{"en":"Sprite","zh":"雪碧","p":"19","tags":[],"den":"","dzh":""}],"id":"sec-27"},{"en":"Freshly Squeezed Juice","zh":"新鮮榨汁","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Orange","zh":"橙汁","p":"34","tags":[],"den":"","dzh":""},{"en":"Pineapple","zh":"菠蘿汁","p":"34","tags":[],"den":"","dzh":""},{"en":"Watermelon","zh":"西瓜汁","p":"34","tags":[],"den":"","dzh":""},{"en":"Carrot","zh":"紅蘿蔔汁","p":"34","tags":[],"den":"","dzh":""},{"en":"Apple","zh":"蘋果汁","p":"34","tags":[],"den":"","dzh":""}],"id":"sec-28"},{"en":"Fresh Coconut","zh":"新鮮椰子","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Pandan Coconut","zh":"班蘭椰子","p":"30","tags":[],"den":"","dzh":""}],"id":"sec-29"},{"en":"Local Tea and Coffee","zh":"本地茶及咖啡","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Teh Tarik","zh":"拉茶","p":"18","tags":[],"den":"black tea with condensed milk","dzh":"紅茶配煉奶"},{"en":"Kopi Kedah","zh":"吉打咖啡","p":"18","tags":[],"den":"Black local coffee with condensed milk","dzh":"本地黑咖啡配煉奶"}],"id":"sec-30"},{"en":"Freshly Brewed Coffee","zh":"新鮮沖泡咖啡","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"Americano","zh":"美式咖啡","p":"21","tags":[],"den":"","dzh":""},{"en":"Café latte","zh":"拿鐵咖啡","p":"21","tags":[],"den":"","dzh":""},{"en":"Cappuccino","zh":"卡布奇諾","p":"21","tags":[],"den":"","dzh":""},{"en":"Espresso","zh":"濃縮咖啡","p":"21","tags":[],"den":"","dzh":""},{"en":"Decaffeinated","zh":"低咖啡因咖啡","p":"21","tags":[],"den":"","dzh":""}],"id":"sec-31"},{"en":"1837 TWG Tea Selections","zh":"1837 TWG精選茶品","note":"All our prices are nett and in Malaysia ringgit","items":[{"en":"English Breakfast Tea","zh":"英式早餐茶","p":"21","tags":[],"den":"","dzh":""},{"en":"English Earl Grey","zh":"英式伯爵茶","p":"21","tags":[],"den":"","dzh":""},{"en":"Jasmine Queen Tea","zh":"茉莉女王茶","p":"21","tags":[],"den":"","dzh":""},{"en":"Rose Boudoir Tea","zh":"玫瑰閨房茶","p":"21","tags":[],"den":"","dzh":""},{"en":"Chamomile Tea","zh":"洋甘菊茶","p":"21","tags":[],"den":"","dzh":""},{"en":"Marrakech Tea","zh":"馬拉喀什茶","p":"21","tags":[],"den":"","dzh":""}],"id":"sec-32"}];
+const TAGS = [{"id":"signature","en":"Highlight","zh":"推薦","icon":"⭐","group":"highlight"},{"id":"gluten-free","en":"Gluten Free","zh":"無麩質","icon":"🌾","group":"diet"},{"id":"contains-nuts","en":"Contains Nuts","zh":"含堅果","icon":"🥜","group":"allergen"},{"id":"vegetarian","en":"Vegetarian","zh":"適合素食","icon":"🌱","group":"diet"}];
+const TAG_BY_ID = Object.fromEntries(TAGS.map(t => [t.id, t]));
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+const barEl = document.getElementById("filterbar");
+
+// Render sections + items (items carry data-tags for filtering).
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${esc(id)}" data-sec="${esc(id)}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const ids = it.tags || [];
+    const icons = ids.map(t => (TAG_BY_ID[t] && TAG_BY_ID[t].icon) || "").filter(Boolean).join(" ");
+    const tags = icons ? `<span class="tags">${icons}</span>` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    return `<div class="item" data-tags="${esc(ids.join(" "))}">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+          ${tags}
+        </div>${price}
+      </div>${den}${dzh}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${esc(id)}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+// Build the filter bar from the tags actually used by ≥1 item (in TAGS order).
+const used = new Set();
+MENU.forEach(s => (s.items || []).forEach(it => (it.tags || []).forEach(id => used.add(id))));
+const seen = new Set();
+const filterTags = [];
+TAGS.forEach(t => {
+  if (used.has(t.id) && !seen.has(t.id)) { seen.add(t.id); filterTags.push(t); }
+});
+const active = new Set();
+
+if (filterTags.length) {
+  barEl.insertAdjacentHTML("beforeend", `<button class="chip chip-all active" data-id="">全部 All</button>`);
+  filterTags.forEach(t => {
+    const ic = t.icon ? `<span class="ci">${t.icon}</span>` : "";
+    barEl.insertAdjacentHTML("beforeend",
+      `<button class="chip" data-id="${esc(t.id)}">${ic}<span class="cen">${esc(t.en)}</span><span class="czh">${esc(t.zh)}</span></button>`);
+  });
+} else {
+  barEl.style.display = "none";
+}
+
+// AND filter: an item shows iff its tags include every active id.
+function applyFilter() {
+  document.querySelectorAll("#menu section").forEach(sec => {
+    let visible = 0;
+    sec.querySelectorAll(".item").forEach(el => {
+      const tags = new Set((el.getAttribute("data-tags") || "").split(" ").filter(Boolean));
+      let show = true;
+      active.forEach(id => { if (!tags.has(id)) show = false; });
+      el.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    sec.style.display = visible ? "" : "none";
+    const link = navEl.querySelector(`a[data-sec="${CSS.escape(sec.id)}"]`);
+    if (link) link.style.display = visible ? "" : "none";
+  });
+}
+
+barEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".chip");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (id === "") active.clear();
+  else if (active.has(id)) active.delete(id);
+  else active.add(id);
+
+  barEl.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  if (active.size === 0) {
+    barEl.querySelector(".chip-all").classList.add("active");
+  } else {
+    active.forEach(a => {
+      const c = barEl.querySelector(`.chip[data-id="${CSS.escape(a)}"]`);
+      if (c) c.classList.add("active");
+    });
+  }
+  applyFilter();
+});
+
+// Language toggle (unchanged behaviour).
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+// Back to top (unchanged behaviour).
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+</script>
+</body>
+</html>
