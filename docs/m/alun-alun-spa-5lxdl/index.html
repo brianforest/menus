@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Alun-Alun Spa · 菜單 Menu</title>
+
+<meta name="description" content="Alun-Alun Spa 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Alun-Alun Spa · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 9vw, 54px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(18px, 4.6vw, 24px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 15px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 15px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .filterbar { display: flex; gap: 8px; overflow-x: auto; padding: 6px 14px 8px;
+    scrollbar-width: none; -ms-overflow-style: none; }
+  .filterbar::-webkit-scrollbar { display: none; }
+  .chip { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 999px; padding: 6px 12px; min-height: 36px; cursor: pointer;
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  body.lang-zh .chip .cen { display: none; }
+  body.lang-en .chip .czh { display: none; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(24px, 6.4vw, 32px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(17px, 4.6vw, 21px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 15px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 18px; }
+  .item .tags { display: block; margin-top: 4px; font-size: 15px; letter-spacing: 1px; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 17px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 15px; margin-top: 3px; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 18px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>Alun-Alun Spa</h1>
+  <div class="zh-title">Alun-Alun 水療中心</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 MYR 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+  <div class="filterbar" id="filterbar" role="group" aria-label="filters"></div>
+</div>
+
+<div class="wrap">
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const MENU = [{"en":"Massage – Alun-Alun Signature Massage","zh":"按摩 – Alun-Alun 招牌按摩","note":"","items":[{"en":"Sound Bliss Massage","zh":"頌缽按摩","p":"1 Hour: RM 180.00 / 1½ Hours: RM 270.00 / 2 Hours: RM 330.00","tags":["signature"],"den":"Alun Alun signature sound bliss massage","dzh":"Alun-Alun 招牌頌缽按摩"},{"en":"Alun-Alun Wave Massage","zh":"Alun-Alun 海浪按摩","p":"1 Hour: RM 160.00 / 1½ Hours: RM 230.00 / 2 Hours: RM 300.00","tags":["signature"],"den":"","dzh":""},{"en":"Herbal Oil Massage","zh":"草藥油按摩","p":"1 Hour: RM 150.00 / 1½ Hours: RM 220.00 / 2 Hours: RM 280.00","tags":["signature"],"den":"","dzh":""}],"id":"sec-0"},{"en":"Oil Massage","zh":"精油按摩","note":"","items":[{"en":"Traditional Malaysian Massage","zh":"傳統馬來式按摩","p":"1 Hour: RM 120.00 / 1½ Hours: RM 170.00 / 2 Hours: RM 220.00","tags":[],"den":"","dzh":""},{"en":"Aromatherapy Massage","zh":"香薰精油按摩","p":"1 Hour: RM 140.00 / 1½ Hours: RM 200.00 / 2 Hours: RM 250.00","tags":[],"den":"","dzh":""},{"en":"Balinese Massage","zh":"巴里式按摩","p":"1 Hour: RM 130.00 / 1½ Hours: RM 190.00 / 2 Hours: RM 245.00","tags":[],"den":"","dzh":""}],"id":"sec-1"},{"en":"Oriental Massage","zh":"東方按摩","note":"","items":[{"en":"Shirodhara","zh":"Shirodhara 按摩","p":"1 Hour: RM 160.00","tags":[],"den":"","dzh":""},{"en":"Warm Stone","zh":"熱石療法","p":"1 Hour: RM 160.00 / 1½ Hours: RM 230.00 / 2 Hours: RM 300.00","tags":[],"den":"","dzh":""},{"en":"Slimming Massage","zh":"減肥按摩","p":"1 Hour: RM 160.00 / 2 Hours: RM 300.00","tags":[],"den":"","dzh":""},{"en":"Herbal Compress Massage","zh":"草藥球按摩","p":"1 Hour: RM 150.00 / 1½ Hours: RM 220.00 / 2 Hours: RM 260.00","tags":[],"den":"","dzh":""},{"en":"Thai Massage","zh":"泰式按摩","p":"1 Hour: RM 130.00 / 1½ Hours: RM 190.00 / 2 Hours: RM 245.00","tags":[],"den":"","dzh":""},{"en":"Back & Shoulder Massage","zh":"頸肩背按摩","p":"30 Minutes: RM 65.00 / 1 Hour: RM 115.00","tags":[],"den":"","dzh":""},{"en":"Tip Top Combination (Plus Full Body Massage)","zh":"頂底部按摩配套（含全身按摩升級版足底和足部按摩）","p":"1 Hour: RM 120.00 / 2 Hours: RM 220.00","tags":[],"den":"Plus full body massage","dzh":"含全身按摩升級版足底和足部按摩"},{"en":"Ear Candle & Head Massage","zh":"耳燭和頭部按摩","p":"30 Minutes: RM 50.00","tags":[],"den":"","dzh":""}],"id":"sec-2"},{"en":"Foot Spa","zh":"足部","note":"","items":[{"en":"Reflexology","zh":"足部按摩","p":"30 Minutes: RM 55.00 / 1 Hour: RM 100.00","tags":[],"den":"","dzh":""},{"en":"Foot Relaxing","zh":"足部放鬆","p":"45 Minutes: RM 88.00","tags":[],"den":"Foot Bath, Foot Scrub, Foot Massage","dzh":"足浴、足部磨砂、足部按摩"},{"en":"Foot Heaven","zh":"足部「天堂」","p":"1 Hour: RM 140.00","tags":[],"den":"Foot Bath, Foot Scrub, Herbal Compress, Foot Massage","dzh":"足浴、足部磨砂、草藥球按摩、足部按摩"},{"en":"\"Ketuk Kaki\"","zh":"古代捶腳","p":"1 Hour: RM 150.00 / 1½ Hours: RM 220.00","tags":[],"den":"\"Ketuk Kaki\" treatment is a mixture of local Asian tradition and futuristic technology by starting with warm air blowing technic from Terahertz Machine. Continue with wooden massage hammer to knock rhythmically on the sole and end by reflexology massage.","dzh":"「Ketuk Kaki」療程融合本地亞洲傳統與先進科技，先以太赫茲儀器進行暖風吹拂，再用木製按摩錘有節奏地敲打腳底，最後以足底按摩收尾。"}],"id":"sec-3"},{"en":"Body Scrub","zh":"身體磨砂護理","note":"","items":[{"en":"Secret Balance","zh":"調整護理（適合男士）","p":"45 Minutes: RM 95.00","tags":["men"],"den":"","dzh":""},{"en":"Detoxification","zh":"身體排毒","p":"45 Minutes: RM 95.00","tags":[],"den":"","dzh":""},{"en":"Refreshing / After Sun","zh":"清爽／曬後修復","p":"45 Minutes: RM 95.00","tags":[],"den":"","dzh":""},{"en":"Brightening","zh":"亮膚美白","p":"45 Minutes: RM 95.00","tags":[],"den":"","dzh":""},{"en":"Nourishing","zh":"修護滋養","p":"45 Minutes: RM 95.00","tags":[],"den":"","dzh":""}],"id":"sec-4"},{"en":"Body Wrap","zh":"裹膚護理","note":"","items":[{"en":"Body Wrap","zh":"裹膚護理","p":"40 Minutes: RM 120.00","tags":[],"den":"","dzh":""}],"id":"sec-5"},{"en":"Hydrotherapy (Hot Tub)","zh":"泡浴","note":"Duration: 30 Minutes","items":[{"en":"Malaysian Herbal","zh":"馬來草藥","p":"Per Person: RM 70.00 / Couple: RM 120.00","tags":["couple"],"den":"","dzh":""},{"en":"Malaysian Spice","zh":"馬來香料","p":"Per Person: RM 70.00 / Couple: RM 120.00","tags":["couple"],"den":"","dzh":""},{"en":"Aromatic Sea Salt","zh":"芳香海鹽","p":"Per Person: RM 70.00 / Couple: RM 120.00","tags":["couple"],"den":"","dzh":""},{"en":"Milk & Rose","zh":"牛奶和玫瑰","p":"Per Person: RM 90.00 / Couple: RM 150.00","tags":["couple"],"den":"","dzh":""}],"id":"sec-6"},{"en":"Spa Facial","zh":"面部護理","note":"","items":[{"en":"Malaysian Traditional","zh":"馬來傳統式","p":"1 Hour: RM 120.00","tags":[],"den":"","dzh":""},{"en":"Deep Cleanse","zh":"深層面部護理","p":"1 Hour: RM 140.00","tags":[],"den":"","dzh":""},{"en":"Aromatic Facial","zh":"臉部芳香","p":"1 Hour: RM 160.00","tags":[],"den":"","dzh":""},{"en":"Fitness Facial for Men","zh":"男士面部護理","p":"1 Hour: RM 160.00","tags":["men"],"den":"","dzh":""},{"en":"Detoxifying Combination","zh":"排毒組合護理","p":"1 Hour: RM 180.00","tags":[],"den":"","dzh":""},{"en":"Relaxation Facial","zh":"盡鬆組盒面部護理","p":"1½ Hours: RM 180.00","tags":[],"den":"Includes Malaysian traditional facial and back massage","dzh":"含馬來傳統式面部護理以及頸肩背按摩"},{"en":"Aging Treatment","zh":"抗老臉部護理","p":"1 time: RM 480.00 / 3 times course: RM 1350.00","tags":["branch-pantai-chenang"],"den":"1 Hour 45 Min / 105 Min (+/-). Only at Pantai Chenang branch.","dzh":"約105分鐘，僅限珍南海灘分店提供"}],"id":"sec-7"},{"en":"Hair Spa","zh":"美髮護理","note":"","items":[{"en":"Herbal Hair Treatment – Male Short Hair","zh":"草藥護髮 – 男士短髮","p":"RM 100.00","tags":["men"],"den":"","dzh":""},{"en":"Herbal Hair Treatment – Female Short Hair","zh":"草藥護髮 – 女士短髮","p":"RM 120.00","tags":[],"den":"","dzh":""},{"en":"Herbal Hair Treatment – Female Long Hair","zh":"草藥護髮 – 女士長髮","p":"RM 150.00","tags":[],"den":"","dzh":""}],"id":"sec-8"},{"en":"Nails","zh":"美甲","note":"French Manicure or Pedicure: Additional RM 30.00","items":[{"en":"Spa Manicure","zh":"修甲","p":"About 45 Minutes: RM 85.00","tags":[],"den":"","dzh":""},{"en":"Spa Manicure Plus","zh":"修甲升級版按摩","p":"About 70 Minutes: RM 93.00","tags":[],"den":"Includes scrub and massage","dzh":"含磨砂及按摩"},{"en":"Spa Pedicure","zh":"修腳甲","p":"About 1 Hour: RM 98.00","tags":[],"den":"","dzh":""},{"en":"Spa Pedicure Plus","zh":"修腳甲升級版按摩","p":"About 85 Minutes: RM 115.00","tags":[],"den":"Includes scrub and massage","dzh":"含磨砂及按摩"},{"en":"Hand & Feet Plus","zh":"手和腳升級版按摩","p":"About 90 Minutes: RM 200.00","tags":[],"den":"Includes manicure, scrub and massage","dzh":"含修甲、磨砂及按摩"}],"id":"sec-9"},{"en":"Exclusive Program – Rejuvenation","zh":"獨家按摩 – 返老頑童","note":"Duration: 1½ Hours / 90 Minutes","items":[{"en":"Rejuvenation","zh":"返老頑童","p":"Per Person: RM 198.00 / Couple: RM 390.00","tags":["couple"],"den":"Foot Bath, Body Scrub, Traditional Malaysian Massage, Herbal Tea","dzh":"足浴、身體磨砂、馬來式按摩、草藥茶"}],"id":"sec-10"},{"en":"Exclusive Program – Refreshing Program","zh":"獨家按摩 – 清爽提神按摩","note":"Duration: 1½ Hours / 90 Minutes","items":[{"en":"Refreshing Program","zh":"清爽提神按摩","p":"Per Person: RM 198.00 / Couple: RM 385.00","tags":["couple"],"den":"Foot Bath, Hot Tub, Aromatherapy Massage, Face Massage + Herbal Tea","dzh":"足浴、泡浴、香薰精油按摩、面部按摩＋草藥茶"}],"id":"sec-11"},{"en":"Exclusive Program – Chandek Kura Program","zh":"獨家按摩 – Chandek Kura 按摩","note":"Duration: 1½ Hours / 90 Minutes","items":[{"en":"Chandek Kura Program","zh":"Chandek Kura 按摩","p":"Per Person: RM 200.00 / Couple: RM 395.00","tags":["couple"],"den":"Foot Bath, Herbal Massage, Reflexology + Herbal Tea","dzh":"足浴、草藥按摩、足底按摩＋草藥茶"}],"id":"sec-12"},{"en":"Exclusive Program – Spirit of Alun-Alun","zh":"獨家按摩 – Alun-Alun 精神按摩","note":"Duration: 2 Hours / 120 Minutes","items":[{"en":"Spirit of Alun-Alun","zh":"Alun-Alun 精神按摩","p":"Per Person: RM 260.00 / Couple: RM 500.00","tags":["couple"],"den":"Foot Bath, Body Scrub, Body Wrap, Alun-Alun Wave Massage + Herbal Tea","dzh":"足浴、身體磨砂、裹膚護理、Alun-Alun 海浪按摩＋草藥茶"}],"id":"sec-13"},{"en":"Exclusive Program – Langkawi Bliss","zh":"獨家按摩 – 幸福按摩","note":"Duration: 2 Hours / 120 Minutes","items":[{"en":"Langkawi Bliss","zh":"幸福按摩","p":"Per Person: RM 240.00 / Couple: RM 470.00","tags":["couple"],"den":"Foot Bath, Traditional Malaysian Massage, Traditional Facial + Herbal Tea","dzh":"足浴、傳統馬來式按摩、傳統面部護理＋草藥茶"}],"id":"sec-14"},{"en":"Exclusive Program – Lanna Package","zh":"獨家按摩 – Lanna 按摩","note":"Duration: 2 Hours / 120 Minutes","items":[{"en":"Lanna Package","zh":"Lanna 按摩","p":"Per Person: RM 280.00 / Couple: RM 530.00","tags":["couple"],"den":"Foot Bath, Herbal Compress Massage, Aromatherapy Massage + Herbal Tea","dzh":"足浴、草藥球按摩、香薰精油按摩＋草藥茶"}],"id":"sec-15"},{"en":"Exclusive Program – Malaysia Herbal Program","zh":"獨家按摩 – 馬來西亞草本按摩","note":"Duration: 2 Hours / 120 Minutes","items":[{"en":"Malaysia Herbal Program","zh":"馬來西亞草本按摩","p":"Per Person: RM 275.00 / Couple: RM 525.00","tags":["couple"],"den":"Foot Bath, Tongkat Ali Body Scrub, Herbal Mask, Herbal Oil Massage + Herbal Tea","dzh":"足浴、東阿里身體磨砂、草藥面膜、草本油按摩＋草藥茶"}],"id":"sec-16"},{"en":"Exclusive Program – Rainforest Program","zh":"獨家按摩 – 雨林按摩","note":"Duration: 2 Hours / 120 Minutes. Only at Pantai Chenang Branch.","items":[{"en":"Rainforest Program","zh":"雨林按摩","p":"Per Person: RM 275.00","tags":["branch-pantai-chenang"],"den":"Foot Bath, Aromatherapy Hot Tub, Rainforest Bath, Alun-Alun Wave Massage + Herbal Tea","dzh":"足浴、香薰泡浴、雨林浴、Alun-Alun 海浪按摩＋草藥茶"}],"id":"sec-17"},{"en":"Exclusive Program – After Sun Program","zh":"獨家按摩 – 曬後修復按摩","note":"Duration: 2½ Hours / 150 Minutes","items":[{"en":"After Sun Program","zh":"曬後修復按摩","p":"Per Person: RM 300.00 / Couple: RM 580.00","tags":["couple"],"den":"Foot Bath, Body Mask with Aloe Vera Gel, Massage with Sunburn Oil, After Sun Facial","dzh":"足浴、蘆薈膠體膜、曬傷精油療法按摩、曬後面部護理"}],"id":"sec-18"},{"en":"Exclusive Program – Royal Javanese Ritual","zh":"獨家按摩 – 爪哇皇家按摩","note":"Duration: 2½ Hours / 150 Minutes","items":[{"en":"Royal Javanese Ritual","zh":"爪哇皇家按摩","p":"Per Person: RM 280.00 / Couple: RM 540.00","tags":["couple"],"den":"Foot Bath, Lulur Scrub, Yogurt Wrap, Aromatherapy Sea Salt Flower Hot Tub, Balinese Massage + Herbal Tea","dzh":"足浴、印尼Lulur磨砂、酸奶裹膚、香薰花海鹽泡浴、巴里式按摩＋草藥茶"}],"id":"sec-19"},{"en":"Exclusive Program – Aromatherapy Ritual","zh":"獨家按摩 – 香薰按摩","note":"Duration: 3 Hours / 180 Minutes","items":[{"en":"Aromatherapy Ritual","zh":"香薰按摩","p":"Per Person: RM 320.00 / Couple: RM 600.00","tags":["couple"],"den":"Foot Bath, Body Scrub, Aromatherapy Massage, Spa Facial, Reflexology + Herbal Tea","dzh":"足浴、身體磨砂、香薰精油按摩、面部護理、足底按摩＋草藥茶"}],"id":"sec-20"},{"en":"Exclusive Program – Healing Program","zh":"獨家按摩 – 治療復原按摩","note":"Duration: 3 Hours / 180 Minutes","items":[{"en":"Healing Program","zh":"治療復原按摩","p":"Per Person: RM 300.00 / Couple: RM 580.00","tags":["couple"],"den":"Foot Bath, Spa Facial, Traditional Malaysian Massage, Aromatherapy Sea Salt Flower Hot Tub, Reflexology + Herbal Tea","dzh":"足浴、面部護理、傳統馬來式按摩、香薰花海鹽泡浴、足底按摩＋草藥茶"}],"id":"sec-21"},{"en":"Exclusive Program – Relaxing Ritual","zh":"獨家按摩 – 放鬆式按摩","note":"Duration: 3½ Hours / 210 Minutes","items":[{"en":"Relaxing Ritual","zh":"放鬆式按摩","p":"Per Person: RM 360.00 / Couple: RM 680.00","tags":["couple"],"den":"Foot Bath, Body Scrub, Body Wrap, Balinese Massage, Ear Candle, Mini Facial + Herbal Tea","dzh":"足浴、身體磨砂、裹膚護理、巴里式按摩、耳燭療法、迷你面部護理＋草藥茶"}],"id":"sec-22"},{"en":"Exclusive Program – Beauty Program","zh":"獨家按摩 – 美容按摩","note":"Duration: 3½ Hours / 210 Minutes","items":[{"en":"Beauty Program","zh":"美容按摩","p":"Per Person: RM 450.00 / Couple: RM 840.00","tags":["couple"],"den":"Foot Bath, Milk & Rose Hot Tub, Special Body Scrub, Slimming Massage, Aromatic Facial, Pedicure, Herbal Tea","dzh":"足浴、牛奶玫瑰泡浴、特色身體磨砂、減肥按摩、芳香面部護理、修腳甲、草藥茶"}],"id":"sec-23"},{"en":"Exclusive Program – Alun-Alun Cakra","zh":"獨家按摩 – Alun-Alun Cakra","note":"Duration: 4 Hours / 240 Minutes","items":[{"en":"Alun-Alun Cakra","zh":"Alun-Alun Cakra 療程","p":"Per Person: RM 550.00 / Couple: RM 1000.00","tags":["couple"],"den":"Foot Bath, Body Scrub, Body Mask, Hot Tub, Shirodhara, Hair Spa, Mini Facial, Sound Bliss Massage","dzh":"足浴、身體磨砂、身體膜、泡浴、Shirodhara按摩、美髮護理、迷你面部護理、頌缽按摩"}],"id":"sec-24"},{"en":"Exclusive Program – Honeymoon Package","zh":"獨家按摩 – 蜜月按摩","note":"Duration: 4 Hours / 240 Minutes","items":[{"en":"Honeymoon Package","zh":"蜜月按摩","p":"Per Person: RM 420.00 / Couple: RM 800.00","tags":["couple"],"den":"Foot Bath, Body Scrub, Body Mask, Hair Spa, Aromatherapy Hot Tub, Aromatherapy Massage, Spa Facial, Herbal Tea","dzh":"足浴、身體磨砂、體膜、美髮護理、香薰泡浴、香薰精油按摩、面部護理、草藥茶"}],"id":"sec-25"},{"en":"Exclusive Program – Half Day Program","zh":"獨家按摩 – 半日項目按摩","note":"Duration: 4½ Hours / 300 Minutes","items":[{"en":"Half Day Program","zh":"半日項目按摩","p":"Per Person: RM 500.00 / Couple: RM 950.00","tags":["couple"],"den":"Foot Bath, Reflexology, Body Scrub, Body Mask, Aromatherapy Hot Tub, Alun-Alun Wave Massage, Spa Facial, Pedicure","dzh":"足浴、足底按摩、身體磨砂、體膜、香薰泡浴、Alun-Alun 海浪按摩、面部護理、修腳甲"}],"id":"sec-26"}];
+const TAGS = [{"id":"signature","en":"Signature","zh":"招牌","icon":"⭐","group":"highlight"},{"id":"couple","en":"Couple Available","zh":"情侶套餐可選","icon":"👫","group":"other"},{"id":"men","en":"For Men","zh":"適合男士","icon":"♂️","group":"other"},{"id":"branch-pantai-chenang","en":"Pantai Chenang Branch Only","zh":"僅限珍南海灘分店","icon":"📍","group":"other"}];
+const TAG_BY_ID = Object.fromEntries(TAGS.map(t => [t.id, t]));
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+const barEl = document.getElementById("filterbar");
+
+// Render sections + items (items carry data-tags for filtering).
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${esc(id)}" data-sec="${esc(id)}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const ids = it.tags || [];
+    const icons = ids.map(t => (TAG_BY_ID[t] && TAG_BY_ID[t].icon) || "").filter(Boolean).join(" ");
+    const tags = icons ? `<span class="tags">${icons}</span>` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    return `<div class="item" data-tags="${esc(ids.join(" "))}">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+          ${tags}
+        </div>${price}
+      </div>${den}${dzh}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${esc(id)}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+// Build the filter bar from the tags actually used by ≥1 item (in TAGS order).
+const used = new Set();
+MENU.forEach(s => (s.items || []).forEach(it => (it.tags || []).forEach(id => used.add(id))));
+const seen = new Set();
+const filterTags = [];
+TAGS.forEach(t => {
+  if (used.has(t.id) && !seen.has(t.id)) { seen.add(t.id); filterTags.push(t); }
+});
+const active = new Set();
+
+if (filterTags.length) {
+  barEl.insertAdjacentHTML("beforeend", `<button class="chip chip-all active" data-id="">全部 All</button>`);
+  filterTags.forEach(t => {
+    const ic = t.icon ? `<span class="ci">${t.icon}</span>` : "";
+    barEl.insertAdjacentHTML("beforeend",
+      `<button class="chip" data-id="${esc(t.id)}">${ic}<span class="cen">${esc(t.en)}</span><span class="czh">${esc(t.zh)}</span></button>`);
+  });
+} else {
+  barEl.style.display = "none";
+}
+
+// AND filter: an item shows iff its tags include every active id.
+function applyFilter() {
+  document.querySelectorAll("#menu section").forEach(sec => {
+    let visible = 0;
+    sec.querySelectorAll(".item").forEach(el => {
+      const tags = new Set((el.getAttribute("data-tags") || "").split(" ").filter(Boolean));
+      let show = true;
+      active.forEach(id => { if (!tags.has(id)) show = false; });
+      el.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    sec.style.display = visible ? "" : "none";
+    const link = navEl.querySelector(`a[data-sec="${CSS.escape(sec.id)}"]`);
+    if (link) link.style.display = visible ? "" : "none";
+  });
+}
+
+barEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".chip");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (id === "") active.clear();
+  else if (active.has(id)) active.delete(id);
+  else active.add(id);
+
+  barEl.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  if (active.size === 0) {
+    barEl.querySelector(".chip-all").classList.add("active");
+  } else {
+    active.forEach(a => {
+      const c = barEl.querySelector(`.chip[data-id="${CSS.escape(a)}"]`);
+      if (c) c.classList.add("active");
+    });
+  }
+  applyFilter();
+});
+
+// Language toggle (unchanged behaviour).
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+// Back to top (unchanged behaviour).
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+</script>
+</body>
+</html>
