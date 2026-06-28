@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>TOPEE Restaurant · 菜單 Menu</title>
+
+<meta name="description" content="TOPEE Restaurant 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="TOPEE Restaurant · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 9vw, 54px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(18px, 4.6vw, 24px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 15px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 15px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .filterbar { display: flex; gap: 8px; overflow-x: auto; padding: 6px 14px 8px;
+    scrollbar-width: none; -ms-overflow-style: none; }
+  .filterbar::-webkit-scrollbar { display: none; }
+  .chip { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 999px; padding: 6px 12px; min-height: 36px; cursor: pointer;
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  body.lang-zh .chip .cen { display: none; }
+  body.lang-en .chip .czh { display: none; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(24px, 6.4vw, 32px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(17px, 4.6vw, 21px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 15px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 18px; }
+  .item .meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .item .tags { font-size: 15px; letter-spacing: 1px; }
+  .dish { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-top: 8px; }
+  .explain { font: inherit; font-size: 15px; line-height: 1; border: 1px solid var(--line);
+    background: var(--card); border-radius: 999px; padding: 3px 7px; cursor: pointer; }
+  .popover { position: absolute; z-index: 50; max-width: 300px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 15px;
+    line-height: 1.5; box-shadow: 0 8px 24px rgba(0,0,0,.16); }
+  .popover[hidden] { display: none; }
+  .popover .pen { display: block; }
+  .popover .pzh { display: block; color: #4a4a4f; margin-top: 6px; }
+  body.lang-zh .popover .pen { display: none; }
+  body.lang-en .popover .pzh { display: none; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 17px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 15px; margin-top: 3px; }
+
+  .opts { margin-top: 8px; }
+  .optg { margin-top: 8px; padding: 8px 10px; background: var(--accent-soft);
+    border-left: 3px solid var(--accent); border-radius: 8px; }
+  .optg:first-child { margin-top: 0; }
+  .optg-label { font-weight: 700; font-size: 15px; }
+  .opt-hint { font-weight: 500; font-size: 13px; color: var(--muted); margin-left: 6px; }
+  .optg-choices { list-style: none; margin: 6px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .optg-choices li { font-size: 15px; }
+  .opts .ozh { color: var(--accent); }
+  .opts .oen, .opts .ozh { margin-right: 3px; }
+  .opt-price { color: var(--price); font-variant-numeric: tabular-nums; margin-left: 3px; }
+  body.lang-zh .opts .oen { display: none; }
+  body.lang-en .opts .ozh { display: none; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 18px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>TOPEE Restaurant</h1>
+  <div class="zh-title">TOPEE 餐廳</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 MYR 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+  <div class="filterbar" id="filterbar" role="group" aria-label="filters"></div>
+</div>
+
+<div class="wrap">
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+<div id="popover" class="popover" hidden></div>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const MENU = [{"en":"Appetizers","zh":"前菜","note":"","items":[{"en":"Topee Mushroom Soup","zh":"Topee 蘑菇湯","p":"16.90","tags":[],"xterm":"","options":[],"den":"Mixed Mushroom, Cream, Truffle oil, Focaccia","dzh":"綜合蘑菇、忌廉、松露油、佛卡夏麵包"},{"en":"French Onion Soup","zh":"法式洋蔥湯","p":"24.90","tags":[],"xterm":"","options":[],"den":"Chicken Broth, Caramelised Onion, Focaccia, Parmesan, Mozzarelle, Cheddar","dzh":"雞高湯、焦糖洋蔥、佛卡夏麵包、帕馬森芝士、莫扎瑞拉芝士、切達芝士"},{"en":"Cola Beef Stew","zh":"可樂燉牛肉","p":"24.90","tags":[],"xterm":"","options":[],"den":"Beef, Potato, Celery, Onion, Garlic, Cherry Tomato, Focaccia","dzh":"牛肉、馬鈴薯、西芹、洋蔥、大蒜、車厘茄、佛卡夏麵包"},{"en":"Caesar with Chicken Breast","zh":"雞胸凱撒沙律","p":"27.90","tags":[],"xterm":"","options":[],"den":"Baby Romaine, Seared Chicken Breast, Parmesan Crisps, Boiled Egg, Walnut, Cherry Tomato","dzh":"小羅馬生菜、煎雞胸肉、帕馬森脆片、水煮蛋、核桃、車厘茄"},{"en":"Caesar with Anchovies","zh":"鯷魚凱撒沙律","p":"19.90","tags":[],"xterm":"","options":[],"den":"Baby Romaine, Crispy Anchovies, Parmesan Crisps, Boiled Egg, Walnut, Cherry Tomato","dzh":"小羅馬生菜、香脆鯷魚、帕馬森脆片、水煮蛋、核桃、車厘茄"},{"en":"Roasted Pumpkin Salad","zh":"烤南瓜沙律","p":"23.90","tags":[],"xterm":"","options":[],"den":"Roasted Pumpkin, Baby Spinach, Poached Egg, Walnuts, Sliced Red Onion, Arugula Pesto, Parmesan Crisps","dzh":"烤南瓜、嫩菠菜、水波蛋、核桃、紅洋蔥片、芝麻菜青醬、帕馬森脆片"},{"en":"Farm's Fruit Salad","zh":"農場水果沙律","p":"25.90","tags":[],"xterm":"","options":[],"den":"Shoyu Mushrooms, Strawberry, Cherry Tomato, Arugula, Walnuts","dzh":"醬油蘑菇、草莓、車厘茄、芝麻菜、核桃"}],"id":"sec-0"},{"en":"Main","zh":"主菜","note":"","items":[{"en":"Harbour Crunch","zh":"香脆海港鱸魚","p":"33.90","tags":[],"xterm":"","options":[],"den":"Battered Seabass Fillet, Fries, House Tartare","dzh":"炸鱸魚柳、薯條、特製他他醬"},{"en":"Dancing Bass","zh":"舞動鱸魚","p":"39.90","tags":[],"xterm":"","options":[],"den":"Pan-Seared Seabass, Wasabi Mash, Baby Kailan, Garlic Soy Reduction","dzh":"香煎鱸魚、芥末薯蓉、小芥蘭、蒜香醬油濃縮汁"},{"en":"Nesting Bass","zh":"巢香鱸魚","p":"39.90","tags":[],"xterm":"","options":[],"den":"Pan-Seared Seabass, Vermicelli Nest, Cherry Tomato, Bell Pepper Coulis","dzh":"香煎鱸魚、米粉巢、車厘茄、甜椒濃醬"},{"en":"Bass in Lemak","zh":"椰漿鱸魚","p":"39.90","tags":[],"xterm":"masak-lemak","options":[],"den":"Seared Seabass, Brown Butter Carrot, Seared Potato, Red Onion, Cherry Tomato, Masak Lemak Sauce","dzh":"香煎鱸魚、褐奶油紅蘿蔔、煎馬鈴薯、紅洋蔥、車厘茄、椰漿醬","explain":{"en":"Masak lemak is a Malay cooking style featuring a rich, creamy sauce made from coconut milk and turmeric, giving it a distinctive golden-yellow colour. It is typically mildly spiced with lemongrass, chilli, and galangal. The result is a fragrant, slightly tangy coconut curry that pairs well with fish, chicken, or vegetables.","zh":"瑪沙勒瑪是馬來西亞的一種烹飪方式，以椰漿和薑黃為基底，煮成濃郁香滑的金黃色醬汁。通常加入香茅、辣椒和南薑調味，香氣濃郁，帶有輕微酸味，與魚肉、雞肉或蔬菜搭配皆宜。"}},{"en":"Lemony Bass","zh":"檸香鱸魚","p":"39.90","tags":[],"xterm":"","options":[],"den":"Lemongrass Baked Seabass, Lemon Butter Sauce, Seared Snake Bean, Potato with button Mushroom","dzh":"香茅烤鱸魚、檸檬牛油醬、煎四季豆、馬鈴薯配鈕扣蘑菇"},{"en":"Fiesty Aqua Flower","zh":"麻辣海花","p":"39.90","tags":[],"xterm":"","options":[],"den":"Cheesy Cauliflower Steak, Octopus, Prawn, Clams, Cherry Tomato, Spicy Tangy Sauce","dzh":"芝士花椰菜扒、章魚、蝦、蛤蜊、車厘茄、香辣酸醬"},{"en":"Shrimp Cauli Toss","zh":"奶油蝦花椰菜","p":"37.90","tags":[],"xterm":"","options":[],"den":"Fried Cauliflower, Butter Garlic Prawn, Fried Egg, Cabbage Slaw","dzh":"炸花椰菜、蒜香牛油蝦、煎蛋、椰菜絲沙律"}],"id":"sec-1"},{"en":"Burger","zh":"漢堡","note":"","items":[{"en":"Dirty Burger","zh":"豪放漢堡","p":"34.90","tags":[],"xterm":"","options":[],"den":"Fried Chicken Thigh, Cheese Slice, Tomato, Fried Onion Rings, Fried Egg, Cabbage Slaw, Brioche Bun, Fries, Pickles","dzh":"炸雞腿肉、芝士片、番茄、炸洋蔥圈、煎蛋、椰菜絲沙律、布里歐麵包、薯條、醃黃瓜"},{"en":"Wagyu Burger","zh":"和牛漢堡","p":"47.90","tags":[],"xterm":"","options":[],"den":"Wagyu Beef Patty, Sliced Cheese, Arugula, Tomato, Fried Portobello, Caramelised Onion, Brioche Bun, Fries, Pickles","dzh":"和牛肉餅、芝士片、芝麻菜、番茄、炸波特貝羅菇、焦糖洋蔥、布里歐麵包、薯條、醃黃瓜"},{"en":"Marine Burger","zh":"海洋漢堡","p":"38.90","tags":[],"xterm":"","options":[],"den":"Fried Seabass Fillet, Wassabi Tartare, Onion Ring, Kyuri, Cabbage Slaw, Brioche Bun, Fries, Pickles","dzh":"炸鱸魚柳、芥末他他醬、洋蔥圈、小黃瓜、椰菜絲沙律、布里歐麵包、薯條、醃黃瓜"}],"id":"sec-2"},{"en":"For Kiddo","zh":"兒童餐","note":"","items":[{"en":"Signature Chicken Bolognese","zh":"招牌雞肉波隆那","p":"17.90","tags":[],"xterm":"","options":[],"den":"Spaghetti, Chicken Bolognese, Poached Egg","dzh":"意大利麵、雞肉波隆那肉醬、水波蛋"},{"en":"Topee's Mac & Cheese","zh":"Topee 芝士通心粉","p":"17.90","tags":[],"xterm":"","options":[{"en":"Choices","zh":"可選配料","kind":"one","choices":[{"en":"Chicken Toast Slice","zh":"雞肉多士片","p":""},{"en":"Streaky Beef","zh":"煙肉牛肉片","p":""},{"en":"Vegetarian","zh":"素食","p":""}]}],"den":"Macaroni, 3-Cheese Sauce","dzh":"通心粉、三重芝士醬"},{"en":"Fish and Potato Goujons","zh":"炸魚薯條","p":"17.90","tags":[],"xterm":"","options":[],"den":"Fried Fish Fingers, Fries, House Tartare Sauce","dzh":"炸魚柳條、薯條、特製他他醬"}],"id":"sec-3"},{"en":"The G.M.C","zh":"GMC 雞肉堡","note":"","items":[{"en":"The G.M.C","zh":"GMC 雞肉堡","p":"38.90","tags":[],"xterm":"","options":[],"den":"Fried Chicken, Buttercream Sauce, Poached Egg, Cherry Tomato, Focaccia, Cabbage Slaw","dzh":"炸雞、牛油忌廉醬、水波蛋、車厘茄、佛卡夏麵包、椰菜絲沙律"},{"en":"Hot Chick","zh":"辣味炸雞","p":"29.90","tags":[],"xterm":"","options":[],"den":"Fried Chicken Chop, Cabbage Slaw, Fries, Signature Gravy","dzh":"炸雞扒、椰菜絲沙律、薯條、招牌肉汁"},{"en":"Tuscan Poultry","zh":"托斯卡尼烤雞腿","p":"35.90","tags":[],"xterm":"","options":[],"den":"Roasted Whole Chicken Leg, Seared Potato, Cherry Tomato, Tuscan Sauce","dzh":"烤全雞腿、煎馬鈴薯、車厘茄、托斯卡尼醬"},{"en":"Chicken Dianne","zh":"黛安娜雞肉","p":"33.90","tags":[],"xterm":"","options":[],"den":"Seared Chicken Breast, Spinach, Mushroom, Mashed Potato, Mustard Cream Sauce","dzh":"香煎雞胸肉、菠菜、蘑菇、薯蓉、芥末忌廉醬"},{"en":"Fowl Play","zh":"菠菜蘑菇雞胸","p":"33.90","tags":[],"xterm":"","options":[],"den":"Seared Chicken Breast, Spinach, Mushroom, Seared Zucchini, Deglaze Sauce","dzh":"香煎雞胸肉、菠菜、蘑菇、煎西葫蘆、鍋底醬汁"},{"en":"Harvest-Moon Risotto","zh":"豐收月燉飯","p":"29.90","tags":["vegetarian"],"xterm":"risotto","options":[],"den":"Caulirice Risotto, Grilled Pumpkin, Seared Zucchini, Cherry Tomato, Lemon Oil","dzh":"花椰菜米燉飯、烤南瓜、煎西葫蘆、車厘茄、檸檬油","explain":{"en":"Risotto is a Northern Italian rice dish made by slowly cooking short-grain rice (such as Arborio) in broth while continuously stirring. The starch released from the rice creates a naturally creamy texture without the need for cream. It is typically finished with butter and Parmesan for added richness.","zh":"燉飯是義大利北部的米飯料理，以短粒米（如阿柏里奧米）在高湯中持續攪拌慢煮而成。米粒釋出的澱粉自然形成幼滑如奶油的質感，無需另加鮮忌廉。最後通常拌入牛油和帕馬芝士增添濃郁風味。"}},{"en":"Stuffed Squash","zh":"釀南瓜","p":"29.90","tags":["vegetarian"],"xterm":"","options":[],"den":"Stuffed Eggplant, Fried Cauliflower, Lemon Shoyu Mushrooms","dzh":"釀茄子、炸花椰菜、檸檬醬油蘑菇"}],"id":"sec-4"},{"en":"Pasta","zh":"意大利麵","note":"","items":[{"en":"Pulled Ribs Tagliatelle","zh":"手撕肋骨寬麵","p":"38.90","tags":[],"xterm":"tagliatelle","options":[],"den":"Tagliatelle, Pulled Beef Ribs, Cherry Tomato, Braised Beef Sauce, Parmesan","dzh":"寬麵、手撕燉牛肋骨、車厘茄、紅燒牛肉醬、帕馬森芝士","explain":{"en":"Tagliatelle is a traditional Northern Italian pasta cut into long, flat ribbons, slightly wider than fettuccine. It is typically made with egg, giving it a rich flavour and a firm yet tender texture. Its broad surface makes it ideal for pairing with hearty meat sauces.","zh":"寬蛋麵是義大利北部的傳統麵食，呈長條扁帶狀，寬度略寬於費特芝尼麵。一般以加蛋的麵團製成，口感富有彈性且帶有蛋香。寬闊的麵面特別適合搭配濃郁的肉醬。"}},{"en":"Rosso Clam","zh":"番茄蛤蜊麵","p":"38.90","tags":[],"xterm":"","options":[],"den":"Tagliatelle, Pomodoro Sauce, Clams, Cherry Tomato, Parmesan","dzh":"寬麵、番茄醬、蛤蜊、車厘茄、帕馬森芝士"},{"en":"Seafood Lemak","zh":"椰漿海鮮麵","p":"42.90","tags":["spicy"],"xterm":"lemak","options":[],"den":"Prawn, Clams, Octopus, Spaghetti with Lemak Sauce","dzh":"蝦、蛤蜊、章魚、椰漿醬意大利麵","explain":{"en":"Lemak is a Malay word meaning \"rich\" or \"creamy,\" and in cooking it refers to dishes made with coconut milk as a key ingredient. The coconut milk gives sauces a rich, mildly sweet, and aromatic character. It is a cornerstone flavour in Southeast Asian cuisines, particularly in dishes like nasi lemak.","zh":"「Lemak」是馬來語，意指「濃郁」或「香滑」，在烹飪上泛指以椰漿為主要材料的菜式。椰漿賦予醬汁濃稠、微甜而芳香的特色，是東南亞料理（尤其是椰漿飯）的核心風味之一。"}},{"en":"Spicy Bass","zh":"香辣鱸魚麵","p":"42.90","tags":["spicy"],"xterm":"","options":[],"den":"Spaghetti, Seared Seabass, Spinach, Mushroom, Cherry Tomato, Spicy Tangy Sauce, Parmesan","dzh":"意大利麵、香煎鱸魚、菠菜、蘑菇、車厘茄、香辣酸醬、帕馬森芝士"},{"en":"Poultry Ragout","zh":"雞肉燉肉醬麵","p":"30.90","tags":[],"xterm":"ragout","options":[],"den":"Fusilli, Tomato Chicken Ragout, Cherry Tomato, Spinach, Mushroom, Poached Egg","dzh":"螺旋麵、番茄雞肉燉醬、車厘茄、菠菜、蘑菇、水波蛋","explain":{"en":"Ragout is a French slow-cooked stew of meat, poultry, or vegetables, typically braised in stock or wine with aromatics. The long cooking process tenderises the protein and melds the flavours into a rich, sauce-like consistency. It is commonly served over pasta or with bread.","zh":"法式燉肉醬是一種法國慢煮菜餚，以肉類、禽肉或蔬菜配高湯或葡萄酒及香料長時間燉煮而成。長時間烹調令食材軟嫩，各種風味融合成濃郁的醬汁狀質感，常搭配意麵或麵包享用。"}},{"en":"Carbonara","zh":"卡邦尼麵","p":"33.90","tags":[],"xterm":"carbonara","options":[{"en":"Protein choice","zh":"蛋白質可選","kind":"one","choices":[{"en":"Smoked Duck","zh":"煙燻鴨肉","p":""},{"en":"Chicken Toast","zh":"雞肉多士","p":""},{"en":"Streaky Beef","zh":"煙肉牛肉片","p":""}]}],"den":"Spaghetti, Parmesan, Black Pepper, Carbonara Sauce","dzh":"意大利麵、帕馬森芝士、黑椒、卡邦尼醬","explain":{"en":"Carbonara is a classic Roman pasta dish made with egg yolks, hard cheese (Pecorino Romano or Parmesan), cured pork (traditionally guanciale), and black pepper. The heat of the cooked pasta gently cooks the egg mixture, creating a creamy, silky sauce without any cream. It is rich and savoury with a distinctive eggy depth.","zh":"卡邦拿意麵是羅馬經典意麵，以蛋黃、硬質芝士（培格力諾或帕馬芝士）、醃製豬肉（傳統上使用豬頰肉）及黑胡椒製成。熱騰騰的意麵餘溫將蛋液輕輕煮熟，形成幼滑如奶油般的醬汁，整道菜不含鮮奶油，風味濃郁帶有獨特的蛋香。"}},{"en":"Chicken Olio","zh":"雞肉橄欖油麵","p":"29.90","tags":[],"xterm":"aglio-olio","options":[],"den":"Spaghetti, Grilled Chicken, Oil, Garlic Chips, Chilli, Basil, Cherry Tomato, Parmesan","dzh":"意大利麵、烤雞肉、橄欖油、蒜片、辣椒、羅勒、車厘茄、帕馬森芝士","explain":{"en":"Aglio e olio is a simple but flavourful Italian pasta dish whose name means \"garlic and oil\" in Italian. It is made by tossing pasta with olive oil, sautéed garlic, chilli flakes, and parsley. The dish relies on high-quality olive oil and proper technique to achieve its characteristic light, aromatic coating.","zh":"蒜香橄欖油意麵名稱在義大利語中意為「蒜與油」，是一道簡單而風味十足的義大利麵食。做法是將意麵拌入橄欖油、炒香蒜片、辣椒碎及香芹。此菜講究橄欖油的品質與烹調技巧，以呈現清爽芳香的醬汁。"}},{"en":"Creamy Spinach Mushroom","zh":"忌廉菠菜蘑菇麵","p":"29.90","tags":["vegetarian"],"xterm":"","options":[],"den":"Penne, Spinach, Mushroom, Poached Egg, Cream Sauce","dzh":"短管麵、菠菜、蘑菇、水波蛋、忌廉醬"},{"en":"Arugula Pesto","zh":"芝麻菜青醬麵","p":"34.90","tags":["vegetarian"],"xterm":"pesto","options":[],"den":"Spaghetti, Walnuts, Sundried Tomato, Zucchini Chips, Arugula Pesto, Parmesan","dzh":"意大利麵、核桃、太陽番茄乾、西葫蘆脆片、芝麻菜青醬、帕馬森芝士","explain":{"en":"Pesto is an Italian sauce traditionally made by blending fresh basil, pine nuts, garlic, Parmesan cheese, and olive oil. The word comes from the Italian \"pestare,\" meaning to pound or crush. It has a vibrant green colour, a fresh herbal flavour, and a slightly nutty richness. Modern variations may use other greens such as arugula.","zh":"青醬是義大利醬料，傳統上以新鮮羅勒、松子、蒜頭、帕馬芝士及橄欖油研磨混合而成。名稱源自義大利語「pestare」，意為搗碎。醬汁色澤鮮綠，帶有清新的草本香氣及淡淡的堅果香。現代版本有時以芝麻菜等其他綠葉取代羅勒。"}}],"id":"sec-5"},{"en":"Succulent Rib","zh":"多汁肋骨","note":"","items":[{"en":"Succulent Rib","zh":"多汁BBQ牛肋骨","p":"59.90","tags":[],"xterm":"","options":[],"den":"BBQ Beef Ribs, Cabbage Slaw, Cherry Tomato, Pickles","dzh":"BBQ牛肋骨、椰菜絲沙律、車厘茄、醃黃瓜"},{"en":"Australian Prime","zh":"澳洲穀飼肉眼扒","p":"80.90","tags":[],"xterm":"","options":[],"den":"Medium Well-Cooked Grain Fed Ribeye 220-240gm +/-, Seared Potato, Cherry Tomato, Chimchuri, Signature Gravy","dzh":"七分熟穀飼肉眼扒約220-240克、煎馬鈴薯、車厘茄、阿根廷青醬、招牌肉汁"},{"en":"Striploin for 2","zh":"西冷扒雙人份","p":"120.90","tags":[],"xterm":"","options":[],"den":"Medium Well-Cooked Grain Fed Striploin 350gm+/-, Wasabi Mesh in Fried Onion Cup, Seared Snake bean, Marinated Feta Cheese","dzh":"七分熟穀飼西冷扒約350克、芥末薯蓉炸洋蔥杯、煎四季豆、醃漬菲達芝士"},{"en":"The Goat","zh":"香草羊架扒","p":"69.90","tags":[],"xterm":"","options":[],"den":"Herb Crusted Lamb Rack Chop, Seared Potato, Cherry Tomato, Balsamic Reduction, Chimchuri \"25minutes\"","dzh":"香草脆皮羊架扒、煎馬鈴薯、車厘茄、巴薩米可濃縮汁、阿根廷青醬「25分鐘」"},{"en":"Prince of Rack","zh":"烤羊架王子","p":"69.90","tags":[],"xterm":"","options":[],"den":"Grilled Lamb Rack, Walnut, Pesto Sauce, Pumpkin Wedges & Baby Kailan","dzh":"烤羊架、核桃、青醬、南瓜角及小芥蘭"}],"id":"sec-6"},{"en":"Pizza","zh":"薄餅","note":"Half & Half Selection: Create your own combination with any two flavours. Price follows the higher-priced selection.","items":[{"en":"Tuscan Chicken Pizza","zh":"托斯卡尼雞肉薄餅","p":"29.90","tags":[],"xterm":"","options":[],"den":"Tuscan Sauce, Chicken Slice, Sundried & Cherry Tomato, Baby Spinach","dzh":"托斯卡尼醬、雞肉片、太陽番茄乾及車厘茄、嫩菠菜"},{"en":"Creamy Buttercream Chicken Pizza","zh":"忌廉牛油雞肉薄餅","p":"27.90","tags":[],"xterm":"","options":[],"den":"Buttercream, Boneless Crispy Chicken, Cherry Tomato, Slice Chilli, Curry Leaf, Mixed Cheese","dzh":"牛油忌廉、無骨香脆雞肉、車厘茄、辣椒片、咖哩葉、混合芝士"},{"en":"Cheesy Chic Pizza","zh":"芝士雞肉薄餅","p":"27.90","tags":[],"xterm":"","options":[],"den":"Crispy Chicken Bites, Signature Gravy, Cherry Tomato, Arugula, Mixed Cheese","dzh":"香脆雞肉粒、招牌肉汁、車厘茄、芝麻菜、混合芝士"},{"en":"Tartare Fish Pizza","zh":"他他醬魚肉薄餅","p":"31.90","tags":[],"xterm":"","options":[],"den":"Seabass Fillet, Tartare Sauce, Cherry Tomato, Onion, Arugula, Capers, Mixed Cheese","dzh":"鱸魚柳、他他醬、車厘茄、洋蔥、芝麻菜、酸豆、混合芝士"},{"en":"Tuna Putanesca Pizza","zh":"普塔內斯卡吞拿魚薄餅","p":"31.90","tags":[],"xterm":"puttanesca","options":[],"den":"Tomato-Based, Tuna, Capers, Black Olives, Cherry Tomato, Chilli Flake, Crispy Garlic, Mixed Cheese","dzh":"番茄底、吞拿魚、酸豆、黑橄欖、車厘茄、辣椒碎、香脆大蒜、混合芝士","explain":{"en":"Puttanesca is a bold Italian sauce originating from Naples, made with tomatoes, black olives, capers, anchovies, garlic, and chilli. It has a strong, salty, and slightly pungent flavour profile. Traditionally served with pasta, it also appears as a topping on pizzas and other dishes.","zh":"普塔內斯卡醬是源自義大利那不勒斯的濃烈醬汁，以番茄、黑橄欖、酸豆、鯷魚、大蒜和辣椒製成。味道鹹香濃郁，略帶刺激性風味。傳統上用於拌麵，現亦常見於薄餅等菜式的配料。"}},{"en":"Smoked Duck & Orange Honey Pizza","zh":"煙燻鴨肉橙蜜薄餅","p":"32.90","tags":[],"xterm":"","options":[],"den":"Smoked Duck, Orange Honey Glaze, Caramelised Onion, Mozzarelle, Rocket","dzh":"煙燻鴨肉、橙蜜光澤醬、焦糖洋蔥、莫扎瑞拉芝士、火箭菜"},{"en":"Wagyu Pizza","zh":"和牛薄餅","p":"38.90","tags":[],"xterm":"","options":[],"den":"Signature Gravy, Wagyu Beef Mince, Mushroom, Cherry Tomato, Mixed Cheese","dzh":"招牌肉汁、和牛免治牛肉、蘑菇、車厘茄、混合芝士"},{"en":"Pesto Streaky Beef Pizza","zh":"青醬煙肉牛肉薄餅","p":"30.90","tags":[],"xterm":"","options":[],"den":"Arugula Pesto, Streaky Beef, Cherry Tomato, Red Onion, Arugula, Mixed Cheese","dzh":"芝麻菜青醬、煙肉牛肉片、車厘茄、紅洋蔥、芝麻菜、混合芝士"},{"en":"Delectable Pulled Beef Pizza","zh":"手撕牛肉薄餅","p":"32.90","tags":[],"xterm":"","options":[],"den":"Beef Gravy, Pulled Beef, Cherry Tomato, Arugula, Mixed Cheese","dzh":"牛肉汁、手撕牛肉、車厘茄、芝麻菜、混合芝士"},{"en":"Stracciatella Beef Pepperoni Pizza","zh":"斯特拉恰泰拉牛肉辣腸薄餅","p":"29.90","tags":[],"xterm":"stracciatella","options":[],"den":"Tomato-Based, Fresh Stracciatella, Beef Pepperoni, Mixed Cheese","dzh":"番茄底、新鮮斯特拉恰泰拉芝士、牛肉辣腸、混合芝士","explain":{"en":"Stracciatella is the soft, creamy filling found inside burrata cheese, made from shredded fresh mozzarella mixed with fresh cream. It has a delicate, milky flavour and a loose, stringy texture. On pizza it is typically added after baking to preserve its fresh, silky quality.","zh":"斯特拉奇亞特拉是布拉塔芝士內部的柔軟奶油芯，由撕碎的新鮮水牛芝士與鮮奶油混合而成。味道清甜細膩，質感絲滑拉絲。通常在薄餅烤好後才加入，以保留其新鮮柔滑的口感。"}},{"en":"Garlic Butter Prawn Pizza","zh":"蒜香牛油蝦薄餅","p":"36.90","tags":[],"xterm":"","options":[],"den":"Tomato-Based, Garlic Butter, Prawns, Cherry Tomato, Red Chilli, Crispy Garlic, Mixed Cheese","dzh":"番茄底、蒜香牛油、蝦、車厘茄、紅辣椒、香脆大蒜、混合芝士"},{"en":"Stracciatella Margarita Pizza","zh":"斯特拉恰泰拉瑪格麗特薄餅","p":"25.90","tags":["vegetarian"],"xterm":"stracciatella","options":[],"den":"Tomato-Based, Basil, Extra Virgin Olive Oil, Garlic Crisps, Fresh Stracciatella","dzh":"番茄底、羅勒、初榨橄欖油、蒜片、新鮮斯特拉恰泰拉芝士","explain":{"en":"Stracciatella is the soft, creamy filling found inside burrata cheese, made from shredded fresh mozzarella mixed with fresh cream. It has a delicate, milky flavour and a loose, stringy texture. On pizza it is typically added after baking to preserve its fresh, silky quality.","zh":"斯特拉奇亞特拉是布拉塔芝士內部的柔軟奶油芯，由撕碎的新鮮水牛芝士與鮮奶油混合而成。味道清甜細膩，質感絲滑拉絲。通常在薄餅烤好後才加入，以保留其新鮮柔滑的口感。"}},{"en":"Mushroom Trio Truffle Pizza","zh":"三重蘑菇松露薄餅","p":"26.90","tags":["vegetarian"],"xterm":"","options":[],"den":"Cream Base, Button Mushroom, Cherry Tomato, Garlic Crisps, Truffle Oil, Mixed Cheese","dzh":"忌廉底、鈕扣蘑菇、車厘茄、蒜片、松露油、混合芝士"},{"en":"Burrata Caprese Pizza","zh":"布拉塔卡普里薄餅","p":"27.90","tags":["vegetarian"],"xterm":"burrata","options":[],"den":"Burrata, Roasted Cherry Tomato, Arugula, Pesto Base, Balsamic Essence","dzh":"布拉塔芝士、烤車厘茄、芝麻菜、青醬底、巴薩米可精華","explain":{"en":"Burrata is a fresh Italian cheese with a thin outer shell of mozzarella encasing a soft, creamy centre of stracciatella. Originally from the Puglia region of Italy, it has a rich, milky flavour and a luxuriously creamy texture when cut open. It is best enjoyed fresh and is commonly used in salads, on pizza, or with crusty bread.","zh":"布拉塔是一種新鮮義大利芝士，外層為薄薄的水牛芝士皮，內部包裹著柔軟奶滑的斯特拉奇亞特拉芝士餡。源自義大利普利亞地區，切開後奶香濃郁、質感豐腴滑膩。最宜新鮮享用，常見於沙律、薄餅或配麵包食用。"}}],"id":"sec-7"},{"en":"Snack & Bites","zh":"小食拼盤","note":"Sharing Plate","items":[{"en":"Truffle Fries with Cheese Sauce","zh":"松露薯條配芝士醬","p":"16.90","tags":["vegetarian"],"xterm":"","options":[],"den":"","dzh":""},{"en":"Criss-Cross Fries Basket","zh":"格子薯條籃","p":"13.90","tags":["vegetarian"],"xterm":"","options":[],"den":"","dzh":""},{"en":"Crispy Cauliflower Florets","zh":"香脆花椰菜","p":"13.90","tags":["vegetarian"],"xterm":"","options":[],"den":"","dzh":""},{"en":"Cajun Corn Ribs","zh":"卡真香料玉米肋","p":"13.90","tags":["vegetarian"],"xterm":"","options":[],"den":"","dzh":""},{"en":"Crispy Focaccia with Butter (3pcs)","zh":"香脆佛卡夏配牛油（3件）","p":"11.90","tags":["vegetarian"],"xterm":"","options":[],"den":"","dzh":""},{"en":"Mashed Potato with Gravy","zh":"肉汁薯蓉","p":"13.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Portobello Fingers with Tartare Sauce","zh":"波特貝羅菇條配他他醬","p":"18.90","tags":["vegetarian"],"xterm":"","options":[],"den":"","dzh":""},{"en":"Fried Cajun Octopus with Tartare Sauce","zh":"炸卡真章魚配他他醬","p":"24.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Buffalo Wings with Ranch Dressing (4 Sets)","zh":"水牛城雞翼配牧場醬（4件）","p":"21.90","tags":["spicy"],"xterm":"buffalo-wings","options":[],"den":"","dzh":"","explain":{"en":"Buffalo wings are deep-fried chicken wings coated in a tangy, spicy sauce made from hot sauce and butter, originating from Buffalo, New York. They are typically served with celery sticks and a creamy dipping sauce such as ranch or blue cheese. The sauce gives them a distinctive bright orange-red colour and a bold, vinegary heat.","zh":"水牛城雞翼是炸雞翼裹上以辣椒醬和牛油調製的酸辣醬汁，源自美國紐約州水牛城。通常搭配西芹條及牧場醬或藍紋芝士醬蘸食。醬汁賦予雞翼鮮明的橙紅色澤和濃郁的辛辣風味。"}},{"en":"Sesame Glazed Wings with Pickles (4 Sets)","zh":"芝麻蜜汁雞翼配醃黃瓜（4件）","p":"21.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Grazing Platter","zh":"美食拼盤","p":"45.90","tags":[],"xterm":"","options":[],"den":"Criss Cross Fries, Sliced Jumbo Chicken Sausage, Lamb Shoulder Strips, Fried Cauliflower Florets, Cajun Corn Ribs","dzh":"格子薯條、特大雞腸片、羊肩肉條、炸花椰菜、卡真玉米肋"},{"en":"Topee Skewer Plater with Fries","zh":"Topee 串燒薯條拼盤","p":"40.90","tags":[],"xterm":"","options":[],"den":"Beef, Chicken & Mushroom Sticks with In-House Sauce","dzh":"牛肉、雞肉及蘑菇串燒配自家醬汁"},{"en":"The Potatoes Family with Tartere, Cheese Sauce & Ketchup","zh":"薯條家族配他他醬、芝士醬及番茄醬","p":"30.90","tags":["vegetarian"],"xterm":"","options":[],"den":"Fries, Wedges, Cris-Cross Fries, with 3 Special Dips","dzh":"薯條、薯角、格子薯條，配三款特製蘸醬"},{"en":"Mushroom Madness","zh":"瘋狂蘑菇","p":"33.90","tags":[],"xterm":"","options":[],"den":"3 Types of Fried Mushrooms, Lemon Shoyu Mushroom, Focaccia Toast","dzh":"三種炸蘑菇、檸檬醬油蘑菇、佛卡夏多士"},{"en":"Lamb Shoulder Strips with Focaccia","zh":"羊肩肉條配佛卡夏","p":"24.90","tags":[],"xterm":"","options":[],"den":"Stir-Fry Lamb Shoulder, Chilli, Onion, Focaccia","dzh":"炒羊肩肉、辣椒、洋蔥、佛卡夏麵包"}],"id":"sec-8"},{"en":"Beverage — Signature Cooler","zh":"飲品 — 招牌冷飲","note":"","items":[{"en":"Cowboy in Pink","zh":"粉紅牛仔","p":"13.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Fizzie Orange","zh":"橙味汽泡飲","p":"13.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Lime & Mint Nojito","zh":"青檸薄荷無酒精莫吉托","p":"13.90","tags":[],"xterm":"nojito","options":[],"den":"","dzh":"","explain":{"en":"A non-alcoholic version of the classic Mojito cocktail. It combines fresh mint, lime juice, sugar, and soda water, omitting the rum entirely. The result is a refreshing, alcohol-free drink that retains all the bright, citrusy flavours of the original.","zh":"無酒精莫吉托是經典莫吉托雞尾酒的無酒精版本。以新鮮薄荷、青檸汁、糖和蘇打水調製而成，完全不含朗姆酒。口感清爽，保留了原版飲品的清新柑橘風味，適合不飲酒人士。"}},{"en":"Lemonade Fizz","zh":"檸檬汽水","p":"13.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Strawberry Longan Mint","zh":"草莓龍眼薄荷飲","p":"13.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Summer Berries Concoction","zh":"夏日莓果特調","p":"13.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Sour Apple","zh":"酸蘋果飲","p":"13.90","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-9"},{"en":"Chilled Juice","zh":"冷藏果汁","note":"","items":[{"en":"Orange","zh":"橙汁","p":"8.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Apple","zh":"蘋果汁","p":"8.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Pink Guava","zh":"粉紅番石榴汁","p":"8.00","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-10"},{"en":"Cooler Selection","zh":"冷熱飲選擇","note":"","items":[{"en":"Peach Tea","zh":"蜜桃茶","p":"8.00","tags":[],"xterm":"","options":[{"en":"Temperature","zh":"溫度","kind":"one","choices":[{"en":"Hot","zh":"熱","p":""},{"en":"Cold","zh":"冷","p":""}]}],"den":"","dzh":""},{"en":"Lemon Tea","zh":"檸檬茶","p":"8.00","tags":[],"xterm":"","options":[{"en":"Temperature","zh":"溫度","kind":"one","choices":[{"en":"Hot","zh":"熱","p":""},{"en":"Cold","zh":"冷","p":""}]}],"den":"","dzh":""},{"en":"Honey Lemon","zh":"蜂蜜檸檬","p":"8.00","tags":[],"xterm":"","options":[{"en":"Temperature","zh":"溫度","kind":"one","choices":[{"en":"Hot","zh":"熱","p":""},{"en":"Cold","zh":"冷","p":""}]}],"den":"","dzh":""}],"id":"sec-11"},{"en":"Potted Tea (Refillable)","zh":"壺裝茶（可續杯）","note":"","items":[{"en":"Blackcurrant & Hibiscus Tea","zh":"黑加侖子洛神花茶","p":"12.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Chamomile Tea","zh":"洋甘菊茶","p":"12.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Lemongrass & Ginger Tea","zh":"香茅薑茶","p":"12.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Peppermint Tea","zh":"薄荷茶","p":"12.90","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-12"},{"en":"Coffee Selection (illy Coffee)","zh":"咖啡選擇（illy 咖啡）","note":"","items":[{"en":"Espresso","zh":"意式濃縮咖啡","p":"9.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Hot Americano","zh":"熱美式咖啡","p":"9.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Iced Americano","zh":"冰美式咖啡","p":"9.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Sunrise at Topee (C)","zh":"Topee 日出咖啡（冷）","p":"14.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Cowboy Sunset (C)","zh":"牛仔日落咖啡（冷）","p":"14.90","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-13"},{"en":"Soft Drink","zh":"汽水","note":"","items":[{"en":"Coca-Cola","zh":"可口可樂","p":"5.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"CokeZero","zh":"零系可口可樂","p":"5.90","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Sprite","zh":"雪碧","p":"5.90","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-14"},{"en":"Bottle Beer (Buy 3 Get 4)","zh":"瓶裝啤酒（買三送一）","note":"","items":[{"en":"Tiger","zh":"虎牌啤酒","p":"18.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Guinness","zh":"健力士黑啤","p":"19.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Heineken","zh":"喜力啤酒","p":"20.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Coopers Pale Ale","zh":"庫珀斯淡色愛爾啤酒","p":"27.00","tags":[],"xterm":"pale-ale","options":[],"den":"","dzh":"","explain":{"en":"Pale ale is a style of beer brewed with predominantly pale malt, giving it a lighter colour than darker ales. It is typically characterised by a noticeable hop bitterness and aroma, balanced with a moderate malt sweetness. Alcohol content is generally moderate, making it an approachable and refreshing choice.","zh":"淡色愛爾啤酒以淺色麥芽為主要原料釀製，顏色比深色愛爾啤酒淺。其特色是明顯的啤酒花苦味與香氣，並帶有適度的麥芽甜味加以平衡。酒精濃度適中，口感清爽易飲，是廣受歡迎的啤酒風格。"}}],"id":"sec-15"}];
+const TAGS = [{"id":"spicy","en":"Spicy","zh":"辣","icon":"🌶️","group":"diet"},{"id":"vegetarian","en":"Vegetarian","zh":"適合素食","icon":"🌱","group":"diet"}];
+const TAG_BY_ID = Object.fromEntries(TAGS.map(t => [t.id, t]));
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+const barEl = document.getElementById("filterbar");
+
+// Render sections + items (items carry data-tags for filtering).
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${esc(id)}" data-sec="${esc(id)}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const ids = it.tags || [];
+    const icons = ids.map(t => (TAG_BY_ID[t] && TAG_BY_ID[t].icon) || "").filter(Boolean).join(" ");
+    const tags = icons ? `<span class="tags">${icons}</span>` : "";
+    const explain = it.explain
+      ? `<button class="explain" aria-label="explanation" data-en="${esc(it.explain.en)}" data-zh="${esc(it.explain.zh)}">💡</button>`
+      : "";
+    const meta = (tags || explain) ? `<div class="meta">${tags}${explain}</div>` : "";
+    const pic = it.img ? `<img class="dish" src="${esc(it.img)}" loading="lazy" alt="">` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    const opts = (it.options && it.options.length)
+      ? `<div class="opts">` + it.options.map(g => {
+          const choices = (g.choices || []).map(c => {
+            const cp = c.p ? `<span class="opt-price">+${esc(c.p)}</span>` : "";
+            return `<li><span class="oen">${esc(c.en)}</span><span class="ozh">${esc(c.zh)}</span>${cp}</li>`;
+          }).join("");
+          if (!choices) return "";
+          const hint = g.kind === "one" ? `<span class="opt-hint">選一 · Choose one</span>`
+                     : g.kind === "any" ? `<span class="opt-hint">可加 · Optional</span>` : "";
+          return `<div class="optg">
+            <div class="optg-label"><span class="oen">${esc(g.en)}</span><span class="ozh">${esc(g.zh)}</span>${hint}</div>
+            <ul class="optg-choices">${choices}</ul>
+          </div>`;
+        }).join("") + `</div>`
+      : "";
+    return `<div class="item" data-tags="${esc(ids.join(" "))}">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+          ${meta}
+        </div>${price}
+      </div>${pic}${den}${dzh}${opts}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${esc(id)}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+// Build the filter bar from the tags actually used by ≥1 item (in TAGS order).
+const used = new Set();
+MENU.forEach(s => (s.items || []).forEach(it => (it.tags || []).forEach(id => used.add(id))));
+const seen = new Set();
+const filterTags = [];
+TAGS.forEach(t => {
+  if (used.has(t.id) && !seen.has(t.id)) { seen.add(t.id); filterTags.push(t); }
+});
+const active = new Set();
+
+if (filterTags.length) {
+  barEl.insertAdjacentHTML("beforeend", `<button class="chip chip-all active" data-id="">全部 All</button>`);
+  filterTags.forEach(t => {
+    const ic = t.icon ? `<span class="ci">${t.icon}</span>` : "";
+    barEl.insertAdjacentHTML("beforeend",
+      `<button class="chip" data-id="${esc(t.id)}">${ic}<span class="cen">${esc(t.en)}</span><span class="czh">${esc(t.zh)}</span></button>`);
+  });
+} else {
+  barEl.style.display = "none";
+}
+
+// AND filter: an item shows iff its tags include every active id.
+function applyFilter() {
+  document.querySelectorAll("#menu section").forEach(sec => {
+    let visible = 0;
+    sec.querySelectorAll(".item").forEach(el => {
+      const tags = new Set((el.getAttribute("data-tags") || "").split(" ").filter(Boolean));
+      let show = true;
+      active.forEach(id => { if (!tags.has(id)) show = false; });
+      el.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    sec.style.display = visible ? "" : "none";
+    const link = navEl.querySelector(`a[data-sec="${CSS.escape(sec.id)}"]`);
+    if (link) link.style.display = visible ? "" : "none";
+  });
+}
+
+barEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".chip");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (id === "") active.clear();
+  else if (active.has(id)) active.delete(id);
+  else active.add(id);
+
+  barEl.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  if (active.size === 0) {
+    barEl.querySelector(".chip-all").classList.add("active");
+  } else {
+    active.forEach(a => {
+      const c = barEl.querySelector(`.chip[data-id="${CSS.escape(a)}"]`);
+      if (c) c.classList.add("active");
+    });
+  }
+  applyFilter();
+});
+
+// Explanation popover: tap 💡 to open near the button; tap elsewhere to close.
+const pop = document.getElementById("popover");
+menuEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".explain");
+  if (!btn) return;
+  e.stopPropagation();
+  pop.innerHTML = `<span class="pen"></span><span class="pzh"></span>`;
+  pop.querySelector(".pen").textContent = btn.getAttribute("data-en") || "";
+  pop.querySelector(".pzh").textContent = btn.getAttribute("data-zh") || "";
+  pop.hidden = false;
+  const r = btn.getBoundingClientRect();
+  const maxLeft = scrollX + document.documentElement.clientWidth - pop.offsetWidth - 12;
+  pop.style.top = (scrollY + r.bottom + 6) + "px";
+  pop.style.left = Math.max(scrollX + 12, Math.min(scrollX + r.left, maxLeft)) + "px";
+});
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".explain") && !e.target.closest("#popover")) pop.hidden = true;
+});
+
+// Language toggle (unchanged behaviour).
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+// Back to top (unchanged behaviour).
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+</script>
+</body>
+</html>
