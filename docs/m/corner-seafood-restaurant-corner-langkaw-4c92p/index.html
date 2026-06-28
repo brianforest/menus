@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Corner Seafood Restaurant (遇见 CORNER Langkawi) · 菜單 Menu</title>
+
+<meta name="description" content="Corner Seafood Restaurant (遇见 CORNER Langkawi) 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Corner Seafood Restaurant (遇见 CORNER Langkawi) · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 9vw, 54px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(18px, 4.6vw, 24px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 15px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 15px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .filterbar { display: flex; gap: 8px; overflow-x: auto; padding: 6px 14px 8px;
+    scrollbar-width: none; -ms-overflow-style: none; }
+  .filterbar::-webkit-scrollbar { display: none; }
+  .chip { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 999px; padding: 6px 12px; min-height: 36px; cursor: pointer;
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  body.lang-zh .chip .cen { display: none; }
+  body.lang-en .chip .czh { display: none; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(24px, 6.4vw, 32px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(17px, 4.6vw, 21px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 15px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 18px; }
+  .item .meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .item .tags { font-size: 15px; letter-spacing: 1px; }
+  .explain { font: inherit; font-size: 15px; line-height: 1; border: 1px solid var(--line);
+    background: var(--card); border-radius: 999px; padding: 3px 7px; cursor: pointer; }
+  .popover { position: absolute; z-index: 50; max-width: 300px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 15px;
+    line-height: 1.5; box-shadow: 0 8px 24px rgba(0,0,0,.16); }
+  .popover[hidden] { display: none; }
+  .popover .pen { display: block; }
+  .popover .pzh { display: block; color: #4a4a4f; margin-top: 6px; }
+  body.lang-zh .popover .pen { display: none; }
+  body.lang-en .popover .pzh { display: none; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 17px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 15px; margin-top: 3px; }
+
+  .opts { margin-top: 8px; }
+  .optg { margin-top: 8px; padding: 8px 10px; background: var(--accent-soft);
+    border-left: 3px solid var(--accent); border-radius: 8px; }
+  .optg:first-child { margin-top: 0; }
+  .optg-label { font-weight: 700; font-size: 15px; }
+  .opt-hint { font-weight: 500; font-size: 13px; color: var(--muted); margin-left: 6px; }
+  .optg-choices { list-style: none; margin: 6px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .optg-choices li { font-size: 15px; }
+  .opts .ozh { color: var(--accent); }
+  .opts .oen, .opts .ozh { margin-right: 3px; }
+  .opt-price { color: var(--price); font-variant-numeric: tabular-nums; margin-left: 3px; }
+  body.lang-zh .opts .oen { display: none; }
+  body.lang-en .opts .ozh { display: none; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 18px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>Corner Seafood Restaurant (遇见 CORNER Langkawi)</h1>
+  <div class="zh-title">遇見海鮮餐廳（蘭卡威）</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 MYR 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+  <div class="filterbar" id="filterbar" role="group" aria-label="filters"></div>
+</div>
+
+<div class="wrap">
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+<div id="popover" class="popover" hidden></div>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const MENU = [{"en":"Signature Dishes","zh":"招牌菜","note":"All prices subject to 10% service charge.","items":[{"en":"B2 / Lobster with Cheese","zh":"芝士焗龍蝦","p":"","tags":["signature","market-price","popular"],"xterm":"","options":[],"den":"Baked lobster topped with melted cheese.","dzh":"芝士烤焗龍蝦。"},{"en":"C8 / Hong Kong Style Crab","zh":"避風塘炒蟹","p":"","tags":["signature","market-price","popular"],"xterm":"typhoon-shelter-crab","options":[],"den":"Crab stir-fried Hong Kong typhoon-shelter style.","dzh":"香港避風塘風味炒蟹。","explain":{"en":"A Hong Kong Cantonese dish of wok-fried crab buried under a crispy, golden crust of deep-fried garlic, dried chilli, black bean, and breadcrumbs. The style originated in the boat communities moored in Hong Kong's typhoon shelters. The generous amount of fried garlic is its most distinctive feature.","zh":"香港著名粵式料理，以大量炸蒜、乾辣椒、豆豉及麵包糠爆炒而成，蟹肉被金黃酥脆的配料覆蓋。此烹調風格源自香港避風塘的水上人家，炸蒜用量極多是其最大特色。"}},{"en":"D1 / Mantis Prawn with Salt and Pepper","zh":"椒鹽瀨尿蝦","p":"","tags":["signature","market-price","popular"],"xterm":"mantis-prawn","options":[],"den":"Mantis prawn fried with salt and pepper.","dzh":"椒鹽炸瀨尿蝦。","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}},{"en":"E5 / Marble Goby Fish with Steam Soya Sauce","zh":"清蒸順壺魚","p":"","tags":["signature","market-price","popular"],"xterm":"marble-goby","options":[],"den":"Steamed marble goby fish with soya sauce.","dzh":"清蒸順壺魚配醬油。","explain":{"en":"A highly prized freshwater fish found across Southeast Asia, known for its mottled brown appearance and exceptionally sweet, firm white flesh with few bones. It is considered a premium fish in Chinese and Southeast Asian dining, often steamed simply to preserve its delicate flavour. Its price is typically much higher than common fish.","zh":"一種廣受珍視的東南亞淡水魚，外表呈褐色雲紋斑，魚肉雪白結實、味道鮮甜且骨刺少。在中式及東南亞餐飲中被視為名貴食材，通常以清蒸方式烹調以保留其鮮味，售價遠高於一般魚類。"}},{"en":"F9 / Tiger Prawn Grilled with Garlic","zh":"蒜蓉焗老虎蝦","p":"","tags":["signature","market-price","popular"],"xterm":"","options":[],"den":"Tiger prawn grilled with garlic butter.","dzh":"蒜蓉焗烤老虎蝦。"},{"en":"Q9 / Crispy CHEN with Salted Egg","zh":"咸蛋黃炒CHEN","p":"RM28.00","tags":["signature","popular"],"xterm":"","options":[],"den":"Crispy greens stir-fried with salted egg yolk.","dzh":"咸蛋黃炒脆葉蔬菜。"}],"id":"sec-0"},{"en":"Appetizer","zh":"前餐","note":"All prices subject to 10% service charge.","items":[{"en":"A1 / French Fries","zh":"薯條","p":"RM15.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"A2 / Chicken Nuggets (6 PCS)","zh":"炸雞塊（6塊）","p":"RM12.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"A3 / Crispy Spring Roll (5 PCS)","zh":"炸春捲（5塊）","p":"RM15.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"A4 / Fried Prawn","zh":"炸蝦","p":"RM38.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"A5 / Green Salad","zh":"蔬菜沙拉","p":"RM20.00","tags":["signature"],"xterm":"","options":[],"den":"","dzh":""},{"en":"A6 / Crystal Noodle Seafood Salad","zh":"冬粉沙拉","p":"RM28.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"A7 / Mango Salad","zh":"芒果沙拉","p":"RM25.00","tags":["signature","spicy"],"xterm":"","options":[],"den":"","dzh":""},{"en":"A8 / Steam Bun","zh":"蒸饅頭","p":"RM12.00","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-1"},{"en":"Main Course — Lobster","zh":"主菜 — 龍蝦","note":"Live Seafood According Market Price. All prices subject to 10% service charge.","items":[{"en":"B1 / Sashimi","zh":"刺身龍蝦","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B2 / Cheese","zh":"芝士焗龍蝦","p":"","tags":["signature","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B3 / Garlic Butter","zh":"蒜蓉焗龍蝦","p":"","tags":["signature","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B4 / Steam Soya Sauce","zh":"清蒸龍蝦","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B5 / Steam Crystal Noodle","zh":"粉絲蒸龍蝦","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B6 / HongKong Style","zh":"避風塘龍蝦","p":"","tags":["market-price"],"xterm":"typhoon-shelter-crab","options":[],"den":"","dzh":"","explain":{"en":"A Hong Kong Cantonese dish of wok-fried crab buried under a crispy, golden crust of deep-fried garlic, dried chilli, black bean, and breadcrumbs. The style originated in the boat communities moored in Hong Kong's typhoon shelters. The generous amount of fried garlic is its most distinctive feature.","zh":"香港著名粵式料理，以大量炸蒜、乾辣椒、豆豉及麵包糠爆炒而成，蟹肉被金黃酥脆的配料覆蓋。此烹調風格源自香港避風塘的水上人家，炸蒜用量極多是其最大特色。"}},{"en":"B7 / Wet Butter","zh":"濕奶油龍蝦","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B8 / Dry Butter","zh":"乾奶油龍蝦","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B9 / BBQ","zh":"燒烤龍蝦","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B10 / Stir Fried Black Bean","zh":"豆豉炒龍蝦","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"B11 / Salad Lobster","zh":"沙拉龍蝦","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-2"},{"en":"Crab","zh":"螃蟹","note":"Live Seafood According Market Price. All prices subject to 10% service charge.","items":[{"en":"C1 / Chilli Crab","zh":"怪味螃蟹","p":"","tags":["market-price","spicy"],"xterm":"chilli-crab","options":[],"den":"","dzh":"","explain":{"en":"A iconic Southeast Asian seafood dish, most associated with Singapore, featuring crab cooked in a thick, savoury-sweet tomato and chilli-based sauce. Despite the name, the sauce is flavourful and mildly spicy rather than intensely hot. It is typically eaten with fried mantou buns for dipping into the sauce.","zh":"東南亞標誌性海鮮料理，以新加坡最為著名，以螃蟹在濃郁的番茄辣椒醬中烹煮而成。醬汁鹹甜帶辣，但辣度較為溫和。通常搭配炸饅頭蘸取醬汁食用。"}},{"en":"C2 / BBQ","zh":"燒烤螃蟹","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"C3 / Steam","zh":"清蒸螃蟹","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"C4 / Black Pepper","zh":"黑椒螃蟹","p":"","tags":["signature","spicy","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"C5 / Golden Spicy","zh":"金香螃蟹","p":"","tags":["spicy","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"C6 / Ginger Onion","zh":"薑蔥螃蟹","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"C7 / Salted Egg","zh":"咸蛋黃螃蟹","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"C8 / Hong Kong Style","zh":"避風塘炒蟹","p":"","tags":["signature","market-price"],"xterm":"typhoon-shelter-crab","options":[],"den":"","dzh":"","explain":{"en":"A Hong Kong Cantonese dish of wok-fried crab buried under a crispy, golden crust of deep-fried garlic, dried chilli, black bean, and breadcrumbs. The style originated in the boat communities moored in Hong Kong's typhoon shelters. The generous amount of fried garlic is its most distinctive feature.","zh":"香港著名粵式料理，以大量炸蒜、乾辣椒、豆豉及麵包糠爆炒而成，蟹肉被金黃酥脆的配料覆蓋。此烹調風格源自香港避風塘的水上人家，炸蒜用量極多是其最大特色。"}}],"id":"sec-3"},{"en":"Mantis Prawn (瀨尿蝦/皮皮蝦)","zh":"瀨尿蝦／皮皮蝦","note":"Live Seafood According Market Price. All prices subject to 10% service charge.","items":[{"en":"D1 / Salt & Pepper","zh":"椒鹽瀨尿蝦","p":"","tags":["signature","market-price"],"xterm":"mantis-prawn","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":""},{"en":"Medium","zh":"中份","p":""}]}],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}},{"en":"D2 / Boiled","zh":"白灼瀨尿蝦","p":"","tags":["market-price"],"xterm":"mantis-prawn","options":[],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}},{"en":"D3 / Salted Egg","zh":"咸蛋黃瀨尿蝦","p":"","tags":["market-price"],"xterm":"mantis-prawn","options":[],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}},{"en":"D4 / Steam Crystal Noodle","zh":"粉絲蒸瀨尿蝦","p":"","tags":["signature","market-price"],"xterm":"mantis-prawn","options":[],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}},{"en":"D5 / Steam Soya Sauce","zh":"清蒸瀨尿蝦","p":"","tags":["market-price"],"xterm":"mantis-prawn","options":[],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}},{"en":"D6 / BBQ","zh":"燒烤瀨尿蝦","p":"","tags":["market-price"],"xterm":"mantis-prawn","options":[],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}},{"en":"D7 / Steam Egg","zh":"蒸蛋瀨尿蝦","p":"","tags":["market-price"],"xterm":"mantis-prawn","options":[],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}}],"id":"sec-4"},{"en":"Fish","zh":"魚","note":"Live Seafood According Market Price. Fresh Fish: Red Snapper RM12.00/100g, Seabass RM9.80/100g. All prices subject to 10% service charge.","items":[{"en":"E1 / Deep Fried","zh":"乾香煎魚","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E2 / Sweet & Sour","zh":"酸甜魚","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E3 / Steam with Lime Sauce","zh":"檸檬蒸魚","p":"","tags":["spicy","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E4 / Steam Teochew","zh":"潮州蒸魚","p":"","tags":["market-price"],"xterm":"teochew-steamed-fish","options":[],"den":"","dzh":"","explain":{"en":"A dish from the Teochew (Chaozhou) culinary tradition of southern China, where whole fish is steamed with preserved salted plums, tomatoes, pickled mustard greens, tofu, and ginger. The combination of these ingredients creates a distinctively sour, savoury, and refreshing flavour. It is lighter and more complex in seasoning than plain Cantonese steamed fish.","zh":"源自中國南方潮州菜系的傳統料理，以整條魚配以鹹酸梅、番茄、酸菜、豆腐及薑片蒸製而成。各種配料相互融合，形成獨特的酸鮮鹹香風味，口感比清蒸粵式魚更為清爽層次豐富。"}},{"en":"E5 / Steam Soya Sauce","zh":"清蒸魚","p":"","tags":["signature","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E6 / BBQ","zh":"燒烤魚","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E7 / Mango Salad","zh":"泰式芒果魚","p":"","tags":["spicy","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E8 / Fried Cincaluk","zh":"馬來腌蝦魚","p":"","tags":["signature","market-price"],"xterm":"cincaluk","options":[],"den":"","dzh":"","explain":{"en":"A pungent Malay/Peranakan condiment and ingredient made from fermented small shrimp (geragau), salt, and rice. It has a strong, sour, and salty flavour and is used as a seasoning in stir-fries or served as a dipping condiment. It is distinct from shrimp paste (belacan) as it is wet and contains whole tiny shrimp.","zh":"一種濃味的馬來及娘惹食材，以小蝦（銀蝦）、鹽及米飯發酵而成，味道鹹酸且氣味濃烈。可作為炒菜的調味料或佐餐蘸料使用。與峇拉煎（蝦膏）不同，馬來醃蝦質地濕潤且含有完整的小蝦。"}},{"en":"E9 / Fried Three Flavor","zh":"三味魚","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E10 / Hong Kong Steam","zh":"港式蒸魚","p":"","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E11 / Claypot with Yams","zh":"香芋石鍋魚","p":"","tags":["signature","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"E12 / Sambal","zh":"馬來風味魚","p":"","tags":["market-price"],"xterm":"sambal","options":[],"den":"","dzh":"","explain":{"en":"A spicy chilli-based condiment and cooking sauce widely used throughout Southeast Asia, particularly in Malaysian, Indonesian, and Singaporean cuisine. It is typically made from ground fresh or dried chillies combined with ingredients such as shrimp paste, garlic, lime juice, and sugar. Sambal can range from mildly spicy to fiery hot depending on the variety.","zh":"一種以辣椒為基底的東南亞香辣醬料，在馬來西亞、印尼及新加坡菜式中極為普遍。通常以鮮辣椒或乾辣椒混合蝦膏、蒜、青檸汁及糖研磨而成。辣度因種類不同而有所差異，從微辣至極辣均有。"}},{"en":"Red Snapper","zh":"紅鯛魚","p":"RM12.00 per 100 gram","tags":["market-price"],"xterm":"","options":[],"den":"Fresh fish, priced per 100 gram.","dzh":"新鮮魚，按每100克計價。"},{"en":"Seabass","zh":"鱸魚","p":"RM9.80 per 100 gram","tags":["market-price"],"xterm":"","options":[],"den":"Fresh fish, priced per 100 gram.","dzh":"新鮮魚，按每100克計價。"}],"id":"sec-5"},{"en":"Tiger Prawn","zh":"老虎蝦","note":"RM26.00 per 100 gram. Live Seafood According Market Price. All prices subject to 10% service charge.","items":[{"en":"F1 / Dry Butter","zh":"乾奶油老虎蝦","p":"RM26.00 per 100 gram","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"F2 / Wet Butter","zh":"濕奶油老虎蝦","p":"RM26.00 per 100 gram","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"F3 / BBQ","zh":"燒烤老虎蝦","p":"RM26.00 per 100 gram","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"F4 / Salted Egg","zh":"咸蛋黃老虎蝦","p":"RM26.00 per 100 gram","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"F5 / Special Soya Sauce","zh":"特製醬油老虎蝦","p":"RM26.00 per 100 gram","tags":["signature","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"F6 / Black Pepper","zh":"黑椒老虎蝦","p":"RM26.00 per 100 gram","tags":["market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"F7 / Golden Spicy","zh":"金香老虎蝦","p":"RM26.00 per 100 gram","tags":["spicy","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"F8 / Stir Fried Cincaluk Sauce","zh":"馬來腌蝦老虎蝦","p":"RM26.00 per 100 gram","tags":["market-price"],"xterm":"cincaluk","options":[],"den":"","dzh":"","explain":{"en":"A pungent Malay/Peranakan condiment and ingredient made from fermented small shrimp (geragau), salt, and rice. It has a strong, sour, and salty flavour and is used as a seasoning in stir-fries or served as a dipping condiment. It is distinct from shrimp paste (belacan) as it is wet and contains whole tiny shrimp.","zh":"一種濃味的馬來及娘惹食材，以小蝦（銀蝦）、鹽及米飯發酵而成，味道鹹酸且氣味濃烈。可作為炒菜的調味料或佐餐蘸料使用。與峇拉煎（蝦膏）不同，馬來醃蝦質地濕潤且含有完整的小蝦。"}},{"en":"F9 / Grill with Garlic","zh":"蒜蓉焗老虎蝦","p":"RM26.00 per 100 gram","tags":["signature","market-price"],"xterm":"","options":[],"den":"","dzh":""},{"en":"F10 / Bamboo Style","zh":"竹筒老虎蝦","p":"RM26.00 per 100 gram","tags":["signature","market-price"],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-6"},{"en":"Prawn (A Prawn / A1 Prawn)","zh":"明蝦（小明蝦／大明蝦）","note":"A1 Prawn: RM18.50 per 100 gram. A Prawn: Small RM38.00, Medium RM48.00. All prices subject to 10% service charge.","items":[{"en":"G1 / Tomyum","zh":"冬陰功明蝦","p":"","tags":["spicy"],"xterm":"tom-yum","options":[],"den":"","dzh":"","explain":{"en":"A classic Thai hot and sour soup made with lemongrass, galangal, kaffir lime leaves, chilli, lime juice, and fish sauce. It is most commonly served with prawns (Tom Yum Goong) but can include other proteins. The soup is bold, aromatic, spicy, and tangy all at once.","zh":"泰國經典酸辣湯，以香茅、南薑、泰國青檸葉、辣椒、青檸汁及魚露熬製而成，最常見的版本為加入大蝦（冬陰功蝦）。湯底香氣濃郁，集辛辣、酸鮮於一身，風味層次豐富。"}},{"en":"G2 / Dry Butter","zh":"乾奶油明蝦","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"G3 / Golden Spicy","zh":"金香明蝦","p":"","tags":["spicy"],"xterm":"","options":[],"den":"","dzh":""},{"en":"G4 / Deep Fried Prawn with Garlic","zh":"蒜蓉炸明蝦","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"G5 / Stil Boil","zh":"白灼明蝦","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"G6 / Wet Butter A1 Prawn","zh":"濕奶油大明蝦","p":"","tags":["signature"],"xterm":"","options":[],"den":"","dzh":""},{"en":"G7 / Bamboo Style A1 Prawn","zh":"竹筒大明蝦","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"G8 / BBQ A1 Prawn","zh":"燒烤大明蝦","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"G9 / Cincaluk Sauce A1 Prawn","zh":"馬來腌蝦大明蝦","p":"","tags":["signature"],"xterm":"cincaluk","options":[],"den":"","dzh":"","explain":{"en":"A pungent Malay/Peranakan condiment and ingredient made from fermented small shrimp (geragau), salt, and rice. It has a strong, sour, and salty flavour and is used as a seasoning in stir-fries or served as a dipping condiment. It is distinct from shrimp paste (belacan) as it is wet and contains whole tiny shrimp.","zh":"一種濃味的馬來及娘惹食材，以小蝦（銀蝦）、鹽及米飯發酵而成，味道鹹酸且氣味濃烈。可作為炒菜的調味料或佐餐蘸料使用。與峇拉煎（蝦膏）不同，馬來醃蝦質地濕潤且含有完整的小蝦。"}},{"en":"G10 / Special Soya Sauce A1 Prawn","zh":"特製醬油大明蝦","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-7"},{"en":"Squid","zh":"墨魚","note":"Small RM38.00, Medium RM48.00. All prices subject to 10% service charge.","items":[{"en":"H1 / Salted Egg","zh":"咸蛋黃墨魚","p":"","tags":["signature"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"H2 / Salt & Pepper","zh":"椒鹽墨魚","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"H3 / Steam with Lime Sauce","zh":"檸檬蒸墨魚","p":"","tags":["signature","spicy"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"H4 / Ginger Onion","zh":"薑蔥墨魚","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"H5 / Deep Fried","zh":"香酥墨魚","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"H6 / Malay Spicy","zh":"馬來風味墨魚","p":"","tags":["spicy"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""}],"id":"sec-8"},{"en":"Chicken","zh":"雞肉","note":"Small RM28.00, Medium RM38.00. All prices subject to 10% service charge.","items":[{"en":"I1 / Sweet & Sour","zh":"糖醋雞","p":"","tags":["signature"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":""},{"en":"I2 / Golden Spicy","zh":"金香雞","p":"","tags":["spicy"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":""},{"en":"I3 / Dry Chilli","zh":"宮爆雞","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":""},{"en":"I4 / Ginger Onion","zh":"薑蔥雞","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":""},{"en":"I5 / Plum Sauce","zh":"梅子雞","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":""},{"en":"I6 / Lemon Chicken","zh":"檸檬雞","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":""},{"en":"I7 / Belacan Chicken","zh":"香茅峇拉煎雞","p":"","tags":["signature"],"xterm":"belacan","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":"","explain":{"en":"A firm, dried shrimp paste fundamental to Malaysian, Indonesian, and Singaporean cooking, made from fermented ground shrimp and salt. It has an intensely pungent aroma when raw but becomes deeply savoury and umami-rich once cooked. It is used as a base flavouring in sambal, curries, and stir-fries.","zh":"馬來西亞、印尼及新加坡菜式中不可或缺的蝦膏，由磨碎的蝦與鹽發酵乾製而成。生用時氣味濃烈刺鼻，經烹調後則轉化為濃郁鮮香的鹹鮮風味。常作為參巴醬、咖喱及炒菜的基底調味料。"}},{"en":"I8 / Black Pepper","zh":"黑椒雞","p":"","tags":["spicy"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":""},{"en":"I9 / Salad Chicken","zh":"沙拉雞","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":""}],"id":"sec-9"},{"en":"Beef / Venison","zh":"牛肉／鹿肉","note":"Small RM38.00, Medium RM48.00. All prices subject to 10% service charge.","items":[{"en":"J1 / Black Pepper","zh":"黑椒牛肉／鹿肉","p":"","tags":["signature"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"J2 / Ginger Onion","zh":"薑蔥牛肉／鹿肉","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"J3 / Green Pepper","zh":"燈籠椒牛肉／鹿肉","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"J4 / Malay Spicy","zh":"馬來風味牛肉／鹿肉","p":"","tags":["spicy"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":""}],"id":"sec-10"},{"en":"Clam","zh":"貝類","note":"Small RM70.00 per 1kg (handwritten), Medium priced accordingly. All prices subject to 10% service charge.","items":[{"en":"K1 / Steam with Lime Sauce","zh":"檸檬蒸貝類","p":"","tags":["spicy"],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM70.00 per 1kg"},{"en":"Medium","zh":"中份","p":""}]}],"den":"","dzh":""},{"en":"K2 / Ginger Onion","zh":"薑蔥貝類","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"K3 / Golden Spicy","zh":"金香貝類","p":"","tags":["spicy"],"xterm":"","options":[],"den":"","dzh":""},{"en":"K4 / Bean Paste","zh":"豆瓣醬貝類","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"K5 / Sambal","zh":"馬來風味貝類","p":"","tags":[],"xterm":"sambal","options":[],"den":"","dzh":"","explain":{"en":"A spicy chilli-based condiment and cooking sauce widely used throughout Southeast Asia, particularly in Malaysian, Indonesian, and Singaporean cuisine. It is typically made from ground fresh or dried chillies combined with ingredients such as shrimp paste, garlic, lime juice, and sugar. Sambal can range from mildly spicy to fiery hot depending on the variety.","zh":"一種以辣椒為基底的東南亞香辣醬料，在馬來西亞、印尼及新加坡菜式中極為普遍。通常以鮮辣椒或乾辣椒混合蝦膏、蒜、青檸汁及糖研磨而成。辣度因種類不同而有所差異，從微辣至極辣均有。"}}],"id":"sec-11"},{"en":"Meat of Mantis Prawn","zh":"蝦菇肉","note":"Small RM38.00, Medium RM48.00. All prices subject to 10% service charge.","items":[{"en":"L1 / Dry Chilli","zh":"宮爆蝦菇肉","p":"","tags":[],"xterm":"mantis-prawn","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}},{"en":"L2 / Salted Egg","zh":"咸蛋黃蝦菇肉","p":"","tags":[],"xterm":"mantis-prawn","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM38.00"},{"en":"Medium","zh":"中份","p":"RM48.00"}]}],"den":"","dzh":"","explain":{"en":"A crustacean resembling a large, flattened shrimp with distinctive claws, common in Southeast Asian and Hong Kong seafood cuisine. Its Cantonese nickname 瀨尿蝦 refers to the jet of water it releases when caught. The meat is sweet and tender, similar to lobster, and it is often served stir-fried with salt and pepper.","zh":"一種外形扁長、有強力螯肢的甲殼類海鮮，在東南亞及香港菜式中十分常見。粵語俗稱「瀨尿蝦」，因被捕時會噴射水柱而得名。肉質鮮甜嫩滑，口感近似龍蝦，常以椒鹽方式烹調。"}}],"id":"sec-12"},{"en":"Duck","zh":"鴨肉","note":"All prices subject to 10% service charge.","items":[{"en":"M1 / Ginger Onion Smoke","zh":"薑蔥醃鴨","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM35.00"},{"en":"Medium","zh":"中份","p":"RM45.00"}]}],"den":"","dzh":""}],"id":"sec-13"},{"en":"Bean Curd","zh":"豆腐","note":"RM25.00. All prices subject to 10% service charge.","items":[{"en":"O1 / Corner","zh":"海鮮豆腐","p":"RM25.00","tags":["signature"],"xterm":"","options":[],"den":"","dzh":""},{"en":"O2 / Sizzling","zh":"鐵板豆腐","p":"RM25.00","tags":["signature"],"xterm":"","options":[],"den":"","dzh":""},{"en":"O3 / Claypot","zh":"砂煲豆腐","p":"RM25.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"O4 / Chicken Meat","zh":"雞蓉豆腐","p":"RM25.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"O5 / Crab Meat","zh":"蟹肉豆腐","p":"RM25.00","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-14"},{"en":"Omelette","zh":"煎蛋","note":"RM25.00. All prices subject to 10% service charge.","items":[{"en":"P1 / Prawn","zh":"蝦仁煎蛋","p":"RM25.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"P2 / Onion","zh":"大蔥煎蛋","p":"RM25.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"P3 / Oyster","zh":"蠔煎","p":"RM25.00","tags":[],"xterm":"oyster-omelette","options":[],"den":"","dzh":"","explain":{"en":"A popular street food dish in Taiwan, Fujian, and across Southeast Asia, made from small fresh oysters cooked with eggs and a starchy batter of sweet potato starch, creating a crispy-edged yet chewy texture. It is typically served with a sweet and spicy chilli sauce. The dish is a staple of night markets.","zh":"盛行於台灣、福建及東南亞的知名街頭小吃，以新鮮小蚵仔與雞蛋及番薯粉漿煎製而成，外緣酥脆、內裡軟韌Q彈。通常搭配甜辣醬食用，是夜市的經典必吃料理。"}},{"en":"P4 / Vegetable","zh":"芙蓉煎蛋","p":"RM25.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"P5 / Crab Meat","zh":"蟹肉煎蛋","p":"RM25.00","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-15"},{"en":"Vegetable","zh":"蔬菜","note":"Cook styles available: Oyster Sauce, Garlic, Salted Fish, Sambal. Small RM18.00 / Medium RM28.00. Special with Prawn/Scallop: Small RM38.00 / Medium RM48.00. All prices subject to 10% service charge.","items":[{"en":"Q1 / Mix Vegetable","zh":"雜菜","p":"","tags":[],"xterm":"","options":[{"en":"Cook Style","zh":"烹飪方法","kind":"one","choices":[{"en":"Oyster Sauce","zh":"蠔油","p":""},{"en":"Garlic","zh":"蒜蓉","p":""},{"en":"Salted Fish","zh":"咸魚","p":""},{"en":"Sambal","zh":"馬來風味","p":""}]},{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"},{"en":"Small (with Prawn/Scallop)","zh":"小份（加蝦／扇貝）","p":"RM38.00"},{"en":"Medium (with Prawn/Scallop)","zh":"中份（加蝦／扇貝）","p":"RM48.00"}]}],"den":"","dzh":""},{"en":"Q2 / Broccoli","zh":"西蘭花","p":"","tags":[],"xterm":"","options":[{"en":"Cook Style","zh":"烹飪方法","kind":"one","choices":[{"en":"Oyster Sauce","zh":"蠔油","p":""},{"en":"Garlic","zh":"蒜蓉","p":""},{"en":"Salted Fish","zh":"咸魚","p":""},{"en":"Sambal","zh":"馬來風味","p":""}]},{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""},{"en":"Q3 / Kailan","zh":"芥蘭","p":"","tags":[],"xterm":"kailan","options":[{"en":"Cook Style","zh":"烹飪方法","kind":"one","choices":[{"en":"Oyster Sauce","zh":"蠔油","p":""},{"en":"Garlic","zh":"蒜蓉","p":""},{"en":"Salted Fish","zh":"咸魚","p":""},{"en":"Sambal","zh":"馬來風味","p":""}]},{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":"","explain":{"en":"A leafy green vegetable widely used in Chinese and Southeast Asian cooking, with thick stems, dark green leaves, and small white flowers. Its flavour is slightly bitter and more robust than regular broccoli. It is commonly stir-fried with garlic or oyster sauce and is the vegetable used in the popular dish Beef with Kailan.","zh":"中式及東南亞料理中常用的綠葉蔬菜，莖部粗壯、葉色深綠，並開有小白花。味道略帶苦澀，比一般西蘭花更為濃郁。常以蒜蓉或蠔油炒製，亦是著名料理「芥蘭炒牛肉」的主角食材。"}},{"en":"Q4 / Baby Kailan","zh":"小芥蘭","p":"","tags":[],"xterm":"kailan","options":[{"en":"Cook Style","zh":"烹飪方法","kind":"one","choices":[{"en":"Oyster Sauce","zh":"蠔油","p":""},{"en":"Garlic","zh":"蒜蓉","p":""},{"en":"Salted Fish","zh":"咸魚","p":""},{"en":"Sambal","zh":"馬來風味","p":""}]},{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":"","explain":{"en":"A leafy green vegetable widely used in Chinese and Southeast Asian cooking, with thick stems, dark green leaves, and small white flowers. Its flavour is slightly bitter and more robust than regular broccoli. It is commonly stir-fried with garlic or oyster sauce and is the vegetable used in the popular dish Beef with Kailan.","zh":"中式及東南亞料理中常用的綠葉蔬菜，莖部粗壯、葉色深綠，並開有小白花。味道略帶苦澀，比一般西蘭花更為濃郁。常以蒜蓉或蠔油炒製，亦是著名料理「芥蘭炒牛肉」的主角食材。"}},{"en":"Q5 / Bean Sprout","zh":"咸魚豆芽","p":"","tags":[],"xterm":"","options":[{"en":"Cook Style","zh":"烹飪方法","kind":"one","choices":[{"en":"Oyster Sauce","zh":"蠔油","p":""},{"en":"Garlic","zh":"蒜蓉","p":""},{"en":"Salted Fish","zh":"咸魚","p":""},{"en":"Sambal","zh":"馬來風味","p":""}]},{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""},{"en":"Q6 / Green Bean Dry Fried","zh":"四季豆乾炒","p":"","tags":[],"xterm":"","options":[{"en":"Cook Style","zh":"烹飪方法","kind":"one","choices":[{"en":"Oyster Sauce","zh":"蠔油","p":""},{"en":"Garlic","zh":"蒜蓉","p":""},{"en":"Salted Fish","zh":"咸魚","p":""},{"en":"Sambal","zh":"馬來風味","p":""}]},{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""},{"en":"Q7 / Baby Cabbage","zh":"小白菜","p":"","tags":[],"xterm":"","options":[{"en":"Cook Style","zh":"烹飪方法","kind":"one","choices":[{"en":"Oyster Sauce","zh":"蠔油","p":""},{"en":"Garlic","zh":"蒜蓉","p":""},{"en":"Salted Fish","zh":"咸魚","p":""},{"en":"Sambal","zh":"馬來風味","p":""}]},{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""},{"en":"Q8 / Morning Glory","zh":"空心菜","p":"","tags":[],"xterm":"morning-glory","options":[{"en":"Cook Style","zh":"烹飪方法","kind":"one","choices":[{"en":"Oyster Sauce","zh":"蠔油","p":""},{"en":"Garlic","zh":"蒜蓉","p":""},{"en":"Salted Fish","zh":"咸魚","p":""},{"en":"Sambal","zh":"馬來風味","p":""}]},{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":"","explain":{"en":"A semi-aquatic leafy green vegetable with long hollow stems and tender leaves, extremely popular in Southeast Asian and Chinese cooking. It has a mild, slightly sweet flavour and wilts quickly when cooked. It is most commonly stir-fried at high heat with garlic, chilli, and shrimp paste (belacan) in Southeast Asian cuisines.","zh":"一種莖部中空的半水生葉菜，在東南亞及中式料理中極為普遍。味道清淡微甜，遇熱後迅速變軟。在東南亞菜式中最常以大火搭配蒜、辣椒及峇拉煎爆炒，風味濃香。"}},{"en":"Q9 / Crispy CHEN with Salted Egg","zh":"咸蛋黃炒CHEN","p":"RM28.00","tags":["signature"],"xterm":"","options":[],"den":"Crispy greens stir-fried with salted egg yolk.","dzh":"咸蛋黃炒脆葉蔬菜。"}],"id":"sec-16"},{"en":"Soup","zh":"湯","note":"All prices subject to 10% service charge.","items":[{"en":"R1 / Seafood Tomyum","zh":"海鮮冬陰湯","p":"","tags":["spicy"],"xterm":"tom-yum","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM28.00"},{"en":"Medium","zh":"中份","p":"RM38.00"}]}],"den":"","dzh":"","explain":{"en":"A classic Thai hot and sour soup made with lemongrass, galangal, kaffir lime leaves, chilli, lime juice, and fish sauce. It is most commonly served with prawns (Tom Yum Goong) but can include other proteins. The soup is bold, aromatic, spicy, and tangy all at once.","zh":"泰國經典酸辣湯，以香茅、南薑、泰國青檸葉、辣椒、青檸汁及魚露熬製而成，最常見的版本為加入大蝦（冬陰功蝦）。湯底香氣濃郁，集辛辣、酸鮮於一身，風味層次豐富。"}},{"en":"R2 / Seafood Soup","zh":"海鮮湯","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM25.00"},{"en":"Medium","zh":"中份","p":"RM35.00"}]}],"den":"","dzh":""},{"en":"R3 / Seaweed","zh":"紫菜湯","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""},{"en":"R4 / Fish Ball","zh":"魚丸湯","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""},{"en":"R5 / Pickle Vegetable","zh":"咸菜湯","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""},{"en":"R6 / Fried Egg","zh":"煎蛋湯","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""},{"en":"R7 / Vegetable with Bean Curd","zh":"青菜豆腐湯","p":"","tags":[],"xterm":"","options":[{"en":"Size","zh":"份量","kind":"one","choices":[{"en":"Small","zh":"小份","p":"RM18.00"},{"en":"Medium","zh":"中份","p":"RM28.00"}]}],"den":"","dzh":""}],"id":"sec-17"},{"en":"Local Cuisine","zh":"主食","note":"All prices subject to 10% service charge.","items":[{"en":"S1 / Seafood Fried Noodle","zh":"海鮮煎生麵","p":"RM15.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"S2 / Chicken Noodle","zh":"雞蓉生麵","p":"RM15.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"S3 / Corner Fried Rice","zh":"遇見招牌炒飯","p":"RM15.00","tags":["signature","popular"],"xterm":"","options":[],"den":"","dzh":""},{"en":"S4 / Thai Spicy Fried Rice","zh":"泰式炒飯","p":"RM15.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"S5 / Fried Vermicelli Noodle (Bihun)","zh":"炒米粉","p":"RM15.00","tags":[],"xterm":"bihun","options":[],"den":"","dzh":"","explain":{"en":"Thin noodles made from rice flour, common throughout Southeast and East Asia. They are very fine, white, and delicate in texture, cooking quickly and absorbing surrounding flavours well. Bihun is the Malay/Indonesian term for rice vermicelli and is used in a wide variety of stir-fried, soupy, and salad-style dishes.","zh":"以米粉製成的幼細麵條，廣泛用於東南亞及東亞各地的料理中。米粉色白纖細，質地輕盈，容易熟透且吸味能力強。Bihun為馬來語及印尼語的米粉名稱，可用於炒、湯或涼拌等多種烹調方式。"}}],"id":"sec-18"},{"en":"Drink — Fresh Juice","zh":"飲料 — 鮮榨果汁","note":"All prices subject to 10% service charge.","items":[{"en":"T1 / Apple","zh":"蘋果汁","p":"RM12.50 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T2 / Orange","zh":"橙汁","p":"RM12.00 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T3 / Pineapple","zh":"菠蘿汁","p":"RM12.00 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T4 / Lemon","zh":"檸檬汁","p":"RM12.00 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T5 / Watermelon","zh":"西瓜汁","p":"RM12.00 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T6 / Carrot","zh":"紅蘿蔔汁","p":"RM12.50 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T7 / Musk Lime with Salty Plum","zh":"桔子酸梅汁","p":"RM12.00 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T8 / Honey Lemon","zh":"蜜糖檸檬","p":"RM12.00 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T9 / Mixed Juice","zh":"混合果汁（三種）","p":"RM15.00 per glass","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T10 / Coconut","zh":"椰子汁","p":"RM15.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"T11 / per Jug","zh":"果汁（一壺）","p":"RM50.00","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-19"},{"en":"Soft Drink","zh":"軟飲","note":"All prices subject to 10% service charge.","items":[{"en":"U1 / Coke","zh":"可樂","p":"RM7.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"U2 / Coke Zero","zh":"無糖可樂","p":"RM7.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"U3 / Sprite","zh":"雪碧","p":"RM7.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"U4 / Ice Lemon Tea","zh":"檸檬茶","p":"RM7.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"U5 / 100 Plus","zh":"100號","p":"RM7.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"U6 / Mineral Water Small","zh":"純淨水（小）","p":"RM4.00","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-20"},{"en":"Hot Drink","zh":"熱飲","note":"All prices subject to 10% service charge.","items":[{"en":"V1 / Black Coffee","zh":"黑咖啡","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"V2 / White Coffee","zh":"白咖啡","p":"RM8.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"V3 / Green Tea","zh":"綠茶","p":"RM7.00","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"V4 / Milo","zh":"美祿","p":"RM8.00","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-21"},{"en":"Beer","zh":"啤酒","note":"All prices subject to 10% service charge.","items":[{"en":"W1 / Tigger","zh":"虎牌啤酒","p":"RM9.00 per can","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"W2 / Crystal Beer","zh":"白虎啤酒","p":"RM9.00 per can","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"W3 / Casrberg","zh":"嘉士伯啤酒","p":"RM9.00 per can","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"W4 / Chang","zh":"大象啤酒","p":"RM9.00 per bottle","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"W5 / Heineken","zh":"喜力啤酒","p":"RM12.00 per can","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"W6 / Singha","zh":"勝獅啤酒","p":"RM12.00 per can","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"W7 / Guinness","zh":"黑狗啤酒","p":"RM13.00 per can","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-22"},{"en":"Wine — Red Wine","zh":"酒 — 紅葡萄酒","note":"All prices subject to 10% service charge.","items":[{"en":"X1 / Barton & Guestier Cuvee vin Rouge","zh":"巴頓蓋斯蒂紅葡萄酒","p":"RM15.00 per glass / RM60.00 per bottle","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"X2 / Lindeman's Cabernet Sauvignon","zh":"林德曼紅葡萄酒","p":"RM25.00 per glass / RM90.00 per bottle","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-23"},{"en":"Wine — White Wine","zh":"酒 — 白葡萄酒","note":"All prices subject to 10% service charge.","items":[{"en":"X3 / Barton & Guestier Cuvee vin Blanc","zh":"巴頓蓋斯蒂白葡萄酒","p":"RM15.00 per glass / RM60.00 per bottle","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"X4 / Lindeman's Sauvignon Blanc","zh":"林德曼白葡萄酒","p":"RM25.00 per glass / RM90.00 per bottle","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-24"}];
+const TAGS = [{"id":"popular","en":"Popular","zh":"人氣","icon":"🔥","group":"highlight"},{"id":"signature","en":"Signature Dish","zh":"招牌菜","icon":"⭐","group":"highlight"},{"id":"spicy","en":"Spicy","zh":"辣","icon":"🌶️","group":"diet"},{"id":"market-price","en":"Live Seafood / Market Price","zh":"活海鮮／時價","icon":"🦞","group":"other"}];
+const TAG_BY_ID = Object.fromEntries(TAGS.map(t => [t.id, t]));
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+const barEl = document.getElementById("filterbar");
+
+// Render sections + items (items carry data-tags for filtering).
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${esc(id)}" data-sec="${esc(id)}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const ids = it.tags || [];
+    const icons = ids.map(t => (TAG_BY_ID[t] && TAG_BY_ID[t].icon) || "").filter(Boolean).join(" ");
+    const tags = icons ? `<span class="tags">${icons}</span>` : "";
+    const explain = it.explain
+      ? `<button class="explain" aria-label="explanation" data-en="${esc(it.explain.en)}" data-zh="${esc(it.explain.zh)}">💡</button>`
+      : "";
+    const meta = (tags || explain) ? `<div class="meta">${tags}${explain}</div>` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    const opts = (it.options && it.options.length)
+      ? `<div class="opts">` + it.options.map(g => {
+          const choices = (g.choices || []).map(c => {
+            const cp = c.p ? `<span class="opt-price">+${esc(c.p)}</span>` : "";
+            return `<li><span class="oen">${esc(c.en)}</span><span class="ozh">${esc(c.zh)}</span>${cp}</li>`;
+          }).join("");
+          if (!choices) return "";
+          const hint = g.kind === "one" ? `<span class="opt-hint">選一 · Choose one</span>`
+                     : g.kind === "any" ? `<span class="opt-hint">可加 · Optional</span>` : "";
+          return `<div class="optg">
+            <div class="optg-label"><span class="oen">${esc(g.en)}</span><span class="ozh">${esc(g.zh)}</span>${hint}</div>
+            <ul class="optg-choices">${choices}</ul>
+          </div>`;
+        }).join("") + `</div>`
+      : "";
+    return `<div class="item" data-tags="${esc(ids.join(" "))}">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+          ${meta}
+        </div>${price}
+      </div>${den}${dzh}${opts}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${esc(id)}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+// Build the filter bar from the tags actually used by ≥1 item (in TAGS order).
+const used = new Set();
+MENU.forEach(s => (s.items || []).forEach(it => (it.tags || []).forEach(id => used.add(id))));
+const seen = new Set();
+const filterTags = [];
+TAGS.forEach(t => {
+  if (used.has(t.id) && !seen.has(t.id)) { seen.add(t.id); filterTags.push(t); }
+});
+const active = new Set();
+
+if (filterTags.length) {
+  barEl.insertAdjacentHTML("beforeend", `<button class="chip chip-all active" data-id="">全部 All</button>`);
+  filterTags.forEach(t => {
+    const ic = t.icon ? `<span class="ci">${t.icon}</span>` : "";
+    barEl.insertAdjacentHTML("beforeend",
+      `<button class="chip" data-id="${esc(t.id)}">${ic}<span class="cen">${esc(t.en)}</span><span class="czh">${esc(t.zh)}</span></button>`);
+  });
+} else {
+  barEl.style.display = "none";
+}
+
+// AND filter: an item shows iff its tags include every active id.
+function applyFilter() {
+  document.querySelectorAll("#menu section").forEach(sec => {
+    let visible = 0;
+    sec.querySelectorAll(".item").forEach(el => {
+      const tags = new Set((el.getAttribute("data-tags") || "").split(" ").filter(Boolean));
+      let show = true;
+      active.forEach(id => { if (!tags.has(id)) show = false; });
+      el.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    sec.style.display = visible ? "" : "none";
+    const link = navEl.querySelector(`a[data-sec="${CSS.escape(sec.id)}"]`);
+    if (link) link.style.display = visible ? "" : "none";
+  });
+}
+
+barEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".chip");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (id === "") active.clear();
+  else if (active.has(id)) active.delete(id);
+  else active.add(id);
+
+  barEl.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  if (active.size === 0) {
+    barEl.querySelector(".chip-all").classList.add("active");
+  } else {
+    active.forEach(a => {
+      const c = barEl.querySelector(`.chip[data-id="${CSS.escape(a)}"]`);
+      if (c) c.classList.add("active");
+    });
+  }
+  applyFilter();
+});
+
+// Explanation popover: tap 💡 to open near the button; tap elsewhere to close.
+const pop = document.getElementById("popover");
+menuEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".explain");
+  if (!btn) return;
+  e.stopPropagation();
+  pop.innerHTML = `<span class="pen"></span><span class="pzh"></span>`;
+  pop.querySelector(".pen").textContent = btn.getAttribute("data-en") || "";
+  pop.querySelector(".pzh").textContent = btn.getAttribute("data-zh") || "";
+  pop.hidden = false;
+  const r = btn.getBoundingClientRect();
+  const maxLeft = scrollX + document.documentElement.clientWidth - pop.offsetWidth - 12;
+  pop.style.top = (scrollY + r.bottom + 6) + "px";
+  pop.style.left = Math.max(scrollX + 12, Math.min(scrollX + r.left, maxLeft)) + "px";
+});
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".explain") && !e.target.closest("#popover")) pop.hidden = true;
+});
+
+// Language toggle (unchanged behaviour).
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+// Back to top (unchanged behaviour).
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+</script>
+</body>
+</html>
