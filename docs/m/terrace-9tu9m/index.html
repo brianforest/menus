@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Terrace · 菜單 Menu</title>
+
+<meta name="description" content="Terrace 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Terrace · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 9vw, 54px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(18px, 4.6vw, 24px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 15px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 15px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .filterbar { display: flex; gap: 8px; overflow-x: auto; padding: 6px 14px 8px;
+    scrollbar-width: none; -ms-overflow-style: none; }
+  .filterbar::-webkit-scrollbar { display: none; }
+  .chip { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 999px; padding: 6px 12px; min-height: 36px; cursor: pointer;
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  body.lang-zh .chip .cen { display: none; }
+  body.lang-en .chip .czh { display: none; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(24px, 6.4vw, 32px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(17px, 4.6vw, 21px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 15px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 18px; }
+  .item .meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .item .tags { font-size: 15px; letter-spacing: 1px; }
+  .dish { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-top: 8px; }
+  .explain { font: inherit; font-size: 15px; line-height: 1; border: 1px solid var(--line);
+    background: var(--card); border-radius: 999px; padding: 3px 7px; cursor: pointer; }
+  .popover { position: absolute; z-index: 50; max-width: 300px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 15px;
+    line-height: 1.5; box-shadow: 0 8px 24px rgba(0,0,0,.16); }
+  .popover[hidden] { display: none; }
+  .popover .pen { display: block; }
+  .popover .pzh { display: block; color: #4a4a4f; margin-top: 6px; }
+  body.lang-zh .popover .pen { display: none; }
+  body.lang-en .popover .pzh { display: none; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 17px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 15px; margin-top: 3px; }
+
+  .opts { margin-top: 8px; }
+  .optg { margin-top: 8px; padding: 8px 10px; background: var(--accent-soft);
+    border-left: 3px solid var(--accent); border-radius: 8px; }
+  .optg:first-child { margin-top: 0; }
+  .optg-label { font-weight: 700; font-size: 15px; }
+  .opt-hint { font-weight: 500; font-size: 13px; color: var(--muted); margin-left: 6px; }
+  .optg-choices { list-style: none; margin: 6px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .optg-choices li { font-size: 15px; }
+  .opts .ozh { color: var(--accent); }
+  .opts .oen, .opts .ozh { margin-right: 3px; }
+  .opt-price { color: var(--price); font-variant-numeric: tabular-nums; margin-left: 3px; }
+  body.lang-zh .opts .oen { display: none; }
+  body.lang-en .opts .ozh { display: none; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 18px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>Terrace</h1>
+  <div class="zh-title">Terrace 餐廳</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 MYR 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+  <div class="filterbar" id="filterbar" role="group" aria-label="filters"></div>
+</div>
+
+<div class="wrap">
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+<div id="popover" class="popover" hidden></div>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const MENU = [{"en":"Appetisers","zh":"前菜","note":"All prices quoted are inclusive of prevailing taxes.","items":[{"en":"Parmigiana Di Melanzane","zh":"帕爾馬烤茄子","p":"61","tags":["vegetarian","popular"],"xterm":"parmigiana-di-melanzane","options":[],"den":"sweet eggplant, tomato, mozzarella, parmesan","dzh":"甜茄子、番茄、莫扎瑞拉芝士、帕爾馬芝士"},{"en":"Truffle Bruschetta","zh":"松露布斯凱塔","p":"94","tags":["vegetarian"],"xterm":"bruschetta","options":[],"den":"buffalo mozzarella, truffle paste, shaved parmesan","dzh":"水牛莫扎瑞拉芝士、松露醬、刨絲帕爾馬芝士"},{"en":"Salmon Tartare","zh":"鮭魚韃靼","p":"90","tags":["gluten-free","signature"],"xterm":"tartare","options":[],"den":"salmon roe, capers, gherkin, shallot, mustard cream","dzh":"鮭魚子、酸豆、醃黃瓜、紅蔥頭、芥末忌廉"}],"id":"sec-0"},{"en":"Salads","zh":"沙律","note":"","items":[{"en":"Salade Nicoise","zh":"尼斯沙律","p":"79","tags":["gluten-free"],"xterm":"salade-nicoise","options":[],"den":"pan seared tuna, mixed lettuce, green bean, olive, cherry tomato, hard-boiled egg, capers dressing","dzh":"煎吞拿魚、什錦生菜、四季豆、橄欖、車厘茄、熟雞蛋、酸豆醬汁"},{"en":"The Terrace Caesar Salad","zh":"Terrace 凱撒沙律","p":"79","tags":["vegetarian","gluten-free"],"xterm":"","options":[],"den":"young baby romaine lettuce, grilled chicken, speck crisp, grated parmesan, Caesar dressing","dzh":"嫩羅馬生菜、烤雞肉、脆煙肉片、磨碎帕爾馬芝士、凱撒醬"},{"en":"Insalata Mista","zh":"什錦沙律","p":"42","tags":["vegetarian","gluten-free"],"xterm":"","options":[],"den":"seasonal green salad, olives, tomato, sundried tomato, artichoke, grilled vegetables","dzh":"時令綠葉沙律、橄欖、番茄、風乾番茄、朝鮮薊、烤蔬菜"},{"en":"Grilled Octopus Salad","zh":"烤章魚沙律","p":"90","tags":["gluten-free","popular"],"xterm":"","options":[],"den":"octopus, tomato confit, potato, lemon dressing","dzh":"章魚、番茄油封、薯仔、檸檬醬汁"},{"en":"Insalata Caprese","zh":"卡布里斯沙律","p":"108","tags":["vegetarian","gluten-free","popular"],"xterm":"insalata-caprese","options":[],"den":"tomato confit & balsamic caramel","dzh":"番茄油封及香醋焦糖"},{"en":"Buffalo Mozzarella","zh":"水牛莫扎瑞拉芝士沙律","p":"108","tags":["gluten-free","signature"],"xterm":"","options":[],"den":"mango and bell pepper, beef speck","dzh":"芒果、燈籠椒、牛肉煙肉"}],"id":"sec-1"},{"en":"Pasta and Risotto","zh":"意粉及燉飯","note":"All prices quoted are inclusive of prevailing taxes.","items":[{"en":"Spaghetti Bolognese","zh":"波隆那肉醬意粉","p":"95","tags":[],"xterm":"","options":[],"den":"long pasta in tomato braised beef ragout","dzh":"長意粉配番茄燜牛肉肉醬"},{"en":"Fettuccine Lamb Ragout","zh":"羊肉醬寬麵","p":"86","tags":[],"xterm":"","options":[],"den":"flat long pasta in braised minced lamb, thyme","dzh":"寬扁意粉配燜羊肉碎及百里香"},{"en":"Linguine Al Pesto","zh":"青醬扁麵","p":"64","tags":["vegetarian","gluten-free","contains-nuts"],"xterm":"","options":[],"den":"long pasta in basil and pine nut sauce","dzh":"長意粉配羅勒松子醬"},{"en":"Beetroot Gnocchi","zh":"紅菜頭薯疙瘩","p":"78","tags":["vegetarian"],"xterm":"gnocchi","options":[],"den":"pan-seared beetroot and potato dumpling, taleggio cream and walnut","dzh":"煎紅菜頭薯疙瘩、塔雷吉奧芝士忌廉及核桃"},{"en":"Andaman Prawn Aglio Olio","zh":"安達曼蝦蒜香橄欖油意粉","p":"90","tags":["gluten-free"],"xterm":"aglio-olio","options":[],"den":"pasta in garlic and olive oil, and Andaman prawn","dzh":"蒜香橄欖油意粉配安達曼大蝦"},{"en":"Truffle and Porcini Mushroom Risotto","zh":"松露牛肝菌燉飯","p":"72","tags":["vegetarian","gluten-free","popular"],"xterm":"risotto","options":[],"den":"carnaroli rice, porcini mushroom stock, sautéed forest mushroom, truffle oil","dzh":"卡納羅利米、牛肝菌高湯、炒雜菌、松露油"},{"en":"Cheese and Prawn Risotto","zh":"芝士大蝦燉飯","p":"98","tags":[],"xterm":"risotto","options":[],"den":"carnaroli rice in crustacean bisque, Andaman prawn, mozzarella cheese","dzh":"卡納羅利米配甲殼類濃湯、安達曼大蝦、莫扎瑞拉芝士"}],"id":"sec-2"},{"en":"Pizza","zh":"薄餅","note":"","items":[{"en":"Bufalina","zh":"水牛芝士薄餅","p":"70","tags":["vegetarian"],"xterm":"","options":[],"den":"tomato, mozzarella di bufala, basil","dzh":"番茄、水牛莫扎瑞拉芝士、羅勒"},{"en":"Latteria","zh":"六芝士薄餅","p":"98","tags":["vegetarian"],"xterm":"","options":[],"den":"6 cheeses: parmesen, gorgonzola, shredded mozzarella, buffalo mozzarella, smoked provolone, taleggio","dzh":"六款芝士：帕爾馬、戈貢佐拉、絲狀莫扎瑞拉、水牛莫扎瑞拉、煙燻波羅伏洛及塔雷吉奧"},{"en":"Botanica","zh":"田園蔬菜薄餅","p":"80","tags":["vegetarian"],"xterm":"","options":[],"den":"mozzarella, grilled seasonal vegetables, fresh garden herbs","dzh":"莫扎瑞拉芝士、烤時令蔬菜、新鮮香草"},{"en":"Tartufina","zh":"松露薄餅","p":"110","tags":["popular"],"xterm":"","options":[],"den":"beef speck, shredded mozzarella, buffalo mozzarella, black truffle paste, truffle oil","dzh":"牛肉煙肉、絲狀莫扎瑞拉、水牛莫扎瑞拉、黑松露醬、松露油"},{"en":"Rustica","zh":"田舍風薄餅","p":"98","tags":[],"xterm":"","options":[],"den":"roasted potato, taleggio cheese, shredded mozzarella, lamb ragout","dzh":"烤薯仔、塔雷吉奧芝士、絲狀莫扎瑞拉、羊肉肉醬"},{"en":"Frutti Di Mare","zh":"海鮮薄餅","p":"130","tags":["signature"],"xterm":"","options":[],"den":"Andaman catch of the sea: prawn, mussel, squid, crabmeat, scallops, clams, seabass, lobster, Mozzarella","dzh":"安達曼海鮮：大蝦、青口、魷魚、蟹肉、帶子、蜆、海鱸魚、龍蝦、莫扎瑞拉芝士"}],"id":"sec-3"},{"en":"Main Course","zh":"主菜","note":"All prices quoted are inclusive of prevailing taxes.","items":[{"en":"Cacciucco – Seafood Stew","zh":"卡丘科海鮮燉湯","p":"188","tags":["signature","popular"],"xterm":"cacciucco","options":[],"den":"oven baked seafood soup with lobster, mussels, clams, scallops, squid","dzh":"焗爐海鮮湯配龍蝦、青口、蜆、帶子及魷魚"},{"en":"Zuppa di Cozze","zh":"番茄青口湯","p":"79","tags":[],"xterm":"zuppa-di-cozze","options":[],"den":"black mussel in tomato, ciabatta, green oil","dzh":"番茄黑青口、恰巴達麵包、青香草油"},{"en":"Filletto di Salmone","zh":"香煎鮭魚柳","p":"132","tags":[],"xterm":"","options":[],"den":"pan seared salmon, broccoli, spring onion, chilli, bell pepper pure","dzh":"香煎鮭魚、西蘭花、青蔥、辣椒、燈籠椒蓉"},{"en":"Filletto di Branzino","zh":"烤海鱸魚柳","p":"102","tags":["gluten-free","popular"],"xterm":"","options":[],"den":"roasted seabass, fresh tomato sauce, capers, kalamata olives, grilled vegetables","dzh":"烤海鱸魚、新鮮番茄醬、酸豆、卡拉馬塔橄欖、烤蔬菜"},{"en":"Galletto al Forno","zh":"烤春雞","p":"97","tags":["gluten-free"],"xterm":"galletto-al-forno","options":[],"den":"spring chicken, seasonal vegetables, potato, chimichurri","dzh":"春雞、時令蔬菜、薯仔、青醬莎莎"},{"en":"Tagliata di Manzo","zh":"切片牛排","p":"99","tags":["gluten-free"],"xterm":"tagliata-di-manzo","options":[],"den":"pan seared sliced beef flank, rocket salad, cherry tomato, shaved parmesan, balsamic reduction","dzh":"香煎牛腹肉片、芝麻菜沙律、車厘茄、刨絲帕爾馬芝士、香醋濃縮醬"}],"id":"sec-4"},{"en":"Desserts","zh":"甜點","note":"All prices quoted are inclusive of prevailing taxes.","items":[{"en":"Tropical Fruits Platter","zh":"熱帶水果拼盤","p":"44","tags":[],"xterm":"","options":[],"den":"selection of our seasonal fruits, 5 types","dzh":"精選五款時令水果"},{"en":"Tiramisu (glass)","zh":"提拉米蘇（玻璃杯裝）","p":"48","tags":["signature","popular"],"xterm":"tiramisu","options":[],"den":"layers of mascarpone cream, coffee-soaked lady fingers and a dusting of cocoa powder","dzh":"馬斯卡彭忌廉層、咖啡浸手指餅及可可粉"},{"en":"Cannoli","zh":"卡諾里甜筒","p":"45","tags":[],"xterm":"cannoli","options":[],"den":"crisp and flaky cannoli shell, lusciously creamy, sweet ricotta cheese and mascarpone with decadent dark chocolate chips","dzh":"酥脆卡諾里外殼，香濃甜意大利乳清芝士與馬斯卡彭芝士，配黑巧克力碎"},{"en":"Almond Semifreddo","zh":"杏仁半凍糕","p":"45","tags":[],"xterm":"semifreddo","options":[],"den":"creamy almond semifreddo, warm apple compote","dzh":"香濃杏仁半凍糕，暖蘋果糖煮"},{"en":"Vanilla Panna Cotta","zh":"雲呢拿奶凍","p":"48","tags":[],"xterm":"panna-cotta","options":[],"den":"creamy cooked cream, mixed berries compote","dzh":"香濃奶凍配什錦莓果糖煮"}],"id":"sec-5"}];
+const TAGS = [{"id":"popular","en":"Popular","zh":"人氣","icon":"🔥","group":"highlight"},{"id":"signature","en":"Highlight","zh":"招牌推薦","icon":"⭐","group":"highlight"},{"id":"gluten-free","en":"Gluten Free","zh":"無麩質","icon":"🌾","group":"diet"},{"id":"contains-nuts","en":"Contains Nuts","zh":"含堅果","icon":"🥜","group":"allergen"},{"id":"vegetarian","en":"Vegetarian","zh":"適合素食","icon":"🌱","group":"diet"}];
+const TAG_BY_ID = Object.fromEntries(TAGS.map(t => [t.id, t]));
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+const barEl = document.getElementById("filterbar");
+
+// Render sections + items (items carry data-tags for filtering).
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${esc(id)}" data-sec="${esc(id)}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const ids = it.tags || [];
+    const icons = ids.map(t => (TAG_BY_ID[t] && TAG_BY_ID[t].icon) || "").filter(Boolean).join(" ");
+    const tags = icons ? `<span class="tags">${icons}</span>` : "";
+    const explain = it.explain
+      ? `<button class="explain" aria-label="explanation" data-en="${esc(it.explain.en)}" data-zh="${esc(it.explain.zh)}">💡</button>`
+      : "";
+    const meta = (tags || explain) ? `<div class="meta">${tags}${explain}</div>` : "";
+    const pic = it.img ? `<img class="dish" src="${esc(it.img)}" loading="lazy" alt="">` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    const opts = (it.options && it.options.length)
+      ? `<div class="opts">` + it.options.map(g => {
+          const choices = (g.choices || []).map(c => {
+            const cp = c.p ? `<span class="opt-price">+${esc(c.p)}</span>` : "";
+            return `<li><span class="oen">${esc(c.en)}</span><span class="ozh">${esc(c.zh)}</span>${cp}</li>`;
+          }).join("");
+          if (!choices) return "";
+          const hint = g.kind === "one" ? `<span class="opt-hint">選一 · Choose one</span>`
+                     : g.kind === "any" ? `<span class="opt-hint">可加 · Optional</span>` : "";
+          return `<div class="optg">
+            <div class="optg-label"><span class="oen">${esc(g.en)}</span><span class="ozh">${esc(g.zh)}</span>${hint}</div>
+            <ul class="optg-choices">${choices}</ul>
+          </div>`;
+        }).join("") + `</div>`
+      : "";
+    return `<div class="item" data-tags="${esc(ids.join(" "))}">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+          ${meta}
+        </div>${price}
+      </div>${pic}${den}${dzh}${opts}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${esc(id)}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+// Build the filter bar from the tags actually used by ≥1 item (in TAGS order).
+const used = new Set();
+MENU.forEach(s => (s.items || []).forEach(it => (it.tags || []).forEach(id => used.add(id))));
+const seen = new Set();
+const filterTags = [];
+TAGS.forEach(t => {
+  if (used.has(t.id) && !seen.has(t.id)) { seen.add(t.id); filterTags.push(t); }
+});
+const active = new Set();
+
+if (filterTags.length) {
+  barEl.insertAdjacentHTML("beforeend", `<button class="chip chip-all active" data-id="">全部 All</button>`);
+  filterTags.forEach(t => {
+    const ic = t.icon ? `<span class="ci">${t.icon}</span>` : "";
+    barEl.insertAdjacentHTML("beforeend",
+      `<button class="chip" data-id="${esc(t.id)}">${ic}<span class="cen">${esc(t.en)}</span><span class="czh">${esc(t.zh)}</span></button>`);
+  });
+} else {
+  barEl.style.display = "none";
+}
+
+// AND filter: an item shows iff its tags include every active id.
+function applyFilter() {
+  document.querySelectorAll("#menu section").forEach(sec => {
+    let visible = 0;
+    sec.querySelectorAll(".item").forEach(el => {
+      const tags = new Set((el.getAttribute("data-tags") || "").split(" ").filter(Boolean));
+      let show = true;
+      active.forEach(id => { if (!tags.has(id)) show = false; });
+      el.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    sec.style.display = visible ? "" : "none";
+    const link = navEl.querySelector(`a[data-sec="${CSS.escape(sec.id)}"]`);
+    if (link) link.style.display = visible ? "" : "none";
+  });
+}
+
+barEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".chip");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (id === "") active.clear();
+  else if (active.has(id)) active.delete(id);
+  else active.add(id);
+
+  barEl.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  if (active.size === 0) {
+    barEl.querySelector(".chip-all").classList.add("active");
+  } else {
+    active.forEach(a => {
+      const c = barEl.querySelector(`.chip[data-id="${CSS.escape(a)}"]`);
+      if (c) c.classList.add("active");
+    });
+  }
+  applyFilter();
+});
+
+// Explanation popover: tap 💡 to open near the button; tap elsewhere to close.
+const pop = document.getElementById("popover");
+menuEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".explain");
+  if (!btn) return;
+  e.stopPropagation();
+  pop.innerHTML = `<span class="pen"></span><span class="pzh"></span>`;
+  pop.querySelector(".pen").textContent = btn.getAttribute("data-en") || "";
+  pop.querySelector(".pzh").textContent = btn.getAttribute("data-zh") || "";
+  pop.hidden = false;
+  const r = btn.getBoundingClientRect();
+  const maxLeft = scrollX + document.documentElement.clientWidth - pop.offsetWidth - 12;
+  pop.style.top = (scrollY + r.bottom + 6) + "px";
+  pop.style.left = Math.max(scrollX + 12, Math.min(scrollX + r.left, maxLeft)) + "px";
+});
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".explain") && !e.target.closest("#popover")) pop.hidden = true;
+});
+
+// Language toggle (unchanged behaviour).
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+// Back to top (unchanged behaviour).
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+</script>
+</body>
+</html>
