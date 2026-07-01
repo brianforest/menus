@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Planter's at The Danna Langkawi · 菜單 Menu</title>
+
+<meta name="description" content="Planter's at The Danna Langkawi 英中對照菜單 — Bilingual (English / 繁體中文) menu, mobile-friendly." />
+<meta name="theme-color" content="#8a6d3b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Planter's at The Danna Langkawi · 英中對照菜單 Bilingual Menu" />
+<meta property="og:description" content="英文 + 繁體中文對照，手機閱讀體驗最佳。Tap to browse the full menu." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1c1c1e; --muted: #6f6f74; --line: #e7e3db; --paper: #faf8f4;
+    --card: #ffffff; --accent: #8a6d3b; --accent-soft: #f1eae0; --price: #2c2c2e;
+    --maxw: 900px; --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang TC", "Microsoft JhengHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; overflow-wrap: break-word;
+  }
+  header.hero {
+    text-align: center; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 26px;
+    background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero h1 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 9vw, 54px); letter-spacing: 1px; font-weight: 700; }
+  header.hero .zh-title { color: var(--accent); font-size: clamp(18px, 4.6vw, 24px); margin-top: 6px; letter-spacing: 4px; }
+  header.hero .sub { color: var(--muted); margin-top: 12px; font-size: 15px; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 30; background: rgba(250,248,244,.92);
+    backdrop-filter: saturate(160%) blur(8px); -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--line); padding: 8px 0 6px;
+  }
+  .lang-toggle { display: flex; gap: 6px; justify-content: center; padding: 0 14px; }
+  .lang-toggle button {
+    flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    padding: 7px 16px; min-height: 38px; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .nav { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; text-decoration: none; font-size: 15px; color: var(--accent);
+    background: var(--accent-soft); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 14px calc(80px + var(--safe-b)); }
+  .filterbar { display: flex; gap: 8px; overflow-x: auto; padding: 6px 14px 8px;
+    scrollbar-width: none; -ms-overflow-style: none; }
+  .filterbar::-webkit-scrollbar { display: none; }
+  .chip { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 500;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 999px; padding: 6px 12px; min-height: 36px; cursor: pointer;
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  body.lang-zh .chip .cen { display: none; }
+  body.lang-en .chip .czh { display: none; }
+
+  section { margin-top: 38px; scroll-margin-top: 96px; }
+  .sec-head { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sec-head h2 { margin: 0; font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(24px, 6.4vw, 32px); letter-spacing: .5px; }
+  .sec-head .zh { color: var(--accent); font-size: clamp(17px, 4.6vw, 21px); letter-spacing: 2px; }
+  .sec-note { color: var(--muted); font-size: 15px; margin: 0 0 12px; font-style: italic; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+  .item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item .name { font-weight: 700; font-size: 18px; }
+  .item .meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .item .tags { font-size: 15px; letter-spacing: 1px; }
+  .dish { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-top: 8px; }
+  .explain { font: inherit; font-size: 15px; line-height: 1; border: 1px solid var(--line);
+    background: var(--card); border-radius: 999px; padding: 3px 7px; cursor: pointer; }
+  .popover { position: absolute; z-index: 50; max-width: 300px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 15px;
+    line-height: 1.5; box-shadow: 0 8px 24px rgba(0,0,0,.16); }
+  .popover[hidden] { display: none; }
+  .popover .pen { display: block; }
+  .popover .pzh { display: block; color: #4a4a4f; margin-top: 6px; }
+  body.lang-zh .popover .pen { display: none; }
+  body.lang-en .popover .pzh { display: none; }
+  .item .name-zh { color: var(--accent); font-weight: 500; font-size: 17px; margin-top: 1px; }
+  .item .price { font-weight: 700; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .item .desc { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .item .desc-zh { color: #4a4a4f; font-size: 15px; margin-top: 3px; }
+
+  .opts { margin-top: 8px; }
+  .optg { margin-top: 8px; padding: 8px 10px; background: var(--accent-soft);
+    border-left: 3px solid var(--accent); border-radius: 8px; }
+  .optg:first-child { margin-top: 0; }
+  .optg-label { font-weight: 700; font-size: 15px; }
+  .opt-hint { font-weight: 500; font-size: 13px; color: var(--muted); margin-left: 6px; }
+  .optg-choices { list-style: none; margin: 6px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .optg-choices li { font-size: 15px; }
+  .opts .ozh { color: var(--accent); }
+  .opts .oen, .opts .ozh { margin-right: 3px; }
+  .opt-price { color: var(--price); font-variant-numeric: tabular-nums; margin-left: 3px; }
+  body.lang-zh .opts .oen { display: none; }
+  body.lang-en .opts .ozh { display: none; }
+
+  body.lang-zh .name { display: none; }
+  body.lang-zh .desc { display: none; }
+  body.lang-zh .name-zh { font-size: 18px; font-weight: 700; color: var(--ink); }
+  body.lang-en .name-zh { display: none; }
+  body.lang-en .desc-zh { display: none; }
+
+  #toTop { position: fixed; right: 16px; bottom: calc(16px + var(--safe-b)); z-index: 40;
+    width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--ink);
+    color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none;
+    transition: opacity .2s; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  #toTop.show { opacity: .92; pointer-events: auto; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14.5px;
+    padding: 28px 16px calc(40px + var(--safe-b)); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body class="lang-both">
+
+<header class="hero">
+  <h1>Planter's at The Danna Langkawi</h1>
+  <div class="zh-title">The Danna Langkawi 的 Planter's 餐廳</div>
+  <div class="sub">英中對照 · Bilingual  |  價格以 MYR（馬幣） 計</div>
+</header>
+
+<div class="controls">
+  <div class="lang-toggle" role="group" aria-label="language">
+    <button data-lang="both" class="active">雙語</button>
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="sections"></nav>
+  <div class="filterbar" id="filterbar" role="group" aria-label="filters"></div>
+</div>
+
+<div class="wrap">
+  <main id="menu"></main>
+</div>
+
+<button id="toTop" aria-label="back to top">↑</button>
+<div id="popover" class="popover" hidden></div>
+
+<footer>
+  英中對照菜單 · Bilingual Menu — 中文翻譯僅供參考，內容以餐廳原文為準。<br />
+  Chinese translation for reference only; the restaurant's original wording prevails.
+</footer>
+
+<script>
+const MENU = [{"en":"From the Griddle","zh":"煎烤料理","note":"","items":[{"en":"Pancakes","zh":"鬆餅","p":"","tags":["dairy-egg"],"xterm":"","options":[{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Blueberry","zh":"藍莓","p":""},{"en":"Maple syrup","zh":"楓糖漿","p":""},{"en":"Whipped cream","zh":"鮮奶油","p":""}]}],"den":"","dzh":""},{"en":"Waffles","zh":"鬆餅華夫","p":"","tags":["dairy-egg"],"xterm":"","options":[{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Chocolate sauce","zh":"巧克力醬","p":""},{"en":"Fruit compote","zh":"水果果醬","p":""},{"en":"Whipped cream","zh":"鮮奶油","p":""}]}],"den":"","dzh":""},{"en":"French Toast","zh":"法式吐司","p":"","tags":["dairy-egg","notable"],"xterm":"french-toast","options":[{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Maple syrup","zh":"楓糖漿","p":""},{"en":"Whipped cream","zh":"鮮奶油","p":""},{"en":"Cinnamon","zh":"肉桂","p":""}]}],"den":"","dzh":"","explain":{"en":"Slices of bread soaked in a beaten egg-and-milk mixture, then pan-fried until golden. Despite the name, the dish predates France and appears across medieval Europe; the \"French\" label likely came from American slang in the 17th–18th century. The result is a custardy, slightly crisp slice served sweet or savory.","zh":"將吐司浸入蛋液與牛奶的混合物中，再煎至金黃。儘管名為「法式」，這道料理其實早於法國，在中世紀歐洲各地均有記載，「法式」一詞可能源自17至18世紀的美式俚語。成品外酥內軟，帶有蛋奶香，可甜可鹹。"}}],"id":"sec-0"},{"en":"Asian Corner","zh":"亞洲風味區","note":"","items":[{"en":"Roti Canai","zh":"印度煎餅","p":"","tags":["dairy-egg","notable"],"xterm":"roti-canai","options":[{"en":"Roti choice","zh":"煎餅選擇","kind":"one","choices":[{"en":"Egg roti","zh":"雞蛋煎餅","p":""},{"en":"Plain roti","zh":"原味煎餅","p":""}]},{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Dhal","zh":"扁豆咖哩","p":""},{"en":"Sambal","zh":"參巴醬","p":""},{"en":"Chicken curry","zh":"雞肉咖哩","p":""}]}],"den":"Malaysian flat bread. Malaysia's Roti Canai is rated as 'The Best Bread In The World' by TasteAtlas.","dzh":"馬來西亞薄煎餅，被TasteAtlas評選為「世界最佳麵包」。","explain":{"en":"Roti Canai (ROH-tee CHA-nai) is a flaky, layered flatbread of South Indian origin, now a staple of Malaysian and Singaporean street food. The dough is stretched and folded repeatedly to create its airy, crisp layers, then cooked on a flat griddle. It is typically served with dal (lentil curry) or fish curry for dipping.","zh":"印度煎餅（ROH-tee CHA-nai）源自南印度，是馬來西亞與新加坡街頭美食的代表之一。麵團經反覆拉伸、折疊後在平底鐵板上煎烤，形成酥脆多層的口感。通常搭配豆泥咖哩或魚咖哩沾食。"}},{"en":"Dosa","zh":"印度薄餅","p":"","tags":["gluten-free","vegetarian","notable"],"xterm":"dosa","options":[{"en":"Dosa choice","zh":"薄餅選擇","kind":"one","choices":[{"en":"Plain dosa","zh":"原味薄餅","p":""},{"en":"Masala dosa","zh":"馬薩拉薄餅","p":""}]},{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Coconut","zh":"椰子","p":""},{"en":"Chili chutney","zh":"辣椒酸辣醬","p":""}]}],"den":"Savoury rice crepe.","dzh":"鹹味米製薄餅。","explain":{"en":"Dosa (DOH-sah) is a thin, crisp crepe from South India, made from a fermented batter of rice and black lentils. Fermentation gives it a subtle tang and light texture. It is commonly served with sambar (a spiced lentil soup) and coconut chutney, and can be filled with spiced potato to become a Masala Dosa.","zh":"印度薄餅（DOH-sah）是南印度料理中的薄脆餅，以米和黑扁豆發酵後的麵糊攤製而成。發酵過程賦予它淡淡的酸香與輕盈口感。通常搭配參巴（spiced lentil soup，香料扁豆湯）與椰子酸辣醬，若包入香料馬鈴薯餡則稱為Masala Dosa。"}}],"id":"sec-1"},{"en":"Awaken Your Sense","zh":"喚醒您的感官","note":"Your drinks, your way","items":[{"en":"Latte","zh":"拿鐵","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Cappuccino","zh":"卡布奇諾","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Americano","zh":"美式咖啡","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Espresso","zh":"義式濃縮咖啡","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Flat White","zh":"馥列白","p":"","tags":["notable"],"xterm":"flat-white","options":[],"den":"","dzh":"","explain":{"en":"A Flat White is a espresso-based coffee drink originating from Australia and New Zealand in the 1980s. It uses a double ristretto (a shorter, more concentrated espresso pull) topped with a smaller volume of velvety micro-foamed milk than a latte, resulting in a stronger coffee-to-milk ratio and a smooth, glossy texture.","zh":"馥列白是1980年代起源於澳洲與紐西蘭的咖啡飲品。以雙份ristretto（萃取量更短、濃度更高的義式濃縮）為基底，加入比拿鐵更少量的細緻奶泡，咖啡風味更為突出，口感絲滑順口。"}},{"en":"Milo","zh":"美祿","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Hot Chocolate","zh":"熱巧克力","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""},{"en":"Selection of Teas","zh":"精選茶飲","p":"","tags":[],"xterm":"","options":[],"den":"","dzh":""}],"id":"sec-2"},{"en":"Hot Kitchen","zh":"熱食廚房","note":"","items":[{"en":"Eggs Scrambled, Sunny Side Up, Over-Easy, Boiled or Poached","zh":"炒蛋、太陽蛋、半熟煎蛋、水煮蛋或水波蛋","p":"","tags":["dairy-egg"],"xterm":"","options":[{"en":"Served with (upon request)","zh":"可附（按要求）","kind":"list","choices":[{"en":"Baked beans","zh":"烤豆","p":""},{"en":"Mushrooms","zh":"蘑菇","p":""},{"en":"Grilled tomato","zh":"烤番茄","p":""},{"en":"Hashbrown","zh":"馬鈴薯煎餅","p":""}]},{"en":"Your choice of protein","zh":"蛋白質選擇","kind":"one","choices":[{"en":"Beef sausage","zh":"牛肉香腸","p":""},{"en":"Chicken sausage","zh":"雞肉香腸","p":""},{"en":"Beef slice","zh":"牛肉片","p":""},{"en":"Chicken slice","zh":"雞肉片","p":""}]}],"den":"","dzh":""},{"en":"Eggs Benedict","zh":"班尼迪克蛋","p":"","tags":["dairy-egg","notable"],"xterm":"eggs-benedict","options":[{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Toasted English muffins","zh":"烤英式馬芬","p":""},{"en":"Grilled beef bacon","zh":"烤牛肉培根","p":""},{"en":"Poached eggs","zh":"水波蛋","p":""},{"en":"Hollandaise sauce","zh":"荷蘭醬","p":""},{"en":"Fresh herbs","zh":"新鮮香草","p":""}]}],"den":"","dzh":"","explain":{"en":"A classic American brunch dish: a toasted English muffin topped with Canadian back bacon, a poached egg, and hollandaise sauce — a rich, butter-and-egg-yolk emulsion spiked with lemon. Its name is most commonly traced to Lemuel Benedict, a New York stockbroker who ordered the combination at the Waldorf Hotel around 1894.","zh":"經典美式早午餐：烤過的英式瑪芬上依序疊放加拿大培根、水波蛋，最後淋上荷蘭醬——一種以奶油、蛋黃和檸檬汁乳化而成的濃郁醬汁。據說這道料理的名稱源自紐約股票經紀人Lemuel Benedict，他約在1894年於華爾道夫飯店點了這個組合。"}},{"en":"Eggs Royale","zh":"皇家班尼迪克蛋","p":"","tags":["dairy-egg","notable"],"xterm":"eggs-royale","options":[{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Toasted English muffins","zh":"烤英式馬芬","p":""},{"en":"Smoked salmon","zh":"煙燻鮭魚","p":""},{"en":"Poached eggs","zh":"水波蛋","p":""},{"en":"Hollandaise sauce","zh":"荷蘭醬","p":""},{"en":"Fresh herbs","zh":"新鮮香草","p":""}]}],"den":"","dzh":"","explain":{"en":"A regal variation of Eggs Benedict in which Canadian bacon is replaced with smoked salmon (lox). The \"Royale\" tag nods to the perceived luxury of salmon over cured pork. Like its counterpart, it is finished with hollandaise sauce over a poached egg on a toasted English muffin.","zh":"皇家班尼迪克蛋是班尼迪克蛋的豪華變體，以煙燻鮭魚取代加拿大培根。「皇家」之名暗示鮭魚比醃豬肉更為奢華。同樣以烤英式瑪芬為底，加上水波蛋並淋上荷蘭醬。"}},{"en":"Oatmeal Porridge","zh":"燕麥粥","p":"","tags":["gluten-free","vegetarian","dairy-egg"],"xterm":"","options":[{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Cinnamon","zh":"肉桂","p":""},{"en":"Honey","zh":"蜂蜜","p":""},{"en":"Raisin","zh":"葡萄乾","p":""}]},{"en":"Flavour","zh":"口味選擇","kind":"one","choices":[{"en":"Sweet","zh":"甜味","p":""},{"en":"Savory","zh":"鹹味","p":""}]},{"en":"Made with","zh":"液體選擇","kind":"one","choices":[{"en":"Full cream","zh":"全脂鮮奶","p":""},{"en":"Almond milk","zh":"杏仁奶","p":""},{"en":"Water","zh":"水","p":""}]}],"den":"","dzh":""},{"en":"Noodle Soup","zh":"湯麵","p":"","tags":[],"xterm":"","options":[{"en":"Broth","zh":"湯底選擇","kind":"one","choices":[{"en":"Clear broth","zh":"清湯","p":""},{"en":"Nyonya curry broth","zh":"娘惹咖哩湯","p":""}]},{"en":"Served with","zh":"附餐配料","kind":"list","choices":[{"en":"Tender chicken","zh":"嫩雞肉","p":""},{"en":"Fresh vegetables","zh":"新鮮蔬菜","p":""}]},{"en":"Noodles","zh":"麵條選擇","kind":"one","choices":[{"en":"Vermicelli","zh":"米粉","p":""},{"en":"Flat rice noodles","zh":"河粉","p":""},{"en":"Egg noodles","zh":"蛋麵","p":""}]}],"den":"","dzh":""},{"en":"Teh Tarik","zh":"拉茶","p":"","tags":["notable"],"xterm":"teh-tarik","options":[],"den":"Malaysian black tea mixed with condensed milk.","dzh":"馬來西亞奶茶，以紅茶混合煉乳拉製而成。","explain":{"en":"Teh Tarik (teh TAH-rik) literally means \"pulled tea\" in Malay — teh is tea, tarik means to pull. Strong black tea is blended with sweetened condensed milk, then poured in a high arc between two vessels to aerate it, creating a frothy, caramel-hued drink. The technique is a hallmark of Malaysian and Singaporean kopitiams (coffee shops).","zh":"拉茶（teh TAH-rik）在馬來語中字面意思為「拉出來的茶」——teh是茶，tarik意為拉扯。濃紅茶與煉乳混合後，師傅將茶液在兩個容器之間高高拋接，充分打入空氣，形成綿密泡沫與焦糖色澤。這項技藝是馬來西亞與新加坡咖啡店（kopitiam）的標誌性表演。"}},{"en":"Kopi Kedah","zh":"吉打咖啡","p":"","tags":["notable"],"xterm":"kopi-kedah","options":[],"den":"Locally-grown coffee with earthy notes and a smooth finish, highlighting the flavours of Kedah's fertile lands.","dzh":"本地種植咖啡，帶有大地氣息與順滑尾韻，展現吉打肥沃土地的風味。","explain":{"en":"Kopi (KOH-pee) is the Malay and Hokkien word for coffee, derived from Dutch koffie — a reminder of colonial trade routes. Kedah (KEH-dah) is a northern state of Malaysia, and this style typically refers to a strong, dark-roasted coffee made in the traditional kopitiam manner, often brewed through a cloth filter sock and served with sweetened condensed milk.","zh":"吉打咖啡中，kopi（KOH-pee）是馬來語及閩南語中「咖啡」的說法，源自荷蘭語koffie，折射出殖民時代的貿易歷史。Kedah（KEH-dah）則是馬來西亞北部的吉打州。這款咖啡以深焙豆為主，以傳統咖啡店（kopitiam）的布袋濾沖法製作，通常搭配煉乳飲用，風味濃郁醇厚。"}}],"id":"sec-3"}];
+const TAGS = [{"id":"notable","en":"Notable","zh":"特色","icon":"💡","group":"highlight"},{"id":"gluten-free","en":"Gluten Free","zh":"無麩質","icon":"🌾","group":"diet"},{"id":"vegetarian","en":"Vegetarian","zh":"素食","icon":"🌱","group":"diet"},{"id":"dairy-egg","en":"Dairy / Egg","zh":"乳製品／蛋","icon":"🥛","group":"allergen"}];
+const TAG_BY_ID = Object.fromEntries(TAGS.map(t => [t.id, t]));
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const menuEl = document.getElementById("menu");
+const navEl = document.getElementById("nav");
+const barEl = document.getElementById("filterbar");
+
+// Render sections + items (items carry data-tags for filtering).
+MENU.forEach((sec, i) => {
+  const id = sec.id || ("sec-" + i);
+  navEl.insertAdjacentHTML("beforeend", `<a href="#${esc(id)}" data-sec="${esc(id)}">${esc(sec.zh || sec.en)}</a>`);
+
+  const items = (sec.items || []).map(it => {
+    const ids = it.tags || [];
+    const icons = ids.filter(t => t !== "notable").map(t => (TAG_BY_ID[t] && TAG_BY_ID[t].icon) || "").filter(Boolean).join(" ");
+    const tags = icons ? `<span class="tags">${icons}</span>` : "";
+    const explain = it.explain
+      ? `<button class="explain" aria-label="explanation" data-en="${esc(it.explain.en)}" data-zh="${esc(it.explain.zh)}">💡</button>`
+      : "";
+    const meta = (tags || explain) ? `<div class="meta">${tags}${explain}</div>` : "";
+    const pic = it.img ? `<img class="dish" src="${esc(it.img)}" loading="lazy" alt="">` : "";
+    const price = it.p ? `<div class="price">${esc(it.p)}</div>` : "";
+    const den = it.den ? `<div class="desc">${esc(it.den)}</div>` : "";
+    const dzh = it.dzh ? `<div class="desc-zh">${esc(it.dzh)}</div>` : "";
+    const opts = (it.options && it.options.length)
+      ? `<div class="opts">` + it.options.map(g => {
+          const choices = (g.choices || []).map(c => {
+            const cp = c.p ? `<span class="opt-price">+${esc(c.p)}</span>` : "";
+            return `<li><span class="oen">${esc(c.en)}</span><span class="ozh">${esc(c.zh)}</span>${cp}</li>`;
+          }).join("");
+          if (!choices) return "";
+          const hint = g.kind === "one" ? `<span class="opt-hint">選一 · Choose one</span>`
+                     : g.kind === "any" ? `<span class="opt-hint">可加 · Optional</span>` : "";
+          return `<div class="optg">
+            <div class="optg-label"><span class="oen">${esc(g.en)}</span><span class="ozh">${esc(g.zh)}</span>${hint}</div>
+            <ul class="optg-choices">${choices}</ul>
+          </div>`;
+        }).join("") + `</div>`
+      : "";
+    return `<div class="item" data-tags="${esc(ids.join(" "))}">
+      <div class="row">
+        <div>
+          <div class="name">${esc(it.en)}</div>
+          <div class="name-zh">${esc(it.zh)}</div>
+          ${meta}
+        </div>${price}
+      </div>${pic}${den}${dzh}${opts}
+    </div>`;
+  }).join("");
+
+  const note = sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "";
+  menuEl.insertAdjacentHTML("beforeend", `<section id="${esc(id)}">
+    <div class="sec-head"><h2>${esc(sec.en)}</h2><span class="zh">${esc(sec.zh)}</span></div>
+    ${note}<div class="grid">${items}</div>
+  </section>`);
+});
+
+// Build the filter bar from the tags actually used by ≥1 item (in TAGS order).
+const used = new Set();
+MENU.forEach(s => (s.items || []).forEach(it => (it.tags || []).forEach(id => used.add(id))));
+const seen = new Set();
+const filterTags = [];
+TAGS.forEach(t => {
+  if (used.has(t.id) && !seen.has(t.id)) { seen.add(t.id); filterTags.push(t); }
+});
+const active = new Set();
+
+if (filterTags.length) {
+  barEl.insertAdjacentHTML("beforeend", `<button class="chip chip-all active" data-id="">全部 All</button>`);
+  filterTags.forEach(t => {
+    const ic = t.icon ? `<span class="ci">${t.icon}</span>` : "";
+    barEl.insertAdjacentHTML("beforeend",
+      `<button class="chip" data-id="${esc(t.id)}">${ic}<span class="cen">${esc(t.en)}</span><span class="czh">${esc(t.zh)}</span></button>`);
+  });
+} else {
+  barEl.style.display = "none";
+}
+
+// AND filter: an item shows iff its tags include every active id.
+function applyFilter() {
+  document.querySelectorAll("#menu section").forEach(sec => {
+    let visible = 0;
+    sec.querySelectorAll(".item").forEach(el => {
+      const tags = new Set((el.getAttribute("data-tags") || "").split(" ").filter(Boolean));
+      let show = true;
+      active.forEach(id => { if (!tags.has(id)) show = false; });
+      el.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    sec.style.display = visible ? "" : "none";
+    const link = navEl.querySelector(`a[data-sec="${CSS.escape(sec.id)}"]`);
+    if (link) link.style.display = visible ? "" : "none";
+  });
+}
+
+barEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".chip");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (id === "") active.clear();
+  else if (active.has(id)) active.delete(id);
+  else active.add(id);
+
+  barEl.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  if (active.size === 0) {
+    barEl.querySelector(".chip-all").classList.add("active");
+  } else {
+    active.forEach(a => {
+      const c = barEl.querySelector(`.chip[data-id="${CSS.escape(a)}"]`);
+      if (c) c.classList.add("active");
+    });
+  }
+  applyFilter();
+});
+
+// Explanation popover: tap 💡 to open near the button; tap elsewhere to close.
+const pop = document.getElementById("popover");
+menuEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".explain");
+  if (!btn) return;
+  e.stopPropagation();
+  pop.innerHTML = `<span class="pen"></span><span class="pzh"></span>`;
+  pop.querySelector(".pen").textContent = btn.getAttribute("data-en") || "";
+  pop.querySelector(".pzh").textContent = btn.getAttribute("data-zh") || "";
+  pop.hidden = false;
+  const r = btn.getBoundingClientRect();
+  const maxLeft = scrollX + document.documentElement.clientWidth - pop.offsetWidth - 12;
+  pop.style.top = (scrollY + r.bottom + 6) + "px";
+  pop.style.left = Math.max(scrollX + 12, Math.min(scrollX + r.left, maxLeft)) + "px";
+});
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".explain") && !e.target.closest("#popover")) pop.hidden = true;
+});
+
+// Language toggle (unchanged behaviour).
+document.querySelectorAll(".lang-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.body.className = "lang-" + btn.dataset.lang;
+  });
+});
+
+// Back to top (unchanged behaviour).
+const toTop = document.getElementById("toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+</script>
+</body>
+</html>
